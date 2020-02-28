@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.education.system_edu.mapper.userExecutionAssignmentLogMapper">
+  <resultMap id="BaseResultMap" type="com.education.system_edu.pojo.userExecutionAssignmentLog">
+    <id column="code" jdbcType="VARCHAR" property="code" />
+    <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="user_type" jdbcType="SMALLINT" property="userType" />
+    <result column="action_type" jdbcType="SMALLINT" property="actionType" />
+    <result column="assignment_code" jdbcType="VARCHAR" property="assignmentCode" />
+    <result column="assignment_type" jdbcType="SMALLINT" property="assignmentType" />
+    <result column="result_type" jdbcType="SMALLINT" property="resultType" />
+    <result column="result_tree_code" jdbcType="VARCHAR" property="resultTreeCode" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    code, user_code, user_type, action_type, assignment_code, assignment_type, result_type, 
+    result_tree_code, remarks, create_by, create_date, update_by, update_date
+  </sql>
+  <select id="selectByExample" parameterType="com.education.system_edu.pojo.userExecutionAssignmentLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_execution_assignment_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_execution_assignment_log
+    where code = #{code,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_execution_assignment_log
+    where code = #{code,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.education.system_edu.pojo.userExecutionAssignmentLogExample">
+    delete from user_execution_assignment_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.education.system_edu.pojo.userExecutionAssignmentLog">
+    insert into user_execution_assignment_log (code, user_code, user_type, 
+      action_type, assignment_code, assignment_type, 
+      result_type, result_tree_code, remarks, 
+      create_by, create_date, update_by, 
+      update_date)
+    values (#{code,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, #{userType,jdbcType=SMALLINT}, 
+      #{actionType,jdbcType=SMALLINT}, #{assignmentCode,jdbcType=VARCHAR}, #{assignmentType,jdbcType=SMALLINT}, 
+      #{resultType,jdbcType=SMALLINT}, #{resultTreeCode,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.education.system_edu.pojo.userExecutionAssignmentLog">
+    insert into user_execution_assignment_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="actionType != null">
+        action_type,
+      </if>
+      <if test="assignmentCode != null">
+        assignment_code,
+      </if>
+      <if test="assignmentType != null">
+        assignment_type,
+      </if>
+      <if test="resultType != null">
+        result_type,
+      </if>
+      <if test="resultTreeCode != null">
+        result_tree_code,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=SMALLINT},
+      </if>
+      <if test="actionType != null">
+        #{actionType,jdbcType=SMALLINT},
+      </if>
+      <if test="assignmentCode != null">
+        #{assignmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assignmentType != null">
+        #{assignmentType,jdbcType=SMALLINT},
+      </if>
+      <if test="resultType != null">
+        #{resultType,jdbcType=SMALLINT},
+      </if>
+      <if test="resultTreeCode != null">
+        #{resultTreeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.education.system_edu.pojo.userExecutionAssignmentLogExample" resultType="java.lang.Long">
+    select count(*) from user_execution_assignment_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user_execution_assignment_log
+    <set>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userCode != null">
+        user_code = #{record.userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userType != null">
+        user_type = #{record.userType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.actionType != null">
+        action_type = #{record.actionType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.assignmentCode != null">
+        assignment_code = #{record.assignmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assignmentType != null">
+        assignment_type = #{record.assignmentType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.resultType != null">
+        result_type = #{record.resultType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.resultTreeCode != null">
+        result_tree_code = #{record.resultTreeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_execution_assignment_log
+    set code = #{record.code,jdbcType=VARCHAR},
+      user_code = #{record.userCode,jdbcType=VARCHAR},
+      user_type = #{record.userType,jdbcType=SMALLINT},
+      action_type = #{record.actionType,jdbcType=SMALLINT},
+      assignment_code = #{record.assignmentCode,jdbcType=VARCHAR},
+      assignment_type = #{record.assignmentType,jdbcType=SMALLINT},
+      result_type = #{record.resultType,jdbcType=SMALLINT},
+      result_tree_code = #{record.resultTreeCode,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.education.system_edu.pojo.userExecutionAssignmentLog">
+    update user_execution_assignment_log
+    <set>
+      <if test="userCode != null">
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=SMALLINT},
+      </if>
+      <if test="actionType != null">
+        action_type = #{actionType,jdbcType=SMALLINT},
+      </if>
+      <if test="assignmentCode != null">
+        assignment_code = #{assignmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assignmentType != null">
+        assignment_type = #{assignmentType,jdbcType=SMALLINT},
+      </if>
+      <if test="resultType != null">
+        result_type = #{resultType,jdbcType=SMALLINT},
+      </if>
+      <if test="resultTreeCode != null">
+        result_tree_code = #{resultTreeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.education.system_edu.pojo.userExecutionAssignmentLog">
+    update user_execution_assignment_log
+    set user_code = #{userCode,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=SMALLINT},
+      action_type = #{actionType,jdbcType=SMALLINT},
+      assignment_code = #{assignmentCode,jdbcType=VARCHAR},
+      assignment_type = #{assignmentType,jdbcType=SMALLINT},
+      result_type = #{resultType,jdbcType=SMALLINT},
+      result_tree_code = #{resultTreeCode,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+</mapper>

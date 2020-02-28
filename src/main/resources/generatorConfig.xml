@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection
+                driverClass="com.mysql.cj.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/for_may_test?serverTimezone=UTC"
+                userId="root"
+                password="toor">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--指定Javabean生成的位置-->
+        <javaModelGenerator targetPackage="com.education.system_edu.pojo" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--指定sql映射文件生成的位置-->
+        <sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\resources\mybatis">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--指定dao接口生成的位置，mapper接口生成的位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.education.system_edu.mapper" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--指定每个表的生成策略-->
+        <!--指定每个表的生成策略-->
+
+        <table tableName="sys_data_tree" domainObjectName="SysDataTree"/>
+<!--        <table tableName="sys_node" domainObjectName="SysNode"/>-->
+<!--        <table tableName="sys_permission" domainObjectName="SysPermission"/>-->
+<!--        <table tableName="sys_schedule" domainObjectName="SysSchedule"/>-->
+<!--        <table tableName="connect_questionnaire_and_question" domainObjectName="ConnectQuestionnaireAndQuestion"/>-->
+<!--        <table tableName="connect_questionnaire_question_and_option" domainObjectName="ConnectQuestionnaireQuestionAndOption"/>-->
+<!--        <table tableName="connect_user_and_department" domainObjectName="ConnectUserAndDepartment"/>-->
+<!--        <table tableName="connect_user_and_role" domainObjectName="ConnectUserAndRole"/>-->
+<!--        <table tableName="connect_user_student_and_class" domainObjectName="ConnectUserStudentAndClass"/>-->
+<!--        <table tableName="sys_model_class" domainObjectName="SysModelClass"/>-->
+<!--        <table tableName="sys_model_class_assignment" domainObjectName="SysModelClassAssignment"/>-->
+<!--        <table tableName="class_publish_assignment_action" domainObjectName="ClassPublishAssignmentAction"/>-->
+<!--        <table tableName="correct_assignmenrt_action" domainObjectName="CorrectAssignmenrtAction"/>-->
+<!--        <table tableName="student_sign_action" domainObjectName="StudentSignAction"/>-->
+<!--        <table tableName="student_submit_task_action" domainObjectName="StudentLSubmitTaskAction"/>-->
+<!--        <table tableName="sys_model_course" domainObjectName="SysModelCourse"/>-->
+<!--        <table tableName="sys_model_course_table_model" domainObjectName="SysModelCourseTableModel"/>-->
+<!--        <table tableName="sys_model_course_table_model_has_course" domainObjectName="SysModelCourseTableModelHasCourse"/>-->
+<!--        <table tableName="sys_model_course_time" domainObjectName="SysModelCourseTime"/>-->
+<!--        <table tableName="sys_message" domainObjectName="SysMessage"/>-->
+<!--        <table tableName="sys_reader_message" domainObjectName="SysReaderMessage"/>-->
+<!--        <table tableName="sys_model_questionnaire_question_option_repository" domainObjectName="SysModelQuestionnaireQuestionOptionRepository"/>-->
+<!--        <table tableName="sys_model_questionnaire_question_repository" domainObjectName="SysModelQuestionnaireQuestionRepository"/>-->
+<!--        <table tableName="sys_model_questionnaire_repository" domainObjectName="SysModelQuestionnaireRepository"/>-->
+<!--        <table tableName="student_submit_questionnaire" domainObjectName="StudentSubmitQuestionnaire"/>-->
+<!--        <table tableName="student_submit_questionnaire_text_answer" domainObjectName="StudentSubmitQuestionnaireTextAnswer"/>-->
+<!--        <table tableName="user_execution_assignment_log" domainObjectName="userExecutionAssignmentLog"/>-->
+<!--        <table tableName="all_users" domainObjectName="User"/>-->
+
+    </context>
+
+</generatorConfiguration>

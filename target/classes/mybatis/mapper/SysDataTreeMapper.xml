@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.education.system_edu.mapper.SysDataTreeMapper">
+  <resultMap id="BaseResultMap" type="com.education.system_edu.pojo.SysDataTree">
+    <id column="code" jdbcType="VARCHAR" property="code" />
+    <result column="ref_code" jdbcType="VARCHAR" property="refCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="SMALLINT" property="type" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+    <result column="is_show" jdbcType="CHAR" property="isShow" />
+    <result column="parent_node" jdbcType="VARCHAR" property="parentNode" />
+    <result column="parent_nodes" jdbcType="VARCHAR" property="parentNodes" />
+    <result column="tree_level" jdbcType="INTEGER" property="treeLevel" />
+    <result column="is_leaf" jdbcType="CHAR" property="isLeaf" />
+    <result column="ui" jdbcType="VARCHAR" property="ui" />
+    <result column="color" jdbcType="VARCHAR" property="color" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    code, ref_code, name, type, permission, is_show, parent_node, parent_nodes, tree_level, 
+    is_leaf, ui, color, icon, remarks, create_by, create_date, update_by, update_date
+  </sql>
+  <select id="selectByExample" parameterType="com.education.system_edu.pojo.SysDataTreeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_data_tree
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_data_tree
+    where code = #{code,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_data_tree
+    where code = #{code,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.education.system_edu.pojo.SysDataTreeExample">
+    delete from sys_data_tree
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.education.system_edu.pojo.SysDataTree">
+    insert into sys_data_tree (code, ref_code, name, 
+      type, permission, is_show, 
+      parent_node, parent_nodes, tree_level, 
+      is_leaf, ui, color, icon, 
+      remarks, create_by, create_date, 
+      update_by, update_date)
+    values (#{code,jdbcType=VARCHAR}, #{refCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=SMALLINT}, #{permission,jdbcType=VARCHAR}, #{isShow,jdbcType=CHAR}, 
+      #{parentNode,jdbcType=VARCHAR}, #{parentNodes,jdbcType=VARCHAR}, #{treeLevel,jdbcType=INTEGER}, 
+      #{isLeaf,jdbcType=CHAR}, #{ui,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.education.system_edu.pojo.SysDataTree">
+    insert into sys_data_tree
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="refCode != null">
+        ref_code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="parentNode != null">
+        parent_node,
+      </if>
+      <if test="parentNodes != null">
+        parent_nodes,
+      </if>
+      <if test="treeLevel != null">
+        tree_level,
+      </if>
+      <if test="isLeaf != null">
+        is_leaf,
+      </if>
+      <if test="ui != null">
+        ui,
+      </if>
+      <if test="color != null">
+        color,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="refCode != null">
+        #{refCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=CHAR},
+      </if>
+      <if test="parentNode != null">
+        #{parentNode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentNodes != null">
+        #{parentNodes,jdbcType=VARCHAR},
+      </if>
+      <if test="treeLevel != null">
+        #{treeLevel,jdbcType=INTEGER},
+      </if>
+      <if test="isLeaf != null">
+        #{isLeaf,jdbcType=CHAR},
+      </if>
+      <if test="ui != null">
+        #{ui,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.education.system_edu.pojo.SysDataTreeExample" resultType="java.lang.Long">
+    select count(*) from sys_data_tree
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sys_data_tree
+    <set>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refCode != null">
+        ref_code = #{record.refCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=SMALLINT},
+      </if>
+      <if test="record.permission != null">
+        permission = #{record.permission,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isShow != null">
+        is_show = #{record.isShow,jdbcType=CHAR},
+      </if>
+      <if test="record.parentNode != null">
+        parent_node = #{record.parentNode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentNodes != null">
+        parent_nodes = #{record.parentNodes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.treeLevel != null">
+        tree_level = #{record.treeLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.isLeaf != null">
+        is_leaf = #{record.isLeaf,jdbcType=CHAR},
+      </if>
+      <if test="record.ui != null">
+        ui = #{record.ui,jdbcType=VARCHAR},
+      </if>
+      <if test="record.color != null">
+        color = #{record.color,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon != null">
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_data_tree
+    set code = #{record.code,jdbcType=VARCHAR},
+      ref_code = #{record.refCode,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=SMALLINT},
+      permission = #{record.permission,jdbcType=VARCHAR},
+      is_show = #{record.isShow,jdbcType=CHAR},
+      parent_node = #{record.parentNode,jdbcType=VARCHAR},
+      parent_nodes = #{record.parentNodes,jdbcType=VARCHAR},
+      tree_level = #{record.treeLevel,jdbcType=INTEGER},
+      is_leaf = #{record.isLeaf,jdbcType=CHAR},
+      ui = #{record.ui,jdbcType=VARCHAR},
+      color = #{record.color,jdbcType=VARCHAR},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.education.system_edu.pojo.SysDataTree">
+    update sys_data_tree
+    <set>
+      <if test="refCode != null">
+        ref_code = #{refCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=CHAR},
+      </if>
+      <if test="parentNode != null">
+        parent_node = #{parentNode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentNodes != null">
+        parent_nodes = #{parentNodes,jdbcType=VARCHAR},
+      </if>
+      <if test="treeLevel != null">
+        tree_level = #{treeLevel,jdbcType=INTEGER},
+      </if>
+      <if test="isLeaf != null">
+        is_leaf = #{isLeaf,jdbcType=CHAR},
+      </if>
+      <if test="ui != null">
+        ui = #{ui,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.education.system_edu.pojo.SysDataTree">
+    update sys_data_tree
+    set ref_code = #{refCode,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=SMALLINT},
+      permission = #{permission,jdbcType=VARCHAR},
+      is_show = #{isShow,jdbcType=CHAR},
+      parent_node = #{parentNode,jdbcType=VARCHAR},
+      parent_nodes = #{parentNodes,jdbcType=VARCHAR},
+      tree_level = #{treeLevel,jdbcType=INTEGER},
+      is_leaf = #{isLeaf,jdbcType=CHAR},
+      ui = #{ui,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+</mapper>

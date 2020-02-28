@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>教务处登录</title>
+    <!--
+      作者：阳柯吉
+      时间：2019-10-01
+      描述：主页面分析尝试
+  -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/statics/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <!--图标 -->
+    <link rel="stylesheet" href="/statics/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <!--在线创建自己的图标字体，免费享用图标字体云服务-->
+    <link rel="stylesheet" href="/statics/css/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <!--提供了超过 800 种的高质量的字体,所有的浏览器都兼容-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <!--主题样式-->
+    <link rel="stylesheet" href="/statics/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <!--css样式修改用-->
+    <link rel="stylesheet" href="/statics/css/custom.css">
+    <!-- Favicon-->
+    <!--网页图标-->
+    <link rel="shortcut icon" href="/statics/img/favicon.ico">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+
+<body>
+<div class="page">
+    <!-- 主菜单栏-->
+    <header class="header">
+        <div th:insert="~{/bar/head_bar::header}"></div>
+    </header>
+    <div class="page-content d-flex align-items-stretch">
+        <div th:insert="~{/bar/left_bar::m_side-navbar}"></div>
+        <div class="content-inner">
+            <!-- 页面主体标签 -->
+            <div th:insert="~{/bar/head_bar::page-header}"></div>
+            <!-- Charts Section-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="pie-chart-example card">
+
+                            <div class="card-header d-flex align-items-center">
+                                <h3 class="h4">教学质量完成情况</h3>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="pieChartExample"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Line Charts-->
+                    <div class="col-lg-5">
+                        <div class="line-chart-example card">
+                            <div class="card-header d-flex align-items-center">
+                                <h3 class="h4">教学质量完成情况</h3>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="lineChartExample"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="line-chart-example card no-margin-bottom">
+                            <div class="card-header d-flex align-items-center">
+                                <h3 class="h4">问卷反馈评分</h3>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="lineChartExample1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 页脚    -->
+                <footer class="main-footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>2019 计算机科学与技术专业毕业设计
+                                </p>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div th:insert="~{/bar/js_bar::js}"></div>
+</body>
+
+</html>

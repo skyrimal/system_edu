@@ -1,0 +1,208 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<div th:fragment="m_side-navbar-head" class="sidebar-header d-flex align-items-center">
+    <div class="avatar"><img src="/statics/img/avatar-1.jpg" alt="..."
+                             class="img-fluid rounded-circle"></div>
+    <div class="title">
+        <h1 class="h4" id="user_name">人名</h1>
+        <p>教师职位</p>
+        <p id="user_type">教务处权限</p>
+    </div>
+</div>
+
+
+
+
+
+<!--侧菜单栏 -->
+<nav th:fragment="m_side-navbar" class="side-navbar">
+    <!-- 侧菜单栏头-->
+    <div th:insert="~{/bar/left_bar::m_side-navbar-head}"></div>
+    <!-- 侧菜单栏-->
+    <span class="heading">Menu</span>
+    <ul class="list-unstyled">
+        <li class="active">
+            <a href="#"> <i class="icon-home"></i>主页面 </a>
+        </li>
+        <li>
+            <a href="#departments_m" aria-expanded="false" data-toggle="collapse"> <i
+                    class="icon-interface-windows"></i>学院管理 </a>
+            <ul id="departments_m" class="collapse list-unstyled ">
+                <li>
+                    <a href="/manage/userManage">专业</a>
+                </li>
+                <li>
+                    <a href="/manage/faculty/m_manage_faculty_faculty">学院</a>
+                </li>
+                <li>
+                    <a href="/manage/faculty/m_manage_faculty_major">专业</a>
+                </li>
+                <li>
+                    <a href="/manage/m_manage_faculty_class">行政班级</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#course_m" aria-expanded="false" data-toggle="collapse"> <i
+                    class="icon-interface-windows"></i>课程管理 </a>
+            <ul id="course_m" class="collapse list-unstyled ">
+                <li>
+                    <a href="/manage/m_manage_course_course">课程</a>
+                </li>
+                <li>
+                    <a href="/manage/m_manage_course_made_courseclass">课程班级</a>
+                </li>
+                <li>
+                    <a href="/manage/m_manage_course_info">授课情况</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#questionnaire_m" aria-expanded="false" data-toggle="collapse"> <i
+                    class="icon-interface-windows"></i>问卷管理 </a>
+            <ul id="questionnaire_m" class="collapse list-unstyled ">
+                <li>
+                    <a href="#">问卷模板</a>
+                </li>
+                <li>
+                    <a href="#">发布问卷</a>
+                </li>
+                <li>
+                    <a href="#">查看问卷反馈</a>
+                </li>
+                <li>
+                    <a href="#">开启问卷渠道</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#file_m" aria-expanded="false" data-toggle="collapse"> <i
+                    class="icon-interface-windows"></i>文件管理 </a>
+            <ul id="file_m" class="collapse list-unstyled ">
+                <li>
+                    <a href="#">清理旧文件夹</a>
+                </li>
+                <li>
+                    <a href="#">备份数据库</a>
+                </li>
+                <li>
+                    <a href="#">学院数据还原</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <span class="heading">Extras</span>
+    <ul class="list-unstyled">
+        <li>
+            <a href="#"> <i class="icon-flask"></i>系统设置</a>
+        </li>
+        <li>
+            <a href="#"> <i class="icon-screen"></i>Demo </a>
+        </li>
+        <li>
+            <a href="#"> <i class="icon-mail"></i>Demo </a>
+        </li>
+        <li>
+            <a href="#"> <i class="icon-picture"></i>Demo </a>
+        </li>
+    </ul>
+</nav>
+
+<!--侧菜单栏 -->
+<nav class="side-navbar" th:fragment="stu_side-navbar">
+    <!-- 侧菜单栏头-->
+    <div th:insert="~{/bar/left_bar::m_side-navbar-head}"></div>
+    <!-- 侧菜单栏-->
+    <span class="heading">Menu</span>
+    <ul class="list-unstyled">
+        <li id="stu_main">
+            <a href="/stu_main"> <i class="icon-home"></i>主页面 </a>
+        </li>
+        <li id="stu_course">
+            <a href="#coursedropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-grid"></i>课程管理
+            </a>
+            <ul id="coursedropdownDropdown" class="collapse list-unstyled ">
+                <li>
+                    <a href="/stu_course">Page</a>
+                </li>
+                <li>
+                    <a href="#">Page</a>
+                </li>
+                <li>
+                    <a href="#">Page</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#"> <i class="icon-interface-windows"></i>问卷 </a>
+        </li>
+        <li id="stu_message">
+            <a href="/stu_message"> <i class="icon-mail"></i>消息 </a>
+        </li>
+        <li>
+            <a href="#"> <i class="icon-flask"></i>签到 </a>
+        </li>
+    </ul>
+    <span class="heading">设置</span>
+    <ul class="list-unstyled">
+        <li id="person_info">
+            <a href="/person_info"> <i class="icon-screen"></i>个人信息 </a>
+        </li>
+
+        <li>
+            <a href="/user/rewrite_password"> <i class="icon-picture"></i>密码修改 </a>
+        </li>
+    </ul>
+</nav>
+
+<!--侧菜单栏 -->
+<nav class="side-navbar" th:fragment="t_side-navbar">
+    <!-- 侧菜单栏头-->
+    <div th:insert="~{/bar/left_bar::m_side-navbar-head}"></div>
+    <!-- 侧菜单栏-->
+    <span class="heading">Menu</span>
+    <ul class="list-unstyled">
+        <li>
+            <a href="t_main.html"> <i class="icon-home"></i>主页面 </a>
+        </li>
+        <li class="active">
+            <a href="#coursedropdownDropdown1" aria-expanded="true" data-toggle="collapse"> <i class="icon-grid"></i>课程管理
+            </a>
+            <ul id="coursedropdownDropdown1" class="in list-unstyled collapse show ">
+                <li>
+                    <a href="t_course.html">Page</a>
+                </li>
+                <li>
+                    <a href="#">Page</a>
+                </li>
+                <li>
+                    <a href="#">Page</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#"> <i class="icon-padnote"></i>作业管理 </a>
+        </li>
+
+        <li>
+            <a href="login.html"> <i class="icon-interface-windows"></i>问卷 </a>
+        </li>
+        <li>
+            <a href="#"> <i class="icon-mail"></i>消息 </a>
+        </li>
+        <li>
+            <a href="#"> <i class="icon-flask"></i>签到 </a>
+        </li>
+    </ul>
+    <span class="heading">设置</span>
+    <ul class="list-unstyled">
+
+        <li>
+            <a href="#"> <i class="icon-screen"></i>个人信息 </a>
+        </li>
+
+        <li>
+            <a href="/user/rewrite_password"> <i class="icon-picture"></i>密码修改 </a>
+        </li>
+    </ul>
+</nav>
+</html>

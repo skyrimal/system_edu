@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>教师登录</title>
+    <!--
+      作者：阳柯吉
+      时间：2019-10-01
+      描述：主页面分析尝试
+  -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/statics/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <!--图标 -->
+    <link rel="stylesheet" href="/statics/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <!--在线创建自己的图标字体，免费享用图标字体云服务-->
+    <link rel="stylesheet" href="/statics/css/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <!--提供了超过 800 种的高质量的字体,所有的浏览器都兼容-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <!--主题样式-->
+    <link rel="stylesheet" href="/statics/css/style.sea.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <!--css样式修改用-->
+    <link rel="stylesheet" href="/statics/css/custom.css">
+    <!-- Favicon-->
+    <!--网页图标-->
+    <link rel="shortcut icon" href="/statics/img/favicon.ico">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+
+<body>
+<div class="page">
+    <!-- 主菜单栏-->
+    <header class="header">
+        <div th:insert="~{/bar/head_bar::header}"></div>
+    </header>
+    <div class="page-content d-flex align-items-stretch">
+
+        <div th:insert="~{/bar/left_bar::stu_side-navbar}"></div>
+        <!-- 页面主体 -->
+        <div class="content-inner" align="center">
+            <!-- 页面主体标签 -->
+            <div th:insert="~{/bar/head_bar::page-header}"></div>
+            <div class="btn-group-lg alert-heading">
+                <div class="container-fluid">
+                    <div class="card" style="width: 50%;">
+                        <div class="card-header">
+                            <h4 class="card-title">王二狗</h4>
+                        </div>
+                        <div class="card-body row">
+                            <div id="img" style="width: 30%;">
+                                <img src="/statics/img/avatar-2.jpg" style="width: 70%;"/>
+                            </div>
+                            <div id="messages">
+                                <strong>姓名:</strong>李二狗<br/>
+                                <strong>性别:</strong>男<br/>
+                                <strong>职位:</strong>副教授<br/>
+                                <strong>院系:</strong>这个院<br/>
+                                <strong>籍贯:</strong>四川绵阳<br/>
+                                <strong>电话:</strong>9090950<br/>
+                                <strong>邮箱:</strong>50412335@qq.com<br/>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group-sm">
+                                <div class="btn btn-success">修改</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 页脚    -->
+            <footer class="main-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>2019 计算机科学与技术专业毕业设计
+                            </p>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+<!-- JavaScript files-->
+
+<div th:insert="~{/bar/js_bar::js}"></div>
+<script>
+    $(function () {
+        $("#person_info").addClass("active");
+    })
+</script>
+</body>
+
+</html>

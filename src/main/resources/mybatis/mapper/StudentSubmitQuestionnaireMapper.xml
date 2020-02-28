@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.education.system_edu.mapper.StudentSubmitQuestionnaireMapper">
+  <resultMap id="BaseResultMap" type="com.education.system_edu.pojo.StudentSubmitQuestionnaire">
+    <id column="code" jdbcType="VARCHAR" property="code" />
+    <result column="student_code" jdbcType="VARCHAR" property="studentCode" />
+    <result column="questionnaire_code" jdbcType="VARCHAR" property="questionnaireCode" />
+    <result column="sys_data_node_code" jdbcType="VARCHAR" property="sysDataNodeCode" />
+    <result column="sys_data_node_type" jdbcType="SMALLINT" property="sysDataNodeType" />
+    <result column="is_submit" jdbcType="CHAR" property="isSubmit" />
+    <result column="submit_time" jdbcType="INTEGER" property="submitTime" />
+    <result column="sub_options" jdbcType="VARCHAR" property="subOptions" />
+    <result column="sub_text_anwer" jdbcType="VARCHAR" property="subTextAnwer" />
+    <result column="sub_file_name" jdbcType="VARCHAR" property="subFileName" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    code, student_code, questionnaire_code, sys_data_node_code, sys_data_node_type, is_submit, 
+    submit_time, sub_options, sub_text_anwer, sub_file_name, create_by, create_date, 
+    update_by, update_date
+  </sql>
+  <select id="selectByExample" parameterType="com.education.system_edu.pojo.StudentSubmitQuestionnaireExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student_submit_questionnaire
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from student_submit_questionnaire
+    where code = #{code,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from student_submit_questionnaire
+    where code = #{code,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.education.system_edu.pojo.StudentSubmitQuestionnaireExample">
+    delete from student_submit_questionnaire
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.education.system_edu.pojo.StudentSubmitQuestionnaire">
+    insert into student_submit_questionnaire (code, student_code, questionnaire_code, 
+      sys_data_node_code, sys_data_node_type, is_submit, 
+      submit_time, sub_options, sub_text_anwer, 
+      sub_file_name, create_by, create_date, 
+      update_by, update_date)
+    values (#{code,jdbcType=VARCHAR}, #{studentCode,jdbcType=VARCHAR}, #{questionnaireCode,jdbcType=VARCHAR}, 
+      #{sysDataNodeCode,jdbcType=VARCHAR}, #{sysDataNodeType,jdbcType=SMALLINT}, #{isSubmit,jdbcType=CHAR}, 
+      #{submitTime,jdbcType=INTEGER}, #{subOptions,jdbcType=VARCHAR}, #{subTextAnwer,jdbcType=VARCHAR}, 
+      #{subFileName,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.education.system_edu.pojo.StudentSubmitQuestionnaire">
+    insert into student_submit_questionnaire
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="studentCode != null">
+        student_code,
+      </if>
+      <if test="questionnaireCode != null">
+        questionnaire_code,
+      </if>
+      <if test="sysDataNodeCode != null">
+        sys_data_node_code,
+      </if>
+      <if test="sysDataNodeType != null">
+        sys_data_node_type,
+      </if>
+      <if test="isSubmit != null">
+        is_submit,
+      </if>
+      <if test="submitTime != null">
+        submit_time,
+      </if>
+      <if test="subOptions != null">
+        sub_options,
+      </if>
+      <if test="subTextAnwer != null">
+        sub_text_anwer,
+      </if>
+      <if test="subFileName != null">
+        sub_file_name,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCode != null">
+        #{studentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="questionnaireCode != null">
+        #{questionnaireCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysDataNodeCode != null">
+        #{sysDataNodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysDataNodeType != null">
+        #{sysDataNodeType,jdbcType=SMALLINT},
+      </if>
+      <if test="isSubmit != null">
+        #{isSubmit,jdbcType=CHAR},
+      </if>
+      <if test="submitTime != null">
+        #{submitTime,jdbcType=INTEGER},
+      </if>
+      <if test="subOptions != null">
+        #{subOptions,jdbcType=VARCHAR},
+      </if>
+      <if test="subTextAnwer != null">
+        #{subTextAnwer,jdbcType=VARCHAR},
+      </if>
+      <if test="subFileName != null">
+        #{subFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.education.system_edu.pojo.StudentSubmitQuestionnaireExample" resultType="java.lang.Long">
+    select count(*) from student_submit_questionnaire
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update student_submit_questionnaire
+    <set>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentCode != null">
+        student_code = #{record.studentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.questionnaireCode != null">
+        questionnaire_code = #{record.questionnaireCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysDataNodeCode != null">
+        sys_data_node_code = #{record.sysDataNodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysDataNodeType != null">
+        sys_data_node_type = #{record.sysDataNodeType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.isSubmit != null">
+        is_submit = #{record.isSubmit,jdbcType=CHAR},
+      </if>
+      <if test="record.submitTime != null">
+        submit_time = #{record.submitTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.subOptions != null">
+        sub_options = #{record.subOptions,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subTextAnwer != null">
+        sub_text_anwer = #{record.subTextAnwer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subFileName != null">
+        sub_file_name = #{record.subFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update student_submit_questionnaire
+    set code = #{record.code,jdbcType=VARCHAR},
+      student_code = #{record.studentCode,jdbcType=VARCHAR},
+      questionnaire_code = #{record.questionnaireCode,jdbcType=VARCHAR},
+      sys_data_node_code = #{record.sysDataNodeCode,jdbcType=VARCHAR},
+      sys_data_node_type = #{record.sysDataNodeType,jdbcType=SMALLINT},
+      is_submit = #{record.isSubmit,jdbcType=CHAR},
+      submit_time = #{record.submitTime,jdbcType=INTEGER},
+      sub_options = #{record.subOptions,jdbcType=VARCHAR},
+      sub_text_anwer = #{record.subTextAnwer,jdbcType=VARCHAR},
+      sub_file_name = #{record.subFileName,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.education.system_edu.pojo.StudentSubmitQuestionnaire">
+    update student_submit_questionnaire
+    <set>
+      <if test="studentCode != null">
+        student_code = #{studentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="questionnaireCode != null">
+        questionnaire_code = #{questionnaireCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysDataNodeCode != null">
+        sys_data_node_code = #{sysDataNodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysDataNodeType != null">
+        sys_data_node_type = #{sysDataNodeType,jdbcType=SMALLINT},
+      </if>
+      <if test="isSubmit != null">
+        is_submit = #{isSubmit,jdbcType=CHAR},
+      </if>
+      <if test="submitTime != null">
+        submit_time = #{submitTime,jdbcType=INTEGER},
+      </if>
+      <if test="subOptions != null">
+        sub_options = #{subOptions,jdbcType=VARCHAR},
+      </if>
+      <if test="subTextAnwer != null">
+        sub_text_anwer = #{subTextAnwer,jdbcType=VARCHAR},
+      </if>
+      <if test="subFileName != null">
+        sub_file_name = #{subFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.education.system_edu.pojo.StudentSubmitQuestionnaire">
+    update student_submit_questionnaire
+    set student_code = #{studentCode,jdbcType=VARCHAR},
+      questionnaire_code = #{questionnaireCode,jdbcType=VARCHAR},
+      sys_data_node_code = #{sysDataNodeCode,jdbcType=VARCHAR},
+      sys_data_node_type = #{sysDataNodeType,jdbcType=SMALLINT},
+      is_submit = #{isSubmit,jdbcType=CHAR},
+      submit_time = #{submitTime,jdbcType=INTEGER},
+      sub_options = #{subOptions,jdbcType=VARCHAR},
+      sub_text_anwer = #{subTextAnwer,jdbcType=VARCHAR},
+      sub_file_name = #{subFileName,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" th:href="@{/statics/vendor/bootstrap/css/bootstrap.min.css}">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" th:href="@{/statics/vendor/font-awesome/css/font-awesome.min.css}">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" th:href="@{/statics/css/fontastic.css}">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" th:href="@{/statics/css/style.green.css}" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" th:href="@{/statics/css/custom.css}">
+    <!-- Favicon-->
+    <link rel="shortcut icon" th:href="@{/statics/img/favicon.ico}">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+
+<body>
+<div class="page login-page">
+    <div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+            <div class="row">
+                <!-- Logo & Information Panel-->
+                <div class="col-lg-6">
+                    <div class="info d-flex align-items-center">
+                        <div class="content">
+                            <div class="logo">
+                                <h1>欢迎使用教学质量管理系统</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 bg-white">
+                    <div class="form d-flex align-items-center">
+                        <div class="content">
+                            <form method="post" class="form-validate" name="test_form">
+                                <div class="form-group">
+                                    <input id="login-username" type="text" name="loginUsername" class="input-material"
+                                           maxlength="8" onkeyup="this.value=this.value.replace(/\D/g,'')"
+                                           onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                                    <label for="login-username" class="label-material">学号/工号</label>
+                                </div>
+                                <div class="form-group">
+                                    <input id="login-password" type="password" name="loginPassword"
+                                           class="input-material" maxlength="16"
+                                           onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
+                                    <label for="login-password" class="label-material">密码</label>
+                                </div>
+                                <div class="form-group col">
+                                    <div class="row">
+                                        <a id="a-verification-code" href="javascript:getVerifiCode()">
+                                            <img id="yzm_img"
+                                                 style="cursor:pointer;width: 100px;height: 36px;margin: 5px 0 0 5px;border-radius: 3px;"
+                                                 title="点击刷新验证码" src="/getVerifiCode"/>
+                                        </a>
+                                        <h5 id="error_msg" style="color: red"></h5>
+                                    </div>
+
+                                    <input id="verification-code" type="text" name="verificationCode"
+                                           class="input-material" maxlength="4" >
+                                </div>
+                                <a id="login" class="btn btn-primary"
+                                   onclick="tryLogin()">登录</a>
+                            </form>
+                            <a href="#" class="forgot-pass">密码找回</a><br/>
+                            <a href="register.html" class="signup">账号注册</a><br><small>需要班级开放注册</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="page" th:value="${page}">
+    <div class="copyrights text-center">
+        <p>Design for
+            <a href="#" class="external">西南财经大学天府学院毕业设计</a>
+        </p>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    function getVerifiCode() {
+        $("#yzm_img").prop('src', '/getVerifiCode?a=' + new Date().getTime());
+    }
+
+    function tryLogin() {
+        var userName = $('#login-username').val().trim();
+        var pass = $('#login-password').val().trim();
+        var verificationCode = $('#verification-code').val().trim();
+        $.ajax({
+            type: "post",
+            url: '/user/login',
+            dataType: "text", //ajax返回值设置为text(json格式也可用它返回，可打印出结果，也可设置成json)
+            data: {
+                'loginUsername': userName,
+                'loginPassword': pass,
+                'verificationCode': verificationCode
+            },
+            success: function (data) {
+
+                if(data=='false'){
+                    getVerifiCode();
+                    $('#error_msg p').remove();
+                    $('#error_msg').append('<p>验证码错误</P>');
+                }else{
+                    window.location.href=data;
+                    console.info(data)
+                }
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
+
+</script>
+
+<div th:insert="~{/bar/js_bar::js}"></div>
+</body>
+
+</html>
