@@ -10,9 +10,6 @@
 </div>
 
 
-
-
-
 <!--侧菜单栏 -->
 <nav th:fragment="m_side-navbar" class="side-navbar">
     <!-- 侧菜单栏头-->
@@ -28,13 +25,13 @@
                     class="icon-interface-windows"></i>学院管理 </a>
             <ul id="departments_m" class="collapse list-unstyled ">
                 <li>
-                    <a href="/manage/userManage">专业</a>
-                </li>
-                <li>
                     <a href="/manage/faculty/m_manage_faculty_faculty">学院</a>
                 </li>
                 <li>
                     <a href="/manage/faculty/m_manage_faculty_major">专业</a>
+                </li>
+                <li>
+                    <a href="/manage/user/userSearch?pageSize=10&pageNum=1">用户管理</a>
                 </li>
                 <li>
                     <a href="/manage/m_manage_faculty_class">行政班级</a>

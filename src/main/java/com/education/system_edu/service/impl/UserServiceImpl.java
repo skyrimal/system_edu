@@ -3,13 +3,16 @@ package com.education.system_edu.service.impl;
 import com.education.system_edu.mapper.UserMapper;
 import com.education.system_edu.pojo.User;
 import com.education.system_edu.pojo.UserExample;
+import com.education.system_edu.pojo.pojo_child.parameter.PageUser;
+import com.education.system_edu.pojo.pojo_child.result.PageUserOutput;
+import com.education.system_edu.pojo.pojo_getData.SearchUserByFaculty;
 import com.education.system_edu.service.UserService;
 import com.education.system_edu.utils.EmptyUtil;
 import com.education.system_edu.utils.EncryptionUtils;
 import org.springframework.stereotype.Service;
-import sun.security.provider.MD5;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,6 +21,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 用户修改密码
+     *
      * @param loginCode
      * @param oldPassword
      * @param newPassword
@@ -46,4 +50,42 @@ public class UserServiceImpl implements UserService {
             return false;
         }
     }
+
+    @Override
+    public List<PageUserOutput> selectUsersByUser(SearchUserByFaculty searchUserByFaculty, Integer pageSize, Integer pageNum) {
+        PageUser pageUser = new PageUser();
+        if (searchUserByFaculty != null) {
+            pageUser.setFaculty(searchUserByFaculty.getFacultyId());
+            pageUser.setDepartment(searchUserByFaculty.getDepartmentCode());
+        }
+        pageUser.setPageNum(pageNum);
+        pageUser.setPageSize(pageSize);
+        List<PageUserOutput> pageUserOutputs = userMapper.selectSelectedByUser(pageUser);
+        return pageUserOutputs;
+    }
+
+    @Override
+    public Long getUserPageCount(SearchUserByFaculty searchUserByFaculty, Integer pageSize) {
+        PageUser pageUser = new PageUser();
+        long pageCount = 0L;
+        if (searchUserByFaculty != null) {
+            pageUser.setFaculty(searchUserByFaculty.getFacultyId());
+            pageUser.setDepartment(searchUserByFaculty.getDepartmentCode());
+            if (searchUserByFaculty.getDepartmentCode().equals("") && searchUserByFaculty.getFacultyId().equals("") && searchUserByFaculty.getKeyword().equals("")) {
+                pageCount = userMapper.countByExample(new UserExample());
+            }else{
+                pageCount = userMapper.countByPageUser(pageUser);
+            }
+        } else {
+            pageCount = userMapper.countByExample(new UserExample());
+        }
+
+        if (pageCount % pageSize == 0) {
+            return pageCount / pageSize;
+        } else {
+            return pageCount / pageSize + 1;
+        }
+    }
+
+
 }

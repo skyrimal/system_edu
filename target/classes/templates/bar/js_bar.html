@@ -16,3 +16,58 @@
     <script src="/statics/js/front.js"></script>
     <script src="/statics/js/user_message.js"></script>
 </div>
+<script th:fragment="page_js">
+    $(function () {
+        var pageCount = [[${pageCount}]];
+        var pageNum = [[${pageNextNum}]] - 1;
+        $("#pageFoot").append("<a class=\" text-black-50\" href=\"/manage/user/userSearch?pageSize=10&pageNum=" + 1 + "\"><<</a>&ensp;");
+        if (1 !== pageNum) {
+            var pageNum2 = pageNum - 1
+            $("#pageFoot").append("<a class=\" text-black-50\" href=\"/manage/user/userSearch?pageSize=10&pageNum=" + pageNum2 + "\"><</a>&ensp;");
+        }
+        if (pageCount <= 30) {
+            for (var i = 1; i <= pageCount; i++) {
+                $("#pageFoot").append("<a class=\" text-black-50\" href=\"/manage/user/userSearch?pageSize=10&pageNum=" + i + "\">" + i + "</a>&ensp;");
+            }
+        } else {
+            //点击1-8
+            if (pageNum <= 10 || pageNum >= pageCount - 4) {
+                for (var i = 1; i <= 15; i++) {
+                    $("#pageFoot").append("<a class=\" text-black-50\" href=\"/manage/user/userSearch?pageSize=10&pageNum=" + i + "\">" + i + "</a>&ensp;");
+                }
+                for (var i = 1; i <= 5; i++) {
+                    $("#pageFoot").append(".&ensp;");
+                }
+                for (var i = pageCount - 10; i <= pageCount; i++) {
+                    $("#pageFoot").append("<a class=\" text-black-50\" href=\"/manage/user/userSearch?pageSize=10&pageNum=" + i + "\">" + i + "</a>&ensp;");
+                }
+            } else {
+                //1--5
+                for (var i = 1; i <= 3; i++) {
+                    $("#pageFoot").append("<a class=\" text-black-50\" href=\"/manage/user/userSearch?pageSize=10&pageNum=" + i + "\">" + i + "</a>&ensp;");
+                }
+                for (var i = 1; i <= 5; i++) {
+                    $("#pageFoot").append(".&ensp;");
+                }
+                //pageNum-5--pageNum+5
+                for (var i = pageNum - 3; i <= pageNum + 3; i++) {
+                    if (i <= pageCount - 6) {
+                        $("#pageFoot").append("<a class=\" text-black-50\" href=\"/manage/user/userSearch?pageSize=10&pageNum=" + i + "\">" + i + "</a>&ensp;");
+                    }
+                }
+                //
+                for (var i = 1; i <= 10; i++) {
+                    $("#pageFoot").append(".&ensp;");
+                }
+                for (var i = pageCount - 5; i <= pageCount; i++) {
+                    $("#pageFoot").append("<a class=\" text-black-50\" href=\"/manage/user/userSearch?pageSize=10&pageNum=" + i + "\">" + i + "</a>&ensp;");
+                }
+            }
+        }
+        if (pageCount !== pageNum) {
+            var pageNum2 = pageNum + 1
+            $("#pageFoot").append("<a class=\" text-black-50\" href=\"/manage/user/userSearch?pageSize=10&pageNum=" + pageNum2 + "\">></a>&ensp;");
+        }
+        $("#pageFoot").append("<a class=\" text-black-50\" href=\"/manage/user/userSearch?pageSize=10&pageNum=" + pageCount + "\">>></a>&ensp;");
+    })
+</script>

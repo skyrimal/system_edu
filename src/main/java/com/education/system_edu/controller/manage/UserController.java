@@ -1,16 +1,66 @@
 package com.education.system_edu.controller.manage;
 
+import com.education.system_edu.pojo.pojo_getData.SearchUserByFaculty;
+import com.education.system_edu.service.UserService;
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller
-@RequestMapping("manage")
+import javax.servlet.http.HttpSession;
+
+@Controller(value = "manageUserController")
+@RequestMapping("manage/user")
 public class UserController {
 
+    UserService userService;
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
     @RequiresRoles({"user", "manager"})
-    @RequestMapping("userManage")
-    public String userManageMain(){
+    @PostMapping("userSearch")
+    public String userManageMain(@RequestParam("pageSize") Integer pageSize,
+                                 @RequestParam("pageNum") Integer pageNum,
+                                 SearchUserByFaculty searchUserByFaculty,
+                                 Model model,HttpSession httpSession) {
+        model.addAttribute("users", userService.selectUsersByUser(searchUserByFaculty, pageSize, pageNum));
+        model.addAttribute("pageCount", userService.getUserPageCount(searchUserByFaculty,pageSize));
+        model.addAttribute("pageNextNum", pageNum + 1);
+        model.addAttribute("pageSize", pageSize);
+        model.addAttribute("pageNum", pageNum);
+
+        httpSession.removeAttribute("searchUserByFaculty");
+        httpSession.setAttribute("searchUserByFaculty", searchUserByFaculty);
         return "/m_manage_userManage";
     }
+    @RequiresRoles({"user", "manager"})
+    @GetMapping("userSearch")
+    public String userManageMain(@RequestParam("pageSize") Integer pageSize,
+                                 @RequestParam("pageNum") Integer pageNum,
+                                 Model model,
+                                 HttpSession httpSession) {
+        if (httpSession.getAttribute("searchUserByFaculty")!=null){
+            SearchUserByFaculty searchUserByFaculty = (SearchUserByFaculty) httpSession.getAttribute("searchUserByFaculty");
+            model.addAttribute("users", userService.selectUsersByUser(searchUserByFaculty, pageSize, pageNum));
+
+            model.addAttribute("pageCount", userService.getUserPageCount(searchUserByFaculty,pageSize));
+        }else {
+            model.addAttribute("users", userService.selectUsersByUser(null, pageSize, pageNum));
+            model.addAttribute("pageCount", userService.getUserPageCount(null,pageSize));
+        }
+
+        model.addAttribute("pageNextNum", pageNum + 1);
+        model.addAttribute("pageSize", pageSize);
+        model.addAttribute("pageNum", pageNum);
+        return "/m_manage_userManage";
+    }
+
+
 }

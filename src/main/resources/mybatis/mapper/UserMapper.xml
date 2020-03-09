@@ -1,134 +1,380 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.education.system_edu.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.education.system_edu.pojo.User">
-    <id column="code" jdbcType="VARCHAR" property="code" />
-    <result column="login_code" jdbcType="VARCHAR" property="loginCode" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="sex" jdbcType="CHAR" property="sex" />
-    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
-    <result column="sign" jdbcType="VARCHAR" property="sign" />
-    <result column="user_type" jdbcType="VARCHAR" property="userType" />
-    <result column="mgr_type" jdbcType="CHAR" property="mgrType" />
-    <result column="pwd_update_date" jdbcType="TIMESTAMP" property="pwdUpdateDate" />
-    <result column="pwd_update_record" jdbcType="VARCHAR" property="pwdUpdateRecord" />
-    <result column="pwd_question" jdbcType="VARCHAR" property="pwdQuestion" />
-    <result column="pwd_question_answer" jdbcType="VARCHAR" property="pwdQuestionAnswer" />
-    <result column="pwd_question_2" jdbcType="VARCHAR" property="pwdQuestion2" />
-    <result column="pwd_question_answer_2" jdbcType="VARCHAR" property="pwdQuestionAnswer2" />
-    <result column="pwd_question_3" jdbcType="VARCHAR" property="pwdQuestion3" />
-    <result column="pwd_question_answer_3" jdbcType="VARCHAR" property="pwdQuestionAnswer3" />
-    <result column="pwd_quest_update_date" jdbcType="TIMESTAMP" property="pwdQuestUpdateDate" />
-    <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp" />
-    <result column="last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate" />
-    <result column="freeze_date" jdbcType="TIMESTAMP" property="freezeDate" />
-    <result column="freeze_cause" jdbcType="VARCHAR" property="freezeCause" />
-    <result column="status" jdbcType="CHAR" property="status" />
-    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
-    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
-    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
-    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="com.education.system_edu.pojo.User">
+        <id column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="login_code" jdbcType="VARCHAR" property="loginCode"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="sex" jdbcType="CHAR" property="sex"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="sign" jdbcType="VARCHAR" property="sign"/>
+        <result column="user_type" jdbcType="VARCHAR" property="userType"/>
+        <result column="mgr_type" jdbcType="CHAR" property="mgrType"/>
+        <result column="pwd_update_date" jdbcType="TIMESTAMP" property="pwdUpdateDate"/>
+        <result column="pwd_update_record" jdbcType="VARCHAR" property="pwdUpdateRecord"/>
+        <result column="pwd_question" jdbcType="VARCHAR" property="pwdQuestion"/>
+        <result column="pwd_question_answer" jdbcType="VARCHAR" property="pwdQuestionAnswer"/>
+        <result column="pwd_question_2" jdbcType="VARCHAR" property="pwdQuestion2"/>
+        <result column="pwd_question_answer_2" jdbcType="VARCHAR" property="pwdQuestionAnswer2"/>
+        <result column="pwd_question_3" jdbcType="VARCHAR" property="pwdQuestion3"/>
+        <result column="pwd_question_answer_3" jdbcType="VARCHAR" property="pwdQuestionAnswer3"/>
+        <result column="pwd_quest_update_date" jdbcType="TIMESTAMP" property="pwdQuestUpdateDate"/>
+        <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp"/>
+        <result column="last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate"/>
+        <result column="freeze_date" jdbcType="TIMESTAMP" property="freezeDate"/>
+        <result column="freeze_cause" jdbcType="VARCHAR" property="freezeCause"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
+    </resultMap>
+    <resultMap id="BaseResultMap2" type="com.education.system_edu.pojo.pojo_child.result.PageUserOutput">
+        <result column="user_code" jdbcType="VARCHAR" property="userCode"/>
+        <result column="class_code" jdbcType="VARCHAR" property="classCode"/>
+        <result column="faculty" jdbcType="VARCHAR" property="faculty"/>
+        <result column="department" jdbcType="VARCHAR" property="department"/>
+        <result column="major" jdbcType="VARCHAR" property="major"/>
+        <association property="user" resultMap="BaseResultMap"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     code, login_code, user_name, password, email, mobile, phone, sex, avatar, sign, user_type, 
     mgr_type, pwd_update_date, pwd_update_record, pwd_question, pwd_question_answer, 
     pwd_question_2, pwd_question_answer_2, pwd_question_3, pwd_question_answer_3, pwd_quest_update_date, 
     last_login_ip, last_login_date, freeze_date, freeze_cause, status, create_by, create_date, 
     update_by, update_date
   </sql>
-  <select id="selectByExample" parameterType="com.education.system_edu.pojo.UserExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from all_users
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from all_users
-    where code = #{code,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <sql id="user_a_Column_List">
+    a.code as user_code, a.login_code, a.user_name, a.password, a.email, a.mobile, a.phone, a.sex, a.avatar, a.sign, a.user_type,
+    a.mgr_type, a.pwd_update_date, a.pwd_update_record, a.pwd_question, a.pwd_question_answer,
+    a.pwd_question_2, a.pwd_question_answer_2, a.pwd_question_3, a.pwd_question_answer_3, a.pwd_quest_update_date,
+    a.last_login_ip, a.last_login_date, a.freeze_date, a.freeze_cause, a.status, a.create_by, a.create_date,
+    a.update_by, a.update_date
+  </sql>
+    <!-- 手动添加计数器 -->
+
+    <select id="countByPageUser" parameterType="com.education.system_edu.pojo.pojo_child.parameter.PageUser"
+            resultType="java.lang.Long">
+        SELECT COUNT(*) from (
+        select
+        a.`code`
+        from all_users a,connect_user_student_and_class c ,sys_model_class class,sys_data_tree m ,sys_data_tree d
+        ,sys_data_tree f
+        where c.student_no = a.login_code
+        AND class.`code` = c.class_code
+        AND m.`code` = class.sys_college_node_code
+        AND d.`code` = m.parent_node
+        AND f.`code` = d.parent_node
+        and
+        <if test="faculty != null &amp;&amp; faculty!=''">
+            f.code = #{faculty,jdbcType=VARCHAR} and
+        </if>
+        <if test="department != null &amp;&amp; department!=''">
+            d.code = #{department,jdbcType=VARCHAR} and
+        </if>
+        <if test="code != null">
+            code = #{code,jdbcType=VARCHAR} and
+        </if>
+        <if test="loginCode != null">
+            login_code = #{loginCode,jdbcType=VARCHAR} and
+        </if>
+        <if test="userName != null ">
+            user_name = #{userName,jdbcType=VARCHAR} and
+        </if>
+        <if test="password != null">
+            password = #{password,jdbcType=VARCHAR} and
+        </if>
+        <if test="email != null">
+            email = #{email,jdbcType=VARCHAR} and
+        </if>
+        <if test="mobile != null">
+            mobile = #{mobile,jdbcType=VARCHAR} and
+        </if>
+        <if test="phone != null">
+            phone = #{phone,jdbcType=VARCHAR} and
+        </if>
+        <if test="sex != null ">
+            sex = #{sex,jdbcType=CHAR} and
+        </if>
+        <if test="avatar != null">
+            avatar = #{avatar,jdbcType=VARCHAR} and
+        </if>
+        <if test="sign != null">
+            sign = #{sign,jdbcType=VARCHAR} and
+        </if>
+        <if test="userType != null">
+            user_type = #{userType,jdbcType=VARCHAR} and
+        </if>
+        <if test="mgrType != null">
+            mgr_type = #{mgrType,jdbcType=CHAR} and
+        </if>
+        <if test="pwdUpdateDate != null">
+            pwd_update_date = #{pwdUpdateDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="pwdUpdateRecord != null">
+            pwd_update_record = #{pwdUpdateRecord,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestion != null">
+            pwd_question = #{pwdQuestion,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestionAnswer != null">
+            pwd_question_answer = #{pwdQuestionAnswer,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestion2 != null">
+            pwd_question_2 = #{pwdQuestion2,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestionAnswer2 != null">
+            pwd_question_answer_2 =#{pwdQuestionAnswer2,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestion3 != null">
+            pwd_question_3 = #{pwdQuestion3,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestionAnswer3 != null">
+            pwd_question_answer_3 = #{pwdQuestionAnswer3,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestUpdateDate != null">
+            pwd_quest_update_date = #{pwdQuestUpdateDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="lastLoginIp != null">
+            last_login_ip = #{lastLoginIp,jdbcType=VARCHAR} and
+        </if>
+        <if test="lastLoginDate != null">
+            last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="freezeDate != null ">
+            freeze_date = #{freezeDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="freezeCause != null">
+            freeze_cause = #{freezeCause,jdbcType=VARCHAR} and
+        </if>
+        <if test="status != null">
+            status = #{status,jdbcType=CHAR} and
+        </if>
+        <if test="createBy != null">
+            create_by = #{createBy,jdbcType=VARCHAR} and
+        </if>
+        <if test="createDate != null">
+            create_date = #{createDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="updateBy != null">
+            update_by = #{updateBy,jdbcType=VARCHAR} and
+        </if>
+        <if test="updateDate != null">
+            update_date = #{updateDate,jdbcType=TIMESTAMP} and
+        </if>
+        0=0)asda;
+    </select>
+
+    <!-- 手动添加的selectSelectedByUser -->
+    <select id="selectSelectedByUser" parameterType="com.education.system_edu.pojo.pojo_child.parameter.PageUser"
+            resultMap="BaseResultMap2">
+        select
+        <include refid="user_a_Column_List"/>
+        ,
+        f.`name` as faculty,d.`name` as department,m.`name` as major, class.class_code
+        from all_users a
+        LEFT JOIN connect_user_student_and_class c ON c.student_no = a.login_code
+        LEFT JOIN sys_model_class class ON class.`code` = c.class_code
+        LEFT JOIN sys_data_tree m ON m.`code` = class.sys_college_node_code
+        LEFT JOIN sys_data_tree d ON d.`code` = m.parent_node
+        LEFT JOIN sys_data_tree f ON f.`code` = d.parent_node
+        where
+        <if test="faculty != null &amp;&amp; faculty!=''">
+            f.code = #{faculty,jdbcType=VARCHAR} and
+        </if>
+        <if test="department != null &amp;&amp; department!=''">
+            d.code = #{department,jdbcType=VARCHAR} and
+        </if>
+        <if test="code != null">
+            code = #{code,jdbcType=VARCHAR} and
+        </if>
+        <if test="loginCode != null">
+            login_code = #{loginCode,jdbcType=VARCHAR} and
+        </if>
+        <if test="userName != null ">
+            user_name = #{userName,jdbcType=VARCHAR} and
+        </if>
+        <if test="password != null">
+            password = #{password,jdbcType=VARCHAR} and
+        </if>
+        <if test="email != null">
+            email = #{email,jdbcType=VARCHAR} and
+        </if>
+        <if test="mobile != null">
+            mobile = #{mobile,jdbcType=VARCHAR} and
+        </if>
+        <if test="phone != null">
+            phone = #{phone,jdbcType=VARCHAR} and
+        </if>
+        <if test="sex != null ">
+            sex = #{sex,jdbcType=CHAR} and
+        </if>
+        <if test="avatar != null">
+            avatar = #{avatar,jdbcType=VARCHAR} and
+        </if>
+        <if test="sign != null">
+            sign = #{sign,jdbcType=VARCHAR} and
+        </if>
+        <if test="userType != null">
+            user_type = #{userType,jdbcType=VARCHAR} and
+        </if>
+        <if test="mgrType != null">
+            mgr_type = #{mgrType,jdbcType=CHAR} and
+        </if>
+        <if test="pwdUpdateDate != null">
+            pwd_update_date = #{pwdUpdateDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="pwdUpdateRecord != null">
+            pwd_update_record = #{pwdUpdateRecord,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestion != null">
+            pwd_question = #{pwdQuestion,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestionAnswer != null">
+            pwd_question_answer = #{pwdQuestionAnswer,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestion2 != null">
+            pwd_question_2 = #{pwdQuestion2,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestionAnswer2 != null">
+            pwd_question_answer_2 =#{pwdQuestionAnswer2,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestion3 != null">
+            pwd_question_3 = #{pwdQuestion3,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestionAnswer3 != null">
+            pwd_question_answer_3 = #{pwdQuestionAnswer3,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestUpdateDate != null">
+            pwd_quest_update_date = #{pwdQuestUpdateDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="lastLoginIp != null">
+            last_login_ip = #{lastLoginIp,jdbcType=VARCHAR} and
+        </if>
+        <if test="lastLoginDate != null">
+            last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="freezeDate != null ">
+            freeze_date = #{freezeDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="freezeCause != null">
+            freeze_cause = #{freezeCause,jdbcType=VARCHAR} and
+        </if>
+        <if test="status != null">
+            status = #{status,jdbcType=CHAR} and
+        </if>
+        <if test="createBy != null">
+            create_by = #{createBy,jdbcType=VARCHAR} and
+        </if>
+        <if test="createDate != null">
+            create_date = #{createDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="updateBy != null">
+            update_by = #{updateBy,jdbcType=VARCHAR} and
+        </if>
+        <if test="updateDate != null">
+            update_date = #{updateDate,jdbcType=TIMESTAMP} and
+        </if>
+        0=0
+        order by login_code DESC
+        <bind name="page_start" value="(pageNum-1)*pageSize"></bind>
+        LIMIT #{page_start} ,#{pageSize}
+    </select>
+    <select id="selectByExample" parameterType="com.education.system_edu.pojo.UserExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from all_users
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from all_users
+        where code = #{code,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from all_users
     where code = #{code,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.education.system_edu.pojo.UserExample">
-    delete from all_users
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.education.system_edu.pojo.User">
+    <delete id="deleteByExample" parameterType="com.education.system_edu.pojo.UserExample">
+        delete from all_users
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.education.system_edu.pojo.User">
     insert into all_users (code, login_code, user_name, 
       password, email, mobile, 
       phone, sex, avatar, sign, 
@@ -152,427 +398,427 @@
       #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.education.system_edu.pojo.User">
-    insert into all_users
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="code != null">
-        code,
-      </if>
-      <if test="loginCode != null">
-        login_code,
-      </if>
-      <if test="userName != null">
-        user_name,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="email != null">
-        email,
-      </if>
-      <if test="mobile != null">
-        mobile,
-      </if>
-      <if test="phone != null">
-        phone,
-      </if>
-      <if test="sex != null">
-        sex,
-      </if>
-      <if test="avatar != null">
-        avatar,
-      </if>
-      <if test="sign != null">
-        sign,
-      </if>
-      <if test="userType != null">
-        user_type,
-      </if>
-      <if test="mgrType != null">
-        mgr_type,
-      </if>
-      <if test="pwdUpdateDate != null">
-        pwd_update_date,
-      </if>
-      <if test="pwdUpdateRecord != null">
-        pwd_update_record,
-      </if>
-      <if test="pwdQuestion != null">
-        pwd_question,
-      </if>
-      <if test="pwdQuestionAnswer != null">
-        pwd_question_answer,
-      </if>
-      <if test="pwdQuestion2 != null">
-        pwd_question_2,
-      </if>
-      <if test="pwdQuestionAnswer2 != null">
-        pwd_question_answer_2,
-      </if>
-      <if test="pwdQuestion3 != null">
-        pwd_question_3,
-      </if>
-      <if test="pwdQuestionAnswer3 != null">
-        pwd_question_answer_3,
-      </if>
-      <if test="pwdQuestUpdateDate != null">
-        pwd_quest_update_date,
-      </if>
-      <if test="lastLoginIp != null">
-        last_login_ip,
-      </if>
-      <if test="lastLoginDate != null">
-        last_login_date,
-      </if>
-      <if test="freezeDate != null">
-        freeze_date,
-      </if>
-      <if test="freezeCause != null">
-        freeze_cause,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createBy != null">
-        create_by,
-      </if>
-      <if test="createDate != null">
-        create_date,
-      </if>
-      <if test="updateBy != null">
-        update_by,
-      </if>
-      <if test="updateDate != null">
-        update_date,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="loginCode != null">
-        #{loginCode,jdbcType=VARCHAR},
-      </if>
-      <if test="userName != null">
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        #{sex,jdbcType=CHAR},
-      </if>
-      <if test="avatar != null">
-        #{avatar,jdbcType=VARCHAR},
-      </if>
-      <if test="sign != null">
-        #{sign,jdbcType=VARCHAR},
-      </if>
-      <if test="userType != null">
-        #{userType,jdbcType=VARCHAR},
-      </if>
-      <if test="mgrType != null">
-        #{mgrType,jdbcType=CHAR},
-      </if>
-      <if test="pwdUpdateDate != null">
-        #{pwdUpdateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="pwdUpdateRecord != null">
-        #{pwdUpdateRecord,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestion != null">
-        #{pwdQuestion,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestionAnswer != null">
-        #{pwdQuestionAnswer,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestion2 != null">
-        #{pwdQuestion2,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestionAnswer2 != null">
-        #{pwdQuestionAnswer2,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestion3 != null">
-        #{pwdQuestion3,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestionAnswer3 != null">
-        #{pwdQuestionAnswer3,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestUpdateDate != null">
-        #{pwdQuestUpdateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastLoginIp != null">
-        #{lastLoginIp,jdbcType=VARCHAR},
-      </if>
-      <if test="lastLoginDate != null">
-        #{lastLoginDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="freezeDate != null">
-        #{freezeDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="freezeCause != null">
-        #{freezeCause,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=CHAR},
-      </if>
-      <if test="createBy != null">
-        #{createBy,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null">
-        #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateBy != null">
-        #{updateBy,jdbcType=VARCHAR},
-      </if>
-      <if test="updateDate != null">
-        #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.education.system_edu.pojo.UserExample" resultType="java.lang.Long">
-    select count(*) from all_users
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update all_users
-    <set>
-      <if test="record.code != null">
-        code = #{record.code,jdbcType=VARCHAR},
-      </if>
-      <if test="record.loginCode != null">
+    <insert id="insertSelective" parameterType="com.education.system_edu.pojo.User">
+        insert into all_users
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
+            <if test="loginCode != null">
+                login_code,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="avatar != null">
+                avatar,
+            </if>
+            <if test="sign != null">
+                sign,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="mgrType != null">
+                mgr_type,
+            </if>
+            <if test="pwdUpdateDate != null">
+                pwd_update_date,
+            </if>
+            <if test="pwdUpdateRecord != null">
+                pwd_update_record,
+            </if>
+            <if test="pwdQuestion != null">
+                pwd_question,
+            </if>
+            <if test="pwdQuestionAnswer != null">
+                pwd_question_answer,
+            </if>
+            <if test="pwdQuestion2 != null">
+                pwd_question_2,
+            </if>
+            <if test="pwdQuestionAnswer2 != null">
+                pwd_question_answer_2,
+            </if>
+            <if test="pwdQuestion3 != null">
+                pwd_question_3,
+            </if>
+            <if test="pwdQuestionAnswer3 != null">
+                pwd_question_answer_3,
+            </if>
+            <if test="pwdQuestUpdateDate != null">
+                pwd_quest_update_date,
+            </if>
+            <if test="lastLoginIp != null">
+                last_login_ip,
+            </if>
+            <if test="lastLoginDate != null">
+                last_login_date,
+            </if>
+            <if test="freezeDate != null">
+                freeze_date,
+            </if>
+            <if test="freezeCause != null">
+                freeze_cause,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateDate != null">
+                update_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="loginCode != null">
+                #{loginCode,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=CHAR},
+            </if>
+            <if test="avatar != null">
+                #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null">
+                #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null">
+                #{userType,jdbcType=VARCHAR},
+            </if>
+            <if test="mgrType != null">
+                #{mgrType,jdbcType=CHAR},
+            </if>
+            <if test="pwdUpdateDate != null">
+                #{pwdUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pwdUpdateRecord != null">
+                #{pwdUpdateRecord,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestion != null">
+                #{pwdQuestion,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestionAnswer != null">
+                #{pwdQuestionAnswer,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestion2 != null">
+                #{pwdQuestion2,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestionAnswer2 != null">
+                #{pwdQuestionAnswer2,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestion3 != null">
+                #{pwdQuestion3,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestionAnswer3 != null">
+                #{pwdQuestionAnswer3,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestUpdateDate != null">
+                #{pwdQuestUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastLoginIp != null">
+                #{lastLoginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="lastLoginDate != null">
+                #{lastLoginDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="freezeDate != null">
+                #{freezeDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="freezeCause != null">
+                #{freezeCause,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=CHAR},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.education.system_edu.pojo.UserExample" resultType="java.lang.Long">
+        select count(*) from all_users
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update all_users
+        <set>
+            <if test="record.code != null">
+                code = #{record.code,jdbcType=VARCHAR},
+            </if>
+            <if test="record.loginCode != null">
+                login_code = #{record.loginCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userName != null">
+                user_name = #{record.userName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.password != null">
+                password = #{record.password,jdbcType=VARCHAR},
+            </if>
+            <if test="record.email != null">
+                email = #{record.email,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mobile != null">
+                mobile = #{record.mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="record.phone != null">
+                phone = #{record.phone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sex != null">
+                sex = #{record.sex,jdbcType=CHAR},
+            </if>
+            <if test="record.avatar != null">
+                avatar = #{record.avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sign != null">
+                sign = #{record.sign,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userType != null">
+                user_type = #{record.userType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mgrType != null">
+                mgr_type = #{record.mgrType,jdbcType=CHAR},
+            </if>
+            <if test="record.pwdUpdateDate != null">
+                pwd_update_date = #{record.pwdUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.pwdUpdateRecord != null">
+                pwd_update_record = #{record.pwdUpdateRecord,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pwdQuestion != null">
+                pwd_question = #{record.pwdQuestion,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pwdQuestionAnswer != null">
+                pwd_question_answer = #{record.pwdQuestionAnswer,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pwdQuestion2 != null">
+                pwd_question_2 = #{record.pwdQuestion2,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pwdQuestionAnswer2 != null">
+                pwd_question_answer_2 = #{record.pwdQuestionAnswer2,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pwdQuestion3 != null">
+                pwd_question_3 = #{record.pwdQuestion3,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pwdQuestionAnswer3 != null">
+                pwd_question_answer_3 = #{record.pwdQuestionAnswer3,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pwdQuestUpdateDate != null">
+                pwd_quest_update_date = #{record.pwdQuestUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.lastLoginIp != null">
+                last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lastLoginDate != null">
+                last_login_date = #{record.lastLoginDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.freezeDate != null">
+                freeze_date = #{record.freezeDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.freezeCause != null">
+                freeze_cause = #{record.freezeCause,jdbcType=VARCHAR},
+            </if>
+            <if test="record.status != null">
+                status = #{record.status,jdbcType=CHAR},
+            </if>
+            <if test="record.createBy != null">
+                create_by = #{record.createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createDate != null">
+                create_date = #{record.createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateBy != null">
+                update_by = #{record.updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updateDate != null">
+                update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update all_users
+        set code = #{record.code,jdbcType=VARCHAR},
         login_code = #{record.loginCode,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userName != null">
         user_name = #{record.userName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.email != null">
         email = #{record.email,jdbcType=VARCHAR},
-      </if>
-      <if test="record.mobile != null">
         mobile = #{record.mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="record.phone != null">
         phone = #{record.phone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sex != null">
         sex = #{record.sex,jdbcType=CHAR},
-      </if>
-      <if test="record.avatar != null">
         avatar = #{record.avatar,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sign != null">
         sign = #{record.sign,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userType != null">
         user_type = #{record.userType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.mgrType != null">
         mgr_type = #{record.mgrType,jdbcType=CHAR},
-      </if>
-      <if test="record.pwdUpdateDate != null">
         pwd_update_date = #{record.pwdUpdateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.pwdUpdateRecord != null">
         pwd_update_record = #{record.pwdUpdateRecord,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pwdQuestion != null">
         pwd_question = #{record.pwdQuestion,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pwdQuestionAnswer != null">
         pwd_question_answer = #{record.pwdQuestionAnswer,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pwdQuestion2 != null">
         pwd_question_2 = #{record.pwdQuestion2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pwdQuestionAnswer2 != null">
         pwd_question_answer_2 = #{record.pwdQuestionAnswer2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pwdQuestion3 != null">
         pwd_question_3 = #{record.pwdQuestion3,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pwdQuestionAnswer3 != null">
         pwd_question_answer_3 = #{record.pwdQuestionAnswer3,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pwdQuestUpdateDate != null">
         pwd_quest_update_date = #{record.pwdQuestUpdateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.lastLoginIp != null">
         last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
-      </if>
-      <if test="record.lastLoginDate != null">
         last_login_date = #{record.lastLoginDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.freezeDate != null">
         freeze_date = #{record.freezeDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.freezeCause != null">
         freeze_cause = #{record.freezeCause,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null">
         status = #{record.status,jdbcType=CHAR},
-      </if>
-      <if test="record.createBy != null">
         create_by = #{record.createBy,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createDate != null">
         create_date = #{record.createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updateBy != null">
         update_by = #{record.updateBy,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updateDate != null">
-        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update all_users
-    set code = #{record.code,jdbcType=VARCHAR},
-      login_code = #{record.loginCode,jdbcType=VARCHAR},
-      user_name = #{record.userName,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
-      mobile = #{record.mobile,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=VARCHAR},
-      sex = #{record.sex,jdbcType=CHAR},
-      avatar = #{record.avatar,jdbcType=VARCHAR},
-      sign = #{record.sign,jdbcType=VARCHAR},
-      user_type = #{record.userType,jdbcType=VARCHAR},
-      mgr_type = #{record.mgrType,jdbcType=CHAR},
-      pwd_update_date = #{record.pwdUpdateDate,jdbcType=TIMESTAMP},
-      pwd_update_record = #{record.pwdUpdateRecord,jdbcType=VARCHAR},
-      pwd_question = #{record.pwdQuestion,jdbcType=VARCHAR},
-      pwd_question_answer = #{record.pwdQuestionAnswer,jdbcType=VARCHAR},
-      pwd_question_2 = #{record.pwdQuestion2,jdbcType=VARCHAR},
-      pwd_question_answer_2 = #{record.pwdQuestionAnswer2,jdbcType=VARCHAR},
-      pwd_question_3 = #{record.pwdQuestion3,jdbcType=VARCHAR},
-      pwd_question_answer_3 = #{record.pwdQuestionAnswer3,jdbcType=VARCHAR},
-      pwd_quest_update_date = #{record.pwdQuestUpdateDate,jdbcType=TIMESTAMP},
-      last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
-      last_login_date = #{record.lastLoginDate,jdbcType=TIMESTAMP},
-      freeze_date = #{record.freezeDate,jdbcType=TIMESTAMP},
-      freeze_cause = #{record.freezeCause,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=CHAR},
-      create_by = #{record.createBy,jdbcType=VARCHAR},
-      create_date = #{record.createDate,jdbcType=TIMESTAMP},
-      update_by = #{record.updateBy,jdbcType=VARCHAR},
-      update_date = #{record.updateDate,jdbcType=TIMESTAMP}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.education.system_edu.pojo.User">
-    update all_users
-    <set>
-      <if test="loginCode != null">
-        login_code = #{loginCode,jdbcType=VARCHAR},
-      </if>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        mobile = #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        sex = #{sex,jdbcType=CHAR},
-      </if>
-      <if test="avatar != null">
-        avatar = #{avatar,jdbcType=VARCHAR},
-      </if>
-      <if test="sign != null">
-        sign = #{sign,jdbcType=VARCHAR},
-      </if>
-      <if test="userType != null">
-        user_type = #{userType,jdbcType=VARCHAR},
-      </if>
-      <if test="mgrType != null">
-        mgr_type = #{mgrType,jdbcType=CHAR},
-      </if>
-      <if test="pwdUpdateDate != null">
-        pwd_update_date = #{pwdUpdateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="pwdUpdateRecord != null">
-        pwd_update_record = #{pwdUpdateRecord,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestion != null">
-        pwd_question = #{pwdQuestion,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestionAnswer != null">
-        pwd_question_answer = #{pwdQuestionAnswer,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestion2 != null">
-        pwd_question_2 = #{pwdQuestion2,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestionAnswer2 != null">
-        pwd_question_answer_2 = #{pwdQuestionAnswer2,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestion3 != null">
-        pwd_question_3 = #{pwdQuestion3,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestionAnswer3 != null">
-        pwd_question_answer_3 = #{pwdQuestionAnswer3,jdbcType=VARCHAR},
-      </if>
-      <if test="pwdQuestUpdateDate != null">
-        pwd_quest_update_date = #{pwdQuestUpdateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastLoginIp != null">
-        last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
-      </if>
-      <if test="lastLoginDate != null">
-        last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="freezeDate != null">
-        freeze_date = #{freezeDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="freezeCause != null">
-        freeze_cause = #{freezeCause,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=CHAR},
-      </if>
-      <if test="createBy != null">
-        create_by = #{createBy,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null">
-        create_date = #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateBy != null">
-        update_by = #{updateBy,jdbcType=VARCHAR},
-      </if>
-      <if test="updateDate != null">
-        update_date = #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where code = #{code,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.education.system_edu.pojo.User">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.education.system_edu.pojo.User">
+        update all_users
+        <set>
+            <if test="loginCode != null">
+                login_code = #{loginCode,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=CHAR},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null">
+                sign = #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null">
+                user_type = #{userType,jdbcType=VARCHAR},
+            </if>
+            <if test="mgrType != null">
+                mgr_type = #{mgrType,jdbcType=CHAR},
+            </if>
+            <if test="pwdUpdateDate != null">
+                pwd_update_date = #{pwdUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pwdUpdateRecord != null">
+                pwd_update_record = #{pwdUpdateRecord,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestion != null">
+                pwd_question = #{pwdQuestion,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestionAnswer != null">
+                pwd_question_answer = #{pwdQuestionAnswer,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestion2 != null">
+                pwd_question_2 = #{pwdQuestion2,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestionAnswer2 != null">
+                pwd_question_answer_2 = #{pwdQuestionAnswer2,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestion3 != null">
+                pwd_question_3 = #{pwdQuestion3,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestionAnswer3 != null">
+                pwd_question_answer_3 = #{pwdQuestionAnswer3,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdQuestUpdateDate != null">
+                pwd_quest_update_date = #{pwdQuestUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastLoginIp != null">
+                last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="lastLoginDate != null">
+                last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="freezeDate != null">
+                freeze_date = #{freezeDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="freezeCause != null">
+                freeze_cause = #{freezeCause,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=CHAR},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where code = #{code,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.education.system_edu.pojo.User">
     update all_users
     set login_code = #{loginCode,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},

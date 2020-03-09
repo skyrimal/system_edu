@@ -3,10 +3,15 @@ package com.education.system_edu.mapper;
 import com.education.system_edu.pojo.User;
 import com.education.system_edu.pojo.UserExample;
 import java.util.List;
+
+import com.education.system_edu.pojo.pojo_child.parameter.PageUser;
+import com.education.system_edu.pojo.pojo_child.result.PageUserOutput;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     long countByExample(UserExample example);
+
+    long countByPageUser(PageUser pageUser);
 
     int deleteByExample(UserExample example);
 
@@ -17,6 +22,13 @@ public interface UserMapper {
     int insertSelective(User record);
 
     List<User> selectByExample(UserExample example);
+
+    /**
+     * 按条件查找用户信息
+     * @param user
+     * @return
+     */
+    List<PageUserOutput> selectSelectedByUser(PageUser user);
 
     User selectByPrimaryKey(String code);
 

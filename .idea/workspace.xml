@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdeef863-6002-4678-b368-3c2ba637caad" name="Default Changelist" comment="" />
+    <list default="true" id="cdeef863-6002-4678-b368-3c2ba637caad" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/pojo_child/parameter/PageUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/pojo_child/result/PageUserOutput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/pojo_getData/SearchUserByFaculty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bar/js_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bar/js_bar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bar/left_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bar/left_bar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/m_manage_faculty_class.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/m_manage_faculty_class.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/m_manage_faculty_major.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/m_manage_faculty_major.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/m_manage_userManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/m_manage_userManage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/education/system_edu/SystemEduApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/education/system_edu/SystemEduApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/bar/js_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/bar/js_bar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/bar/left_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/bar/left_bar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/m_manage_faculty_class.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/m_manage_faculty_class.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/m_manage_faculty_major.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/m_manage_faculty_major.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/education/system_edu/SystemEduApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/education/system_edu/SystemEduApplicationTests.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,8 +51,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -66,8 +93,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -92,6 +120,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SystemEduApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="system_edu" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.education.system_edu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.education.system_edu" />
+      <option name="MAIN_CLASS_NAME" value="com.education.system_edu.SystemEduApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SystemEduApplicationTests.userPage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="system_edu" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.education.system_edu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.education.system_edu" />
+      <option name="MAIN_CLASS_NAME" value="com.education.system_edu.SystemEduApplicationTests" />
+      <option name="METHOD_NAME" value="userPage" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SystemEduApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="system_edu" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.education.system_edu.SystemEduApplication" />
@@ -101,6 +161,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SystemEduApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.SystemEduApplicationTests.userPage" />
         <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
@@ -131,7 +193,16 @@
       <workItem from="1582601194376" duration="3918000" />
       <workItem from="1582686659559" duration="20922000" />
       <workItem from="1582765840073" duration="23442000" />
-      <workItem from="1582792807659" duration="59350000" />
+      <workItem from="1582792807659" duration="63196000" />
+      <workItem from="1582856217789" duration="20976000" />
+      <workItem from="1583114362277" duration="13000" />
+      <workItem from="1583118640151" duration="684000" />
+      <workItem from="1583137134069" duration="19000" />
+      <workItem from="1583225666537" duration="9000" />
+      <workItem from="1583386103164" duration="12503000" />
+      <workItem from="1583454579234" duration="3795000" />
+      <workItem from="1583459196009" duration="2570000" />
+      <workItem from="1583715309445" duration="1208000" />
     </task>
     <task id="LOCAL-00001" summary="制作到管理员管理学院/系/专业&#10;即将制作用户管理">
       <created>1582852222232</created>
@@ -140,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582852222233</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="制作到管理员管理学院/系/专业&#10;即将制作用户管理">
+      <created>1582852377750</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582852377750</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,97 +229,143 @@
     <option name="LAST_COMMIT_MESSAGE" value="制作到管理员管理学院/系/专业&#10;即将制作用户管理" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser" timestamp="1582784636749">
+    <state x="361" y="76" key="#Notifications" timestamp="1582852806879">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1582784636749" />
+    <state x="361" y="76" key="#Notifications/0.0.1536.834@0.0.1536.834" timestamp="1582852806879" />
+    <state x="361" y="76" key="#SQL_Dialects" timestamp="1583394394402">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="76" key="#SQL_Dialects/0.0.1536.834@0.0.1536.834" timestamp="1583394394402" />
+    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser" timestamp="1583460547733">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1583460547733" />
+    <state x="547" y="276" width="448" height="292" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1582863374125">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="547" y="276" width="448" height="292" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.834@0.0.1536.834" timestamp="1582863374125" />
     <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582789438486">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1582789438486" />
-    <state x="261" y="2" key="CommitChangelistDialog2" timestamp="1582852217533">
+    <state x="261" y="2" key="CommitChangelistDialog2" timestamp="1583725750414">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="261" y="2" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1582852217533" />
-    <state width="530" height="466" key="DebuggerActiveHint" timestamp="1582788810834">
+    <state x="261" y="2" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1583725750414" />
+    <state width="530" height="466" key="DebuggerActiveHint" timestamp="1583461792782">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="530" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1582788810834" />
-    <state x="549" y="158" key="FileChooserDialogImpl" timestamp="1582793277782">
+    <state width="530" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1583461792782" />
+    <state x="549" y="158" key="FileChooserDialogImpl" timestamp="1583225672975">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="158" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1582793277782" />
-    <state width="1493" height="185" key="GridCell.Tab.0.bottom" timestamp="1582792580924">
+    <state x="549" y="158" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1583225672975" />
+    <state x="632" y="308" width="272" height="287" key="Github.ShareDialog" timestamp="1582853113702">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1582792580924" />
-    <state width="1493" height="185" key="GridCell.Tab.0.center" timestamp="1582792580924">
+    <state x="632" y="308" width="272" height="287" key="Github.ShareDialog/0.0.1536.834@0.0.1536.834" timestamp="1582853113702" />
+    <state width="1493" height="251" key="GridCell.Tab.0.bottom" timestamp="1583719188420">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1582792580924" />
-    <state width="1493" height="185" key="GridCell.Tab.0.left" timestamp="1582792580924">
+    <state width="1493" height="251" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1583719188420" />
+    <state width="1493" height="251" key="GridCell.Tab.0.center" timestamp="1583719188420">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1582792580924" />
-    <state width="1493" height="185" key="GridCell.Tab.0.right" timestamp="1582792580924">
+    <state width="1493" height="251" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1583719188420" />
+    <state width="1493" height="251" key="GridCell.Tab.0.left" timestamp="1583719188420">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1582792580924" />
-    <state width="1493" height="185" key="GridCell.Tab.1.bottom" timestamp="1582792580924">
+    <state width="1493" height="251" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1583719188420" />
+    <state width="1493" height="251" key="GridCell.Tab.0.right" timestamp="1583719188420">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1582792580924" />
-    <state width="1493" height="185" key="GridCell.Tab.1.center" timestamp="1582792580924">
+    <state width="1493" height="251" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1583719188420" />
+    <state width="1493" height="251" key="GridCell.Tab.1.bottom" timestamp="1583719188420">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1582792580924" />
-    <state width="1493" height="185" key="GridCell.Tab.1.left" timestamp="1582792580924">
+    <state width="1493" height="251" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1583719188420" />
+    <state width="1493" height="251" key="GridCell.Tab.1.center" timestamp="1583719188420">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1582792580924" />
-    <state width="1493" height="185" key="GridCell.Tab.1.right" timestamp="1582792580924">
+    <state width="1493" height="251" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1583719188420" />
+    <state width="1493" height="251" key="GridCell.Tab.1.left" timestamp="1583719188420">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1582792580924" />
-    <state width="1493" height="185" key="GridCell.Tab.2.bottom" timestamp="1582792580924">
+    <state width="1493" height="251" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1583719188420" />
+    <state width="1493" height="251" key="GridCell.Tab.1.right" timestamp="1583719188420">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1582792580924" />
-    <state width="1493" height="185" key="GridCell.Tab.2.center" timestamp="1582792580924">
+    <state width="1493" height="251" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1583719188420" />
+    <state width="1493" height="290" key="GridCell.Tab.2.bottom" timestamp="1583461939802">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1582792580924" />
-    <state width="1493" height="185" key="GridCell.Tab.2.left" timestamp="1582792580924">
+    <state width="1493" height="290" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1583461939802" />
+    <state width="1493" height="290" key="GridCell.Tab.2.center" timestamp="1583461939802">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1582792580924" />
-    <state width="1493" height="185" key="GridCell.Tab.2.right" timestamp="1582792580924">
+    <state width="1493" height="290" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1583461939802" />
+    <state width="1493" height="290" key="GridCell.Tab.2.left" timestamp="1583461939802">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1582792580924" />
-    <state x="270" y="59" key="SettingsEditor" timestamp="1582793293019">
+    <state width="1493" height="290" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1583461939802" />
+    <state width="1493" height="290" key="GridCell.Tab.2.right" timestamp="1583461939802">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="270" y="59" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1582793293019" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1582793356721">
+    <state width="1493" height="290" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1583461939802" />
+    <state x="270" y="59" key="SettingsEditor" timestamp="1582853088552">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1582793356721" />
-    <state x="555" y="208" key="git4idea.merge.GitPullDialog" timestamp="1582852367584">
+    <state x="270" y="59" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1582853088552" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1582852489993">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="555" y="208" key="git4idea.merge.GitPullDialog/0.0.1536.834@0.0.1536.834" timestamp="1582852367584" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1582852489993" />
+    <state x="499" y="182" key="extract.method.dialog" timestamp="1582869227969">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="499" y="182" key="extract.method.dialog/0.0.1536.834@0.0.1536.834" timestamp="1582869227969" />
+    <state x="555" y="208" key="git4idea.merge.GitPullDialog" timestamp="1582853727572">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="555" y="208" key="git4idea.merge.GitPullDialog/0.0.1536.834@0.0.1536.834" timestamp="1582853727572" />
     <state x="470" y="44" key="refactoring.ChangeSignatureDialog" timestamp="1582785281653">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="470" y="44" key="refactoring.ChangeSignatureDialog/0.0.1536.834@0.0.1536.834" timestamp="1582785281653" />
-    <state x="425" y="189" key="run.anything.popup" timestamp="1582694076961">
+    <state x="425" y="189" key="run.anything.popup" timestamp="1583388882351">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1582694076961" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1582786607612">
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1583388882351" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1583392032307">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1582786607612" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1583392032307" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/UserController.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/UserController.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/UserController.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/UserController.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

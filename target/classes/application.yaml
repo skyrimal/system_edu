@@ -39,3 +39,14 @@ spring:
 mybatis:
   config-location: classpath:/mybatis/mybatisConfig.xml
   mapper-locations: classpath:/mybatis/mapper/*.xml
+  type-aliases-package: com.contract.housekeeper.dao.entity
+  #   指定MyBatis的日志实现为Slf4J 添加后shiro初始化失败
+  #configuration:
+  #  log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+logging:
+  level:
+    root: INFO
+    com.education.system_edu.mapper: DEBUG
+  file:
+    name: "D:/demo.log"
+
