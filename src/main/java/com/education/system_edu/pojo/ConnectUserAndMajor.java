@@ -2,14 +2,14 @@ package com.education.system_edu.pojo;
 
 import java.util.Date;
 
-public class ConnectUserStudentAndClass {
+public class ConnectUserAndMajor {
     private String code;
 
-    private String studentCode;
+    private String useCode;
 
-    private String studentNo;
+    private String sysNodeCode;
 
-    private String classCode;
+    private Short sysNodeType;
 
     private String createBy;
 
@@ -27,28 +27,28 @@ public class ConnectUserStudentAndClass {
         this.code = code == null ? null : code.trim();
     }
 
-    public String getStudentCode() {
-        return studentCode;
+    public String getUseCode() {
+        return useCode;
     }
 
-    public void setStudentCode(String studentCode) {
-        this.studentCode = studentCode == null ? null : studentCode.trim();
+    public void setUseCode(String useCode) {
+        this.useCode = useCode == null ? null : useCode.trim();
     }
 
-    public String getStudentNo() {
-        return studentNo;
+    public String getSysNodeCode() {
+        return sysNodeCode;
     }
 
-    public void setStudentNo(String studentNo) {
-        this.studentNo = studentNo;
+    public void setSysNodeCode(String sysNodeCode) {
+        this.sysNodeCode = sysNodeCode == null ? null : sysNodeCode.trim();
     }
 
-    public String getClassCode() {
-        return classCode;
+    public Short getSysNodeType() {
+        return sysNodeType;
     }
 
-    public void setClassCode(String classCode) {
-        this.classCode = classCode == null ? null : classCode.trim();
+    public void setSysNodeType(Short sysNodeType) {
+        this.sysNodeType = sysNodeType;
     }
 
     public String getCreateBy() {

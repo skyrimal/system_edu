@@ -8,6 +8,7 @@ import com.education.system_edu.pojo.*;
 import com.education.system_edu.pojo.pojo.Major;
 import com.education.system_edu.service.MajorService;
 import com.education.system_edu.utils.*;
+import com.education.system_edu.utils.value.Entry;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.util.StringUtil;
 

@@ -131,6 +131,10 @@ public class UserController {
         return "/rewrite_password";
     }
 
+    /**
+     * 显示用户基础信息 -- 用户名和用户类型
+     * @return
+     */
     @RequiresRoles({"user"})
     @GetMapping("/user_message")
     @ResponseBody

@@ -1,4 +1,4 @@
-package com.education.system_edu.utils;
+package com.education.system_edu.utils.value;
 
 public class Entry {
     public static final String CREATE_BY = "createBy";

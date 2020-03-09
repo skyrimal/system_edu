@@ -1,7 +1,10 @@
 package com.education.system_edu.controller.manage;
 
+import com.education.system_edu.pojo.insert.UserInModel;
 import com.education.system_edu.pojo.pojo_getData.SearchUserByFaculty;
 import com.education.system_edu.service.UserService;
+import com.education.system_edu.utils.SubjectUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,5 +65,20 @@ public class UserController {
         return "/m_manage_userManage";
     }
 
+    @PostMapping("editUser")
+    public String editUser(UserInModel userInModel){
+        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
+        int flag = userService.addUser(userInModel,subjectUtils.getUserLoginCode());
+        if (flag<5){
+            return "/error";
+        }
+        return "/m_manage_userManage";
+    }
 
+    @RequiresRoles({"user", "manager"})
+    @PostMapping("addUser")
+    public String addUser(UserInModel userInModel){
+
+        return "/m_manage_userManage";
+    }
 }

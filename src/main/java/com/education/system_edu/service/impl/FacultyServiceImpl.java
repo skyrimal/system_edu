@@ -4,19 +4,16 @@ package com.education.system_edu.service.impl;
 import com.education.system_edu.mapper.ConnectUserAndDepartmentMapper;
 import com.education.system_edu.mapper.SysDataTreeMapper;
 import com.education.system_edu.mapper.SysNodeMapper;
-import com.education.system_edu.mapper.UserMapper;
 import com.education.system_edu.pojo.*;
 import com.education.system_edu.pojo.pojo.Department;
 import com.education.system_edu.pojo.pojo.Faculty;
-import com.education.system_edu.pojo.pojo.Major;
 import com.education.system_edu.service.FacultyService;
 import com.education.system_edu.utils.*;
+import com.education.system_edu.utils.value.Entry;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.util.StringUtil;
 
 import javax.annotation.Resource;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class FacultyServiceImpl implements FacultyService {

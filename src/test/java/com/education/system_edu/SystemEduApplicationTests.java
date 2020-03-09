@@ -2,6 +2,7 @@ package com.education.system_edu;
 
 import com.education.system_edu.mapper.UserMapper;
 import com.education.system_edu.pojo.User;
+import com.education.system_edu.pojo.insert.UserInModel;
 import com.education.system_edu.pojo.pojo_child.parameter.PageUser;
 import com.education.system_edu.pojo.pojo_child.result.PageUserOutput;
 import com.education.system_edu.service.UserService;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.UUID;
 
 @SpringBootTest
 class SystemEduApplicationTests {
@@ -42,6 +44,17 @@ class SystemEduApplicationTests {
     }
     @Test
     void userPage() {
+        System.out.println(UUID.randomUUID().toString());
     }
 
+    @Test
+    void testAddOneUser(){
+        UserInModel userInModel = new UserInModel();
+        userInModel.setUserName("又是比");
+        userInModel.setUserType("1");
+        userInModel.setGrade(20+"");
+        userInModel.setClassNo("2");
+        userInModel.setMajor("20841d007c844ed0840f2bdcb07a6d8c");
+        userService.addUser(userInModel,"2000000");
+    }
 }

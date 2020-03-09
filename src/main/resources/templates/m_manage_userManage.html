@@ -196,7 +196,7 @@
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
-                    <form class="form-horizontal" action="" method="post">
+                    <form class="form-horizontal" action="/manage/user/addUser" method="post">
                         <div class="form-group row">
                             <label class="col-sm-3 form-control-label">用户名</label>
                             <div class="col-sm-9">
@@ -239,6 +239,9 @@
                             <div class="col-sm-9">
                                 <select id="userType" name="userType" class="faculty form-control mb-3">
                                     <option value="">--请选择--</option>
+                                    <option value="1">老师</option>
+                                    <option value="2">学生</option>
+                                    <option value="3">管理员</option>
                                 </select>
                             </div>
                         </div>
@@ -267,7 +270,7 @@
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
-                    <form class="form-horizontal" action="userManage" method="get">
+                    <form class="form-horizontal" action="/manage/user/editUser" method="post">
                         <div class="form-group row">
                             <label class="col-sm-3 form-control-label">用户名</label>
                             <div class="col-sm-9">
@@ -302,7 +305,7 @@
                             </div>
                             <label class="col-sm-3 form-control-label">用户班级</label>
                             <div class="col-sm-9">
-                                <select name="class" class="faculty form-control mb-3">
+                                <select name="classNo" class="faculty form-control mb-3">
                                     <option value="">--请选择--</option>
                                 </select>
                             </div>
@@ -310,6 +313,9 @@
                             <div class="col-sm-9">
                                 <select name="userType" class="faculty form-control mb-3">
                                     <option value="">--请选择--</option>
+                                    <option value="1">老师</option>
+                                    <option value="2">学生</option>
+                                    <option value="3">管理员</option>
                                 </select>
                             </div>
                         </div>

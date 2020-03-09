@@ -1,32 +1,20 @@
 package com.education.system_edu.utils;
 
 
-import com.education.system_edu.pojo.SysDataTree;
 import com.education.system_edu.pojo.SysDataTreeExample;
 import com.education.system_edu.pojo.SysNodeExample;
+import com.education.system_edu.utils.value.Entry;
 
 import java.util.Date;
 import java.util.Map;
 
 public class SysTreeAndNodeUtils {
     private String loginCode;
-    private Map<String, Object> createMap;
-    private Map<String, Object> updateMap;
-    private String createBy;
-    private Date createTime;
-    private String updateBy;
-    private Date updateTime;
 
     private ClassUtils<Object> classUtils = new ClassUtils<>();
 
     public void initSysTreeAndNodeUtils(String loginCode) {
         this.loginCode = loginCode;
-        createMap = UserUtils.create(loginCode);
-        updateMap = UserUtils.update(loginCode);
-        createBy = createMap.get(Entry.CREATE_BY).toString();
-        createTime = (Date) createMap.get(Entry.CREATE_TIME);
-        updateBy = updateMap.get(Entry.UPDATE_BY).toString();
-        updateTime = (Date) updateMap.get(Entry.UPDATE_TIME);
     }
 
     public Object createAndUpdateMessage(Object object) {
