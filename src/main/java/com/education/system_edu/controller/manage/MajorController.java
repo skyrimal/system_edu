@@ -1,5 +1,7 @@
 package com.education.system_edu.controller.manage;
 
+import com.education.system_edu.pojo.output.OutputClass;
+import com.education.system_edu.pojo.output.OutputMajor;
 import com.education.system_edu.pojo.pojo.Major;
 import com.education.system_edu.service.FacultyService;
 import com.education.system_edu.service.MajorService;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("manage/faculty/major")
@@ -61,6 +64,19 @@ public class MajorController {
     }
 
     /**
+     * ajax
+     * 搜索专业
+     *
+     * @return
+     */
+    @RequiresRoles({"user", "manager"})
+    @GetMapping("checkMajor")
+    @ResponseBody
+    public List<OutputMajor> checkMajor(@RequestParam("departmentCode") String departmentCode) {
+        return majorService.findMajorByDepartmentCode(departmentCode);
+    }
+
+    /**
      * 获取一个专业信息
      *
      * @param majorCode
@@ -85,6 +101,20 @@ public class MajorController {
         int flag = majorService.updateMajor(major, SecurityUtils.getSubject().getPrincipal().toString());
         httpSession.setAttribute("msg", MsgUtil.addMsj(flag));
         return "redirect:/manage/faculty/m_manage_faculty_major";
+    }
+
+    /**
+     * ajax
+     * 获取班级
+     *
+     * @param major
+     * @return
+     */
+    @RequiresRoles({"user", "manager"})
+    @GetMapping("checkClassNo")
+    @ResponseBody
+    public List<OutputClass> checkClassNo(@RequestParam("majorId") String major, @RequestParam("grade") String grade) {
+        return majorService.findClassByMajorCodeAndGrade(major,grade);
     }
 
 }

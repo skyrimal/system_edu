@@ -67,18 +67,18 @@ public class UserController {
 
     @PostMapping("editUser")
     public String editUser(UserInModel userInModel){
-        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
-        int flag = userService.addUser(userInModel,subjectUtils.getUserLoginCode());
-        if (flag<5){
-            return "/error";
-        }
+
         return "/m_manage_userManage";
     }
 
     @RequiresRoles({"user", "manager"})
     @PostMapping("addUser")
     public String addUser(UserInModel userInModel){
-
+        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
+        int flag = userService.addUser(userInModel,subjectUtils.getUserLoginCode());
+        if (flag<4){
+            return "/error";
+        }
         return "/m_manage_userManage";
     }
 }

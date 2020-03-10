@@ -63,6 +63,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * 通过页面传入的信息搜索user
+     * @param searchUserByFaculty
+     * @param pageSize
+     * @param pageNum
+     * @return
+     */
     @Override
     public List<PageUserOutput> selectUsersByUser(SearchUserByFaculty searchUserByFaculty, Integer pageSize, Integer pageNum) {
         PageUser pageUser = new PageUser();
@@ -75,6 +82,13 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectSelectedByUser(pageUser);
     }
 
+    /**
+     * 获取user分页总页数
+     * 按情况，如果没有进行过搜索则是总数，如果进行过搜索则先获得搜索后的数量
+     * @param searchUserByFaculty
+     * @param pageSize
+     * @return
+     */
     @Override
     public Long getUserPageCount(SearchUserByFaculty searchUserByFaculty, Integer pageSize) {
         PageUser pageUser = new PageUser();
@@ -98,6 +112,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * 添加一个用户以及其关联类
+     *
+     * @param userInModel
+     * @param userLoginCode
+     * @return
+     */
     @Override
     public Integer addUser(UserInModel userInModel, String userLoginCode) {
         //判断数据库是否修改
@@ -109,7 +130,6 @@ public class UserServiceImpl implements UserService {
         //1.1获取班级大小，添加用户为最后一个
         connectUserStudentAndClassExample.createCriteria().andClassCodeEqualTo(userInModel.getClassNo());
         long studentNo = connectUserStudentAndClassMapper.countByExample(connectUserStudentAndClassExample);
-        System.out.println("studentNo==>"+studentNo);
         User user = UserUtils.madeUser(userInModel, studentNo+1, userMapper, userLoginCode);
         userMapper.insert(user);
 
@@ -124,11 +144,11 @@ public class UserServiceImpl implements UserService {
         //ConnectUserAndDepartment connectUserAndDepartment = UserUtils.connectUserAndDePartment();
         ConnectUserAndMajor connectUserAndMajor = UserUtils.connectUserAndMajor(user.getCode(),userInModel.getMajor(),userLoginCode);
         flag+=connectUserAndMajorMapper.insert(connectUserAndMajor);
-
-        //4.创建user-class联系
-        ConnectUserStudentAndClass connectUserStudentAndClass = UserUtils.connectUserStudentAndClass(user, userInModel.getClassNo(), userLoginCode);
-        flag+=connectUserStudentAndClassMapper.insert(connectUserStudentAndClass);
-
+        if(!user.getUserType().equals("2")){
+            //4.创建学生-班级user-class联系
+            ConnectUserStudentAndClass connectUserStudentAndClass = UserUtils.connectUserStudentAndClass(user, userInModel.getClassNo(), userLoginCode);
+            flag+=connectUserStudentAndClassMapper.insert(connectUserStudentAndClass);
+        }
         return flag;
     }
 

@@ -286,72 +286,8 @@
     </div>
 </div>
 <div th:insert="~{/bar/js_bar::js}"></div>
-<script>
-    //获取专业信息
-    $(function () {
-        $.ajax({
-            type: "GET",
-            url: "/manage/faculty/initSearch",
-            dataType: "json",
-            success(data) {
-                console.info(data);
-                $(".faculty option").remove();
-                $(".faculty").append("\n" +
-                    "                                    <option value=\"\">--请选择--</option>");
-                for (let i = 0; i < data.length; i++) {
-                    $(".faculty").append("<option value=\"" + data[i][0] + "\">" + data[i][1] + "</option>");
-                }
-            }
-        });
-        $(".faculty").change(function () {
-            var id = $(this).val();
-            var f = $(this).parent().parent().children(" div:eq(1) ").children(" select").children(" option");
-            var o = $(this).parent().parent().children(" div:eq(1) ").children(" select");
-            $.ajax({
-                type: "GET",
-                url: "/manage/faculty/checkDepartment",
-                dataType: "json",
-                data: {"facultyId": id},
-                success(data) {
-                    console.info(data);
 
-                    console.info(f.text());
-                    f.remove();
-                    o.append("\n" +
-                        "                                    <option value=\"\">--请选择--</option>");
-                    $.each(data,function (dataIndex,dataValue) {
-                        o.append("\n" +
-                            "                                    <option value=\""+dataValue.code+"\">"+dataValue.departmentName+"</option>");
-                    })
-
-                }
-            });
-        });
-
-
-
-
-        $("#submit_form").click(function () {
-            $("#search_form").submit();
-        });
-
-        $(".change_major_init").click(function () {
-            console.info("点了一下"+$(this).parent().parent().children(" th").text());
-            var id = $(this).parent().parent().children(" th").text();
-            $.ajax({
-                type: "GET",
-                url: "/manage/faculty/major/initChangeMajor",
-                dataType: "json",
-                data: {"majorCode": id},
-                success(data) {
-                    $("#change_majorName").val("").val(data.majorName);
-                    $("#change_teacherCode").val("").val(data.teacherCode);
-                    $("#change_major_code").attr("value", id);
-                }
-            })
-        })
-    });
-</script>
+<div th:insert="~{/bar/js_bar::faculty_options}"></div>
 </body>
 
 </html>

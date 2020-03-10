@@ -16,6 +16,111 @@
     <script src="/statics/js/front.js"></script>
     <script src="/statics/js/user_message.js"></script>
 </div>
+<script th:fragment="faculty_options">
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "/manage/faculty/initSearch",
+            dataType: "json",
+            success(data) {
+                $(".faculty option").remove();
+                $(".faculty").append("\n" +
+                    "                                    <option value=\"\">--请选择--</option>");
+                for (let i = 0; i < data.length; i++) {
+                    $(".faculty").append("<option value=\"" + data[i][0] + "\">" + data[i][1] + "</option>");
+                }
+            }
+        });
+
+        $(".faculty").change(function () {
+            var id = $(this).children("option:checked").val();
+            var f = $(this).parent().parent().children(" div:eq(1) ").children(" select").children(" option");
+            var o = $(this).parent().parent().children(" div:eq(1) ").children(" select");
+            $.ajax({
+                type: "GET",
+                url: "/manage/faculty/checkDepartment",
+                dataType: "json",
+                data: {"facultyId": id},
+                success(data) {
+                    console.info(f.text());
+                    f.remove();
+                    o.append("\n" +
+                        "                                    <option value=\"\">--请选择--</option>");
+                    $.each(data, function (dataIndex, dataValue) {
+                        o.append("\n" +
+                            "                                    <option value=\"" + dataValue.code + "\">" + dataValue.departmentName + "</option>");
+                    })
+
+                }
+            });
+        });
+
+        $(".department").change(function () {
+            var id = $(this).children("option:checked").val();
+            var f = $(this).parent().parent().children(" div:eq(2) ").children(" select").children(" option");
+            var o = $(this).parent().parent().children(" div:eq(2) ").children(" select");
+            $.ajax({
+                type: "GET",
+                url: "/manage/faculty/major/checkMajor",
+                dataType: "json",
+                data: {"departmentCode": id},
+                success(data) {
+                    console.info("department");
+                    console.info(f.text());
+                    f.remove();
+                    o.append("\n" +
+                        "                                    <option value=\"\">--请选择--</option>");
+                    $.each(data, function (dataIndex, dataValue) {
+                        o.append("\n" +
+                            "                                    <option value=\"" + dataValue.majorCode + "\">" + dataValue.majorName + "</option>");
+                    })
+
+                }
+            });
+        });
+
+        $(".grade").change(function () {
+
+            var majorId = $(this).parent().parent().children(" div:eq(2) ").children(" select").children(" option:checked").val()
+            var grade = $(this).children("option:checked").val();
+            var f = $(this).parent().parent().children(" div:eq(4) ").children(" select").children(" option");
+            var o = $(this).parent().parent().children(" div:eq(4) ").children(" select");
+            console.info(majorId);
+            console.info(grade);
+            if(majorId!=''){
+                $.ajax({
+                    type: "GET",
+                    url: "/manage/faculty/major/checkClassNo",
+                    dataType: "json",
+                    data: {
+                        "grade": grade,
+                        "majorId": majorId
+                    },
+                    success(data) {
+                        f.remove();
+                        o.append("\n" +
+                            "                                    <option value=\"\">--请选择--</option>");
+                        $.each(data, function (dataIndex, dataValue) {
+                            o.append("\n" +
+                                "                                    <option value=\"" + dataValue.classCode + "\">" + dataValue.classClassCode + "</option>");
+                        })
+
+                    }
+                });
+            }else {
+                alert("专业不能为空");
+            }
+
+        });
+
+
+        $("#submit_form").click(function () {
+            $("#search_form").submit();
+        });
+
+
+    })
+</script>
 <script th:fragment="page_js">
     $(function () {
         var pageCount = [[${pageCount}]];

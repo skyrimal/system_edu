@@ -81,7 +81,14 @@ public class UserUtils {
 //        return map;
 //    }
 
-
+    /**
+     * 通过页面传入的信息创建一个user对象
+     * @param userInModel
+     * @param studentNo
+     * @param userMapper
+     * @param userLoginCode
+     * @return
+     */
     public static User madeUser(UserInModel userInModel, Long studentNo, UserMapper userMapper, String userLoginCode) {
         UserExample userExample = new UserExample();
 
@@ -89,7 +96,12 @@ public class UserUtils {
 
         User user = new User();
         user.setCode(UU3D.uu3d());
-        user.setLoginCode(UserValue.PREFIX_CLASS_NO + userInModel.getGrade() + userInModel.getClassNo() + studentNo);
+        //用户登录账号为前驱+年级+班级+（总人数+1）
+        //有bug，loginCode中classNo，studentNo位数可能错乱
+        //添加长度控制方法
+        user.setLoginCode(UserValue.PREFIX_CLASS_NO + userInModel.getGrade()
+                                  + StringUtils.lengthControl(userInModel.getClassNo(),3)
+                                  + StringUtils.lengthControl(studentNo+"",3));
         user.setUserName(userInModel.getUserName());
         user.setPassword(EncryptionUtils.encryption("MD5", "123456", user.getCode()).toString());
         user.setUserType(userInModel.getUserType());
@@ -98,7 +110,6 @@ public class UserUtils {
         user = classUtils.addUserCreateUseInfo(user, userLoginCode);
 
         userExample.createCriteria().andLoginCodeEqualTo(user.getLoginCode());
-        System.out.println("studentNo++>"+studentNo);
         if (userMapper.selectByExample(userExample).size() != 0) {
             return useMadeUser(userInModel, studentNo+1, userMapper, userLoginCode);
         } else {

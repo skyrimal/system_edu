@@ -1,14 +1,14 @@
 package com.education.system_edu.service.impl;
 
-import com.education.system_edu.mapper.ConnectUserAndDepartmentMapper;
-import com.education.system_edu.mapper.SysDataTreeMapper;
-import com.education.system_edu.mapper.SysNodeMapper;
-import com.education.system_edu.mapper.UserMapper;
+import com.education.system_edu.mapper.*;
 import com.education.system_edu.pojo.*;
+import com.education.system_edu.pojo.output.OutputClass;
+import com.education.system_edu.pojo.output.OutputMajor;
 import com.education.system_edu.pojo.pojo.Major;
 import com.education.system_edu.service.MajorService;
 import com.education.system_edu.utils.*;
 import com.education.system_edu.utils.value.Entry;
+import com.education.system_edu.utils.value.UserValue;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.util.StringUtil;
 
@@ -25,8 +25,7 @@ public class MajorServiceImpl implements MajorService {
     @Resource
     SysNodeMapper sysNodeMapper;
     @Resource
-    ConnectUserAndDepartmentMapper connectUserAndDepartmentMapper;
-
+    SysModelClassMapper sysModelClassMapper;
     @Resource
     UserMapper userMapper;
 
@@ -213,6 +212,28 @@ public class MajorServiceImpl implements MajorService {
             flag += sysNodeMapper.updateByPrimaryKeySelective(sysNode);
         }
         return flag;
+    }
+
+    @Override
+    public List<OutputMajor> findMajorByDepartmentCode(String departmentCode) {
+        SysDataTreeExample sysDataTreeExample = new SysDataTreeExample();
+        sysDataTreeExample.createCriteria().andParentNodeEqualTo(departmentCode);
+        List<OutputMajor> outputMajors = new ArrayList<>();
+        for (SysDataTree sysDataTree : sysDataTreeMapper.selectByExample(sysDataTreeExample)) {
+            OutputMajor outputMajor = new OutputMajor();
+            outputMajor.setMajorCode(sysDataTree.getCode());
+            outputMajor.setMajorName(sysDataTree.getName());
+            outputMajors.add(outputMajor);
+        }
+        return outputMajors;
+    }
+
+    @Override
+    public List<OutputClass> findClassByMajorCodeAndGrade(String major, String grade) {
+        SysModelClassExample sysModelClassExample = new SysModelClassExample();
+        sysModelClassExample.createCriteria().andTypeEqualTo((short) 2).andSysCollegeNodeCodeEqualTo(major).andGradeEqualTo(UserValue.PREFIX_CLASS_NO+grade);
+        List<SysModelClass> sysModelClasses = sysModelClassMapper.selectByExample(sysModelClassExample);
+        return OutPutEntryUtils.sysModelClassesToOutputClasses(sysModelClasses);
     }
 
 
