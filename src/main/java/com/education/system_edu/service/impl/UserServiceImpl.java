@@ -131,7 +131,7 @@ public class UserServiceImpl implements UserService {
         connectUserStudentAndClassExample.createCriteria().andClassCodeEqualTo(userInModel.getClassNo());
         long studentNo = connectUserStudentAndClassMapper.countByExample(connectUserStudentAndClassExample);
         User user = UserUtils.madeUser(userInModel, studentNo+1, userMapper, userLoginCode);
-        userMapper.insert(user);
+        flag+=userMapper.insert(user);
 
         //2.创建role-user联系
         List<ConnectUserAndRole> connectUserAndRoles = UserUtils.connectUserAndRole(sysNodeMapper, userInModel.getUserType(), user.getCode(), userLoginCode);
@@ -144,7 +144,7 @@ public class UserServiceImpl implements UserService {
         //ConnectUserAndDepartment connectUserAndDepartment = UserUtils.connectUserAndDePartment();
         ConnectUserAndMajor connectUserAndMajor = UserUtils.connectUserAndMajor(user.getCode(),userInModel.getMajor(),userLoginCode);
         flag+=connectUserAndMajorMapper.insert(connectUserAndMajor);
-        if(!user.getUserType().equals("2")){
+        if(user.getUserType().equals("2")){
             //4.创建学生-班级user-class联系
             ConnectUserStudentAndClass connectUserStudentAndClass = UserUtils.connectUserStudentAndClass(user, userInModel.getClassNo(), userLoginCode);
             flag+=connectUserStudentAndClassMapper.insert(connectUserStudentAndClass);
