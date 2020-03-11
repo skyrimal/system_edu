@@ -1,6 +1,7 @@
 package com.education.system_edu.service;
 
 import com.education.system_edu.pojo.insert.UserInModel;
+import com.education.system_edu.pojo.output.OutputUserForEditUserAction;
 import com.education.system_edu.pojo.pojo_child.result.PageUserOutput;
 import com.education.system_edu.pojo.pojo_getData.SearchUserByFaculty;
 
@@ -12,4 +13,8 @@ public interface UserService {
     Long getUserPageCount( SearchUserByFaculty searchUserByFaculty,Integer pageSize);
 
     Integer addUser(UserInModel userInModel, String userLoginCode);
+
+    OutputUserForEditUserAction getOutputUserForEditUserActionBy(String loginCode);
+
+    Integer editUser(UserInModel userInModel, String userLoginCode);
 }

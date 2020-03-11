@@ -67,7 +67,11 @@ public class UserController {
 
     @PostMapping("editUser")
     public String editUser(UserInModel userInModel){
-
+        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
+        int flag = userService.editUser(userInModel,subjectUtils.getUserLoginCode());
+        if (flag<4){
+            return "/error";
+        }
         return "/m_manage_userManage";
     }
 

@@ -3,6 +3,7 @@ package com.education.system_edu.service.impl;
 import com.education.system_edu.mapper.*;
 import com.education.system_edu.pojo.*;
 import com.education.system_edu.pojo.insert.UserInModel;
+import com.education.system_edu.pojo.output.OutputUserForEditUserAction;
 import com.education.system_edu.pojo.pojo_child.parameter.PageUser;
 import com.education.system_edu.pojo.pojo_child.result.PageUserOutput;
 import com.education.system_edu.pojo.pojo_getData.SearchUserByFaculty;
@@ -150,6 +151,58 @@ public class UserServiceImpl implements UserService {
             flag+=connectUserStudentAndClassMapper.insert(connectUserStudentAndClass);
         }
         return flag;
+    }
+
+    @Override
+    public OutputUserForEditUserAction getOutputUserForEditUserActionBy(String loginCode) {
+        return userMapper.selectOutputUserForEditUserActionByLoginCode(loginCode);
+    }
+
+    @Override
+    public Integer editUser(UserInModel userInModel, String userLoginCode) {
+        //判断数据库是否修改
+        int flag = 0;
+        //修改user
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andLoginCodeEqualTo(userInModel.getUserId());
+        User user = userMapper.selectByExample(userExample).get(0);
+        user.setUserName(userInModel.getUserName());
+        user = (User) updateObject(user, userLoginCode);
+
+        userMapper.updateByPrimaryKey(user);
+        //修改user—class连接
+        ConnectUserStudentAndClassExample  connectUserStudentAndClassExample = new ConnectUserStudentAndClassExample();
+        connectUserStudentAndClassExample.createCriteria().andStudentCodeEqualTo(user.getCode());
+        connectUserStudentAndClassMapper.deleteByExample(connectUserStudentAndClassExample);
+        if(user.getUserType().equals("2")){
+            //4.创建学生-班级user-class联系
+            ConnectUserStudentAndClass connectUserStudentAndClass = UserUtils.connectUserStudentAndClass(user, userInModel.getClassNo(), userLoginCode);
+            flag+=connectUserStudentAndClassMapper.insert(connectUserStudentAndClass);
+        }
+        //修改user-major连接
+        ConnectUserAndMajorExample connectUserAndMajorExample = new ConnectUserAndMajorExample();
+        connectUserAndMajorExample.createCriteria().andUseCodeEqualTo(user.getCode());
+        connectUserAndMajorMapper.deleteByExample(connectUserAndMajorExample);
+        ConnectUserAndMajor connectUserAndMajor = UserUtils.connectUserAndMajor(user.getCode(),userInModel.getMajor(),userLoginCode);
+        flag+=connectUserAndMajorMapper.insert(connectUserAndMajor);
+        //修改user-role连接
+        ConnectUserAndRoleExample connectUserAndRoleExample = new ConnectUserAndRoleExample();
+        connectUserAndRoleExample.createCriteria().andUseCodeEqualTo(user.getCode());
+        connectUserAndRoleMapper.deleteByExample(connectUserAndRoleExample);
+        List<ConnectUserAndRole> connectUserAndRoles = UserUtils.connectUserAndRole(sysNodeMapper, userInModel.getUserType(), user.getCode(), userLoginCode);
+        for (ConnectUserAndRole connectUserAndRole : connectUserAndRoles) {
+            flag+=connectUserAndRoleMapper.insert(connectUserAndRole);
+        }
+        return flag;
+    }
+
+
+
+
+
+    public static Object updateObject(Object o, String userLoginCode) {
+        ClassUtils<Object> classUtils = new ClassUtils<>();
+        return classUtils.addUserUpdateUseInfo(o,userLoginCode);
     }
 
 

@@ -117,7 +117,8 @@
                                 <a class="btn btn-outline-success btn-sm" data-toggle="modal"
                                    data-target="#check_major">查看</a>
                                 <a class="btn btn-warning btn-sm change_major_init" data-toggle="modal"
-                                   data-target="#change_major" id="change_major_init">修改</a>
+                                   data-target="#change_major"
+                                   th:onclick="editUserModelShow([[${user.getUser().getLoginCode()}]])">修改</a>
                             </td>
                         </tr>
                         </tbody>
@@ -235,7 +236,7 @@
                             </div>
                             <label class="col-sm-3 form-control-label">用户班级</label>
                             <div class="col-sm-9">
-                                <select id="class"  name="classNo" class="form-control mb-3">
+                                <select id="class" name="classNo" class="form-control mb-3">
                                     <option value="">--请选择--</option>
                                 </select>
                             </div>
@@ -274,18 +275,37 @@
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
-                    <form class="form-horizontal" action="/manage/user/editUser" method="post">
+                    <form id="change_form" class="form-horizontal" action="/manage/user/editUser" method="post">
                         <div class="form-group row">
                             <label class="col-sm-3 form-control-label">用户名</label>
                             <div class="col-sm-9">
-                                <input type="text" name="userName" placeholder="请输入用户名" class="form-control">
+                                <input type="text" name="userName" placeholder="请输入用户名"
+                                class="userName edit form-control">
                             </div>
                         </div>
+                        <input type="hidden" name="userId" id="user_id_edit" value=""/>
                         <div class="line"></div>
-                        <div class="form-group row">
+                        <div id="change_select" class="form-group row">
+                            <label class="col-sm-3 form-control-label">所属学院</label>
+                            <div class="col-sm-9">
+                                <select class="faculty edit form-control mb-3">
+                                </select>
+                            </div>
+                            <label class="col-sm-3 form-control-label">所属系</label>
+                            <div class="col-sm-9">
+                                <select name="departmentCode" class="department edit form-control mb-3">
+                                    <option value="">--请选择--</option>
+                                </select>
+                            </div>
+                            <label class="col-sm-3 form-control-label">用户专业</label>
+                            <div class="col-sm-9">
+                                <select name="major" class="major edit form-control mb-3">
+                                    <option value="">--请选择--</option>
+                                </select>
+                            </div>
                             <label class="col-sm-3 form-control-label">用户年级</label>
                             <div class="col-sm-9">
-                                <select name="grade" class="form-control mb-3">
+                                <select name="grade" class="grade edit form-control mb-3">
                                     <option value="">--请选择--</option>
                                     <option value="16">2016</option>
                                     <option value="17">2017</option>
@@ -294,33 +314,15 @@
                                     <option value="20">2020</option>
                                 </select>
                             </div>
-                            <label class="col-sm-3 form-control-label">所属学院</label>
-                            <div class="col-sm-9">
-                                <select class="faculty form-control mb-3">
-                                    <option value="">--请选择--</option>
-                                </select>
-                            </div>
-                            <label class="col-sm-3 form-control-label">所属系</label>
-                            <div class="col-sm-9">
-                                <select name="departmentCode" class="department form-control mb-3">
-                                    <option value="">--请选择--</option>
-                                </select>
-                            </div>
-                            <label class="col-sm-3 form-control-label">用户专业</label>
-                            <div class="col-sm-9">
-                                <select name="major" class="faculty form-control mb-3">
-                                    <option value="">--请选择--</option>
-                                </select>
-                            </div>
                             <label class="col-sm-3 form-control-label">用户班级</label>
                             <div class="col-sm-9">
-                                <select name="classNo" class="faculty form-control mb-3">
+                                <select name="classNo" class="classNo edit form-control mb-3">
                                     <option value="">--请选择--</option>
                                 </select>
                             </div>
                             <label class="col-sm-3 form-control-label">用户类型</label>
                             <div class="col-sm-9">
-                                <select name="userType" class="faculty form-control mb-3">
+                                <select name="userType" class="userType edit form-control mb-3">
                                     <option value="">--请选择--</option>
                                     <option value="1">老师</option>
                                     <option value="2">学生</option>
@@ -331,10 +333,7 @@
                         <div class="line"></div>
                         <div class="form-group row">
                             <div class="col-sm-4 offset-sm-3">
-                                <button type="submit" class="btn btn-info">保存</button>
-                            </div>
-                            <div class="col-sm-4 offset-sm-3">
-                                <button class="btn btn-danger">密码初始化</button>
+                                <button type="submit" class="btn btn-primary">提交</button>
                             </div>
                         </div>
                     </form>
@@ -352,9 +351,79 @@
 <div th:insert="~{/bar/js_bar::page_js}"></div>
 <div th:insert="~{/bar/js_bar::faculty_options}"></div>
 <script type="application/javascript">
-    $(function () {
+    var a = 0;
+    var a2 = 0;
+    var a3 = 0;
+    var a4 = 0;
+    var a5 = 0;
+    var a6 = 0;
 
-    })
+    function editUserModelShow(userLoginCode) {
+        $('#user_id_edit').val(userLoginCode);
+        $.ajax({
+            type: "GET",
+            url: "/user/user_message/" + userLoginCode,
+            dataType: "json",
+            success(data) {
+
+                console.info(data);
+                $("#change_form").children(" div:eq(0)").children(" div").children(" input:eq(0)").val('').val(data.userName);
+                var select_div1 = $("#change_select").children(" div:eq(0)").children(" select");
+                var select_div2 = $("#change_select").children(" div:eq(1)").children(" select");
+                var select_div3 = $("#change_select").children(" div:eq(2)").children(" select");
+                var select_div4 = $("#change_select").children(" div:eq(3)").children(" select");
+                var select_div5 = $("#change_select").children(" div:eq(4)").children(" select");
+                var select_div6 = $("#change_select").children(" div:eq(5)").children(" select");
+                select_div1.append("<option style='background-color: #6f42c1' selected='selected' value=\""+data.facultyCode+"\">" + data.facultyName + "</option>");
+                select_div2.append("<option style='background-color: #6f42c1' selected='selected' value=\""+data.departmentCode+"\">" + data.departmentName + "</option>");
+                select_div3.append("<option style='background-color: #6f42c1' selected='selected' value=\""+data.majorCode+"\">" + data.majorName + "</option>");
+                select_div4.append("<option style='background-color: #6f42c1' selected='selected' value=\""+data.grade.substr(data.grade.length-2,2)+"\">" + data.grade + "</option>");
+                select_div5.append("<option style='background-color: #6f42c1' selected='selected' value=\""+data.classCode+"\">" + data.classNo + "</option>");
+                select_div6.append("<option style='background-color: #6f42c1' selected='selected' value=\""+data.userType+"\">" + data.userType + "</option>");
+                initRemove()
+            }
+        });
+    }
+
+    function initRemove() {
+        aa();
+        aa1();
+        aa2();
+        aa3();
+        aa4();
+        aa5();
+    }
+    function  aa() {
+        isChange(a, 0);
+        a++;
+    }
+    function  aa1() {
+        isChange(a2, 1);
+        a2++;
+    }
+    function  aa2() {
+        isChange(a3, 2);
+        a3++;
+    }
+    function  aa3() {
+        isChange(a4, 3);
+        a4++;
+    }
+    function  aa4() {
+        isChange(a5, 4);
+        a5++;
+    }
+    function  aa5() {
+        isChange(a6, 5);
+        a6++;
+    }
+    function isChange(a, b) {
+        console.info(a);
+        if (a > 0) {
+            $("#change_select").children(" div:eq(" + b + ")").children(" select").children(" option:eq(-2)").remove();
+        }
+
+    }
 </script>
 </body>
 </html>

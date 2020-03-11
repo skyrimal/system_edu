@@ -2,6 +2,7 @@ package com.education.system_edu.controller;
 
 import com.education.system_edu.pojo.User;
 import com.education.system_edu.pojo.UserExample;
+import com.education.system_edu.pojo.output.OutputUserForEditUserAction;
 import com.education.system_edu.service.PageService;
 import com.education.system_edu.service.UserService;
 import com.education.system_edu.utils.MsgUtil;
@@ -143,5 +144,15 @@ public class UserController {
         UserExample userForSearch = new UserExample();
         userForSearch.createCriteria().andLoginCodeEqualTo(subject.getPrincipal().toString());
         return UserUtils.userForLeftBar(pageService.findUser(userForSearch));
+    }
+    /**
+     * 显示用户基础信息 -- 用户名和用户类型
+     * @return
+     */
+    @RequiresRoles({"user"})
+    @GetMapping("/user_message/{loginCode}")
+    @ResponseBody
+    public OutputUserForEditUserAction user(@PathVariable("loginCode") String loginCode){
+        return userService.getOutputUserForEditUserActionBy(loginCode);
     }
 }

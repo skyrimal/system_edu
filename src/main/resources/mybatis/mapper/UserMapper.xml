@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.education.system_edu.mapper.UserMapper">
+    <resultMap id="outputUserForEditUser" type="com.education.system_edu.pojo.output.OutputUserForEditUserAction">
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="faculty_code" jdbcType="VARCHAR" property="facultyCode"/>
+        <result column="faculty_name" jdbcType="VARCHAR" property="facultyName"/>
+        <result column="department_code" jdbcType="VARCHAR" property="departmentCode"/>
+        <result column="department_name" jdbcType="VARCHAR" property="departmentName"/>
+        <result column="major_code" jdbcType="VARCHAR" property="majorCode"/>
+        <result column="major_name" jdbcType="VARCHAR" property="majorName"/>
+        <result column="grade" jdbcType="VARCHAR" property="grade"/>
+        <result column="class_code" jdbcType="VARCHAR" property="classCode"/>
+        <result column="class_class_code" jdbcType="VARCHAR" property="classNo"/>
+        <result column="user_type" jdbcType="VARCHAR" property="userType"/>
+    </resultMap>
     <resultMap id="BaseResultMap" type="com.education.system_edu.pojo.User">
         <id column="code" jdbcType="VARCHAR" property="code"/>
         <result column="login_code" jdbcType="VARCHAR" property="loginCode"/>
@@ -115,8 +128,33 @@
     a.last_login_ip, a.last_login_date, a.freeze_date, a.freeze_cause, a.status, a.create_by, a.create_date,
     a.update_by, a.update_date
   </sql>
-    <!-- 手动添加计数器 -->
 
+    <!-- 手动添加为了修改用户信息获取OutputUserForEditUserAction -->
+    <select id="selectOutputUserForEditUserActionByLoginCode" parameterType="java.lang.String"
+            resultMap="outputUserForEditUser">
+        SELECT DISTINCT
+	    `user`.user_name,
+	    `user`.user_type,
+	    c_u_c.class_code,
+	    c.class_code AS class_class_code,
+	    c.grade,
+	    major.`code` AS major_code,
+	    major.`name` AS major_name,
+	    department.`code` AS department_code,
+	    department.`name` AS department_name,
+	    faculty.`code` AS faculty_code,
+	    faculty.`name` AS faculty_name
+    FROM
+    	all_users AS `user`
+    LEFT JOIN connect_user_student_and_class AS c_u_c ON c_u_c.student_code = `user`.`code`
+    LEFT JOIN sys_model_class AS c ON c_u_c.class_code = c.`code`
+    LEFT JOIN sys_data_tree AS major ON c.sys_college_node_code = major.`code`
+    LEFT JOIN sys_data_tree AS department ON major.parent_node = department.`code`
+    LEFT JOIN sys_data_tree AS faculty ON department.parent_node = faculty.`code`
+    WHERE
+	    `user`.login_code = #{loginCode,jdbcType=VARCHAR}
+    </select>
+    <!-- 手动添加计数器 -->
     <select id="countByPageUser" parameterType="com.education.system_edu.pojo.pojo_child.parameter.PageUser"
             resultType="java.lang.Long">
         SELECT COUNT(*) from (

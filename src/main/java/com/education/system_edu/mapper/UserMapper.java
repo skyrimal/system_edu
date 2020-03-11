@@ -4,6 +4,7 @@ import com.education.system_edu.pojo.User;
 import com.education.system_edu.pojo.UserExample;
 import java.util.List;
 
+import com.education.system_edu.pojo.output.OutputUserForEditUserAction;
 import com.education.system_edu.pojo.pojo_child.parameter.PageUser;
 import com.education.system_edu.pojo.pojo_child.result.PageUserOutput;
 import org.apache.ibatis.annotations.Param;
@@ -39,4 +40,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    OutputUserForEditUserAction selectOutputUserForEditUserActionByLoginCode(@Param("loginCode") String loginCode);
 }

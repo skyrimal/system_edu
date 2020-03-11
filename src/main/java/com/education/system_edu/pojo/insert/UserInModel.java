@@ -1,12 +1,21 @@
 package com.education.system_edu.pojo.insert;
 
 public class UserInModel {
+    private String userId;
     private String userName;
     private String grade;
     private String departmentCode;
     private String major;
     private String classNo;
     private String userType;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public UserInModel() {
     }
