@@ -3,11 +3,11 @@ package com.education.system_edu.controller.manage;
 import com.education.system_edu.pojo.UserExample;
 import com.education.system_edu.pojo.pojo.Department;
 import com.education.system_edu.pojo.pojo.Faculty;
-import com.education.system_edu.pojo.pojo.Major;
 import com.education.system_edu.service.FacultyService;
 import com.education.system_edu.service.PageService;
 import com.education.system_edu.utils.FacultyFactory;
 import com.education.system_edu.utils.MsgUtil;
+import com.education.system_edu.utils.UserInfoUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +63,7 @@ public class FacultyController {
     @ResponseBody
     public List<Department> checkDepartment(@RequestParam("facultyId") String facultyId,
                                             Model model) {
-        List<Department> departments = facultyService.findDepartment(facultyId, 2);
-        return departments;
+        return facultyService.findDepartment(facultyId, 2);
     }
 
     /**
@@ -94,6 +93,8 @@ public class FacultyController {
                                 Department department,
                                 HttpSession httpSession) {
         System.out.println("进入添加department方法");
+        //初始化userinfo工具
+        UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
         //获取username填入department
         UserExample userForSearch = new UserExample();
         userForSearch.createCriteria().andLoginCodeEqualTo(department.getManagerCode());
@@ -101,7 +102,7 @@ public class FacultyController {
 
         int flag = facultyService.addDepartment(parentCode
                 , department
-                , SecurityUtils.getSubject().getPrincipal().toString());
+                , userInfoUtils.getLoginCode());
         httpSession.setAttribute("msg", MsgUtil.addMsj(flag));
         return "redirect:/manage/faculty/m_manage_faculty_faculty";
     }
@@ -134,10 +135,11 @@ public class FacultyController {
     public String updateDepartment(@RequestParam("departmentCode") String departmentCode,
                                    Department department,
                                    HttpSession httpSession) {
+        UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
         int flag;
         department.setCode(departmentCode);
 
-        flag = facultyService.updateDepartment(department, SecurityUtils.getSubject().getPrincipal().toString());
+        flag = facultyService.updateDepartment(department, userInfoUtils.getLoginCode());
         httpSession.setAttribute("msg", MsgUtil.editMsj(flag));
         return "redirect:/manage/faculty/m_manage_faculty_faculty";
     }
@@ -171,8 +173,6 @@ public class FacultyController {
     public List<String[]> initSearch() {
         return FacultyFactory.returnFactoryNameList(facultyService.findFaculty(1));
     }
-
-
 
 
 }

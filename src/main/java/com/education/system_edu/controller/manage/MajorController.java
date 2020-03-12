@@ -3,10 +3,9 @@ package com.education.system_edu.controller.manage;
 import com.education.system_edu.pojo.output.OutputClass;
 import com.education.system_edu.pojo.output.OutputMajor;
 import com.education.system_edu.pojo.pojo.Major;
-import com.education.system_edu.service.FacultyService;
 import com.education.system_edu.service.MajorService;
-import com.education.system_edu.utils.FacultyFactory;
 import com.education.system_edu.utils.MsgUtil;
+import com.education.system_edu.utils.UserInfoUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,8 @@ public class MajorController {
     @RequiresRoles({"user", "manager"})
     @PostMapping("addMajor")
     public String addMajor(Major major, HttpSession httpSession) {
-        int flag = majorService.addMajor(major, SecurityUtils.getSubject().getPrincipal().toString());
+        UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
+        int flag = majorService.addMajor(major, userInfoUtils.getLoginCode());
         httpSession.setAttribute("msg", MsgUtil.addMsj(flag));
         return "redirect:/manage/faculty/m_manage_faculty_major";
     }
@@ -98,7 +98,8 @@ public class MajorController {
     @RequiresRoles({"user", "manager"})
     @PostMapping("changeMajor")
     public String changeMajor(Major major, HttpSession httpSession) {
-        int flag = majorService.updateMajor(major, SecurityUtils.getSubject().getPrincipal().toString());
+        UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
+        int flag = majorService.updateMajor(major, userInfoUtils.getLoginCode());
         httpSession.setAttribute("msg", MsgUtil.addMsj(flag));
         return "redirect:/manage/faculty/m_manage_faculty_major";
     }

@@ -8,7 +8,11 @@ public class SubjectUtils {
     public SubjectUtils(Subject subject) {
         this.subject = subject;
     }
-    public String getUserLoginCode(){
-        return subject.getPrincipal().toString();
+    private Subject getSubject(){
+        return subject;
     }
+    public Object getPrincipal(){
+        return subject.getPrincipal();
+    }
+
 }

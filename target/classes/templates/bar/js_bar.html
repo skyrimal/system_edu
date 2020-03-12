@@ -18,14 +18,19 @@
 </div>
 <script th:fragment="faculty_options">
     $(function () {
+        initSelect();
+        $("#submit_form").click(function () {
+            $("#search_form").submit();
+        });
+    });
+    function initSelect(){
         $.ajax({
             type: "GET",
             url: "/manage/faculty/initSearch",
             dataType: "json",
             success(data) {
                 $(".faculty option").remove();
-                $(".faculty").append("\n" +
-                    "                                    <option value=\"\">--请选择--</option>");
+                $(".faculty").append("<option value=\"\">--请选择--</option>");
                 for (let i = 0; i < data.length; i++) {
                     $(".faculty").append("<option value=\"" + data[i][0] + "\">" + data[i][1] + "</option>");
                 }
@@ -44,11 +49,9 @@
                 success(data) {
                     console.info(f.text());
                     f.remove();
-                    o.append("\n" +
-                        "                                    <option value=\"\">--请选择--</option>");
+                    o.append("<option value=\"\">--请选择--</option>");
                     $.each(data, function (dataIndex, dataValue) {
-                        o.append("\n" +
-                            "                                    <option value=\"" + dataValue.code + "\">" + dataValue.departmentName + "</option>");
+                        o.append("<option value=\"" + dataValue.code + "\">" + dataValue.departmentName + "</option>");
                     })
 
                 }
@@ -68,11 +71,9 @@
                     console.info("department");
                     console.info(f.text());
                     f.remove();
-                    o.append("\n" +
-                        "                                    <option value=\"\">--请选择--</option>");
+                    o.append("<option value=\"\">--请选择--</option>");
                     $.each(data, function (dataIndex, dataValue) {
-                        o.append("\n" +
-                            "                                    <option value=\"" + dataValue.majorCode + "\">" + dataValue.majorName + "</option>");
+                        o.append("<option value=\"" + dataValue.majorCode + "\">" + dataValue.majorName + "</option>");
                     })
 
                 }
@@ -98,11 +99,9 @@
                     },
                     success(data) {
                         f.remove();
-                        o.append("\n" +
-                            "                                    <option value=\"\">--请选择--</option>");
+                        o.append("<option value=\"\">--请选择--</option>");
                         $.each(data, function (dataIndex, dataValue) {
-                            o.append("\n" +
-                                "                                    <option value=\"" + dataValue.classCode + "\">" + dataValue.classClassCode + "</option>");
+                            o.append("<option value=\"" + dataValue.classCode + "\">" + dataValue.classClassCode + "</option>");
                         })
 
                     }
@@ -112,14 +111,7 @@
             }
 
         });
-
-
-        $("#submit_form").click(function () {
-            $("#search_form").submit();
-        });
-
-
-    })
+    }
 </script>
 <script th:fragment="page_js">
     $(function () {

@@ -17,4 +17,6 @@ public interface UserService {
     OutputUserForEditUserAction getOutputUserForEditUserActionBy(String loginCode);
 
     Integer editUser(UserInModel userInModel, String userLoginCode);
+
+    Integer initPassword(String loginCode);
 }

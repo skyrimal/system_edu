@@ -4,15 +4,13 @@ import com.education.system_edu.pojo.insert.UserInModel;
 import com.education.system_edu.pojo.pojo_getData.SearchUserByFaculty;
 import com.education.system_edu.service.UserService;
 import com.education.system_edu.utils.SubjectUtils;
+import com.education.system_edu.utils.UserInfoUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +25,15 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * 通过条件查询学生
+     * @param pageSize
+     * @param pageNum
+     * @param searchUserByFaculty
+     * @param model
+     * @param httpSession
+     * @return
+     */
     @RequiresRoles({"user", "manager"})
     @PostMapping("userSearch")
     public String userManageMain(@RequestParam("pageSize") Integer pageSize,
@@ -43,6 +50,15 @@ public class UserController {
         httpSession.setAttribute("searchUserByFaculty", searchUserByFaculty);
         return "/m_manage_userManage";
     }
+
+    /**
+     * 查询所有学生
+     * @param pageSize
+     * @param pageNum
+     * @param model
+     * @param httpSession
+     * @return
+     */
     @RequiresRoles({"user", "manager"})
     @GetMapping("userSearch")
     public String userManageMain(@RequestParam("pageSize") Integer pageSize,
@@ -67,8 +83,8 @@ public class UserController {
 
     @PostMapping("editUser")
     public String editUser(UserInModel userInModel){
-        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
-        int flag = userService.editUser(userInModel,subjectUtils.getUserLoginCode());
+        UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
+        int flag = userService.editUser(userInModel,userInfoUtils.getLoginCode());
         if (flag<4){
             return "/error";
         }
@@ -78,11 +94,19 @@ public class UserController {
     @RequiresRoles({"user", "manager"})
     @PostMapping("addUser")
     public String addUser(UserInModel userInModel){
-        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
-        int flag = userService.addUser(userInModel,subjectUtils.getUserLoginCode());
+        UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
+        int flag = userService.addUser(userInModel,userInfoUtils.getLoginCode());
         if (flag<4){
             return "/error";
         }
         return "/m_manage_userManage";
+    }
+
+    @RequiresRoles({"user", "manager"})
+    @RequestMapping("initPassword/{loginCode}")
+    @ResponseBody
+    public String initPassword(@PathVariable("loginCode") String loginCode){
+        int flag = userService.initPassword(loginCode);
+        return null;
     }
 }

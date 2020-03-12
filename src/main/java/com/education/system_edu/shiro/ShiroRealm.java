@@ -61,7 +61,7 @@ public class ShiroRealm extends AuthorizingRealm {
         if (null != user) {
             //以下信息是从数据库中获取的.
             //1). principal: 认证的实体信息. 可以是 username, 也可以是数据表对应的用户的实体类对象.
-            Object principal = user.getLoginCode();
+            Object principal = user;
             //2). credentials: 密码.
             Object credentials = user.getPassword();
             //3). realmName: 当前 realm 对象的 name. 调用父类的 getName() 方法即可
@@ -77,12 +77,17 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         System.out.println("—————————————————shiro授权启动—————————————————");
-        //1. 从 PrincipalCollection 中来获取登录用户的信息,这里是LoginCode
-        String principal = (String) principalCollection.getPrimaryPrincipal();
+        /**
+         * //1. 从 PrincipalCollection 中来获取登录用户的信息,这里是LoginCode
+         *
+         *         String principal = (String) principalCollection.getPrimaryPrincipal();
+         */
+        //现在改为User
+        User principal = (User) principalCollection.getPrimaryPrincipal();
         //2. 利用登录的用户的信息来用户当前用户的角色或权限(可能需要查询数据库)
         //(1).获取用户
         UserExample userForSearch = new UserExample();
-        userForSearch.createCriteria().andLoginCodeEqualTo(principal);
+        userForSearch.createCriteria().andLoginCodeEqualTo(principal.getLoginCode());
         User user = userMapper.selectByExample(userForSearch).get(0);
         //(2).获取角色
         ConnectUserAndRoleExample connectUserAndRoleForSearch = new ConnectUserAndRoleExample();

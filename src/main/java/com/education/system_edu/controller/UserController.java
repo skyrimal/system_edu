@@ -7,6 +7,7 @@ import com.education.system_edu.service.PageService;
 import com.education.system_edu.service.UserService;
 import com.education.system_edu.utils.MsgUtil;
 import com.education.system_edu.utils.PageUtils;
+import com.education.system_edu.utils.UserInfoUtils;
 import com.education.system_edu.utils.UserUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -84,8 +85,11 @@ public class UserController {
                 User user = pageService.findUser(userForSearch);
                 model.addAttribute("user_name",user.getUserName());
                 System.out.println("跳转的主页面"+ PageUtils.findPageByUserType(user.getUserType(), "main"));
-
-
+                return PageUtils.findPageByUserType(user.getUserType(), "main");
+            }else{
+                UserExample userForSearch = new UserExample();
+                userForSearch.createCriteria().andLoginCodeEqualTo(loginUsername);
+                User user = pageService.findUser(userForSearch);
                 return PageUtils.findPageByUserType(user.getUserType(), "main");
             }
 
@@ -108,8 +112,8 @@ public class UserController {
                                        @RequestParam("newPassword") String newPassword,
                                        HttpSession httpSession,
                                        ModelAndView modelAndView ) {
-        Subject shiroSubject = SecurityUtils.getSubject();
-        String loginCode = shiroSubject.getPrincipal().toString();
+        UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
+        String loginCode = userInfoUtils.getLoginCode();
         boolean flag = userService.updatePassword(loginCode, oldPassword, newPassword);
         httpSession.setAttribute("msg", MsgUtil.addMsj(flag));
         modelAndView.setViewName("redirect:/user/rewrite_password");
@@ -140,9 +144,9 @@ public class UserController {
     @GetMapping("/user_message")
     @ResponseBody
     public Map<String,String> user(){
-        Subject subject = SecurityUtils.getSubject();
+        UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
         UserExample userForSearch = new UserExample();
-        userForSearch.createCriteria().andLoginCodeEqualTo(subject.getPrincipal().toString());
+        userForSearch.createCriteria().andLoginCodeEqualTo(userInfoUtils.getLoginCode());
         return UserUtils.userForLeftBar(pageService.findUser(userForSearch));
     }
     /**
