@@ -27,6 +27,7 @@ public class UserController {
 
     /**
      * 通过条件查询学生
+     *
      * @param pageSize
      * @param pageNum
      * @param searchUserByFaculty
@@ -39,9 +40,9 @@ public class UserController {
     public String userManageMain(@RequestParam("pageSize") Integer pageSize,
                                  @RequestParam("pageNum") Integer pageNum,
                                  SearchUserByFaculty searchUserByFaculty,
-                                 Model model,HttpSession httpSession) {
+                                 Model model, HttpSession httpSession) {
         model.addAttribute("users", userService.selectUsersByUser(searchUserByFaculty, pageSize, pageNum));
-        model.addAttribute("pageCount", userService.getUserPageCount(searchUserByFaculty,pageSize));
+        model.addAttribute("pageCount", userService.getUserPageCount(searchUserByFaculty, pageSize));
         model.addAttribute("pageNextNum", pageNum + 1);
         model.addAttribute("pageSize", pageSize);
         model.addAttribute("pageNum", pageNum);
@@ -53,6 +54,7 @@ public class UserController {
 
     /**
      * 查询所有学生
+     *
      * @param pageSize
      * @param pageNum
      * @param model
@@ -65,14 +67,14 @@ public class UserController {
                                  @RequestParam("pageNum") Integer pageNum,
                                  Model model,
                                  HttpSession httpSession) {
-        if (httpSession.getAttribute("searchUserByFaculty")!=null){
+        if (httpSession.getAttribute("searchUserByFaculty") != null && pageSize > 1) {
             SearchUserByFaculty searchUserByFaculty = (SearchUserByFaculty) httpSession.getAttribute("searchUserByFaculty");
             model.addAttribute("users", userService.selectUsersByUser(searchUserByFaculty, pageSize, pageNum));
 
-            model.addAttribute("pageCount", userService.getUserPageCount(searchUserByFaculty,pageSize));
-        }else {
+            model.addAttribute("pageCount", userService.getUserPageCount(searchUserByFaculty, pageSize));
+        } else {
             model.addAttribute("users", userService.selectUsersByUser(null, pageSize, pageNum));
-            model.addAttribute("pageCount", userService.getUserPageCount(null,pageSize));
+            model.addAttribute("pageCount", userService.getUserPageCount(null, pageSize));
         }
 
         model.addAttribute("pageNextNum", pageNum + 1);
@@ -82,10 +84,10 @@ public class UserController {
     }
 
     @PostMapping("editUser")
-    public String editUser(UserInModel userInModel){
+    public String editUser(UserInModel userInModel) {
         UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
-        int flag = userService.editUser(userInModel,userInfoUtils.getLoginCode());
-        if (flag<4){
+        int flag = userService.editUser(userInModel, userInfoUtils.getLoginCode());
+        if (flag < 4) {
             return "/error";
         }
         return "/m_manage_userManage";
@@ -93,10 +95,10 @@ public class UserController {
 
     @RequiresRoles({"user", "manager"})
     @PostMapping("addUser")
-    public String addUser(UserInModel userInModel){
+    public String addUser(UserInModel userInModel) {
         UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
-        int flag = userService.addUser(userInModel,userInfoUtils.getLoginCode());
-        if (flag<4){
+        int flag = userService.addUser(userInModel, userInfoUtils.getLoginCode());
+        if (flag < 4) {
             return "/error";
         }
         return "/m_manage_userManage";
@@ -105,7 +107,7 @@ public class UserController {
     @RequiresRoles({"user", "manager"})
     @RequestMapping("initPassword/{loginCode}")
     @ResponseBody
-    public String initPassword(@PathVariable("loginCode") String loginCode){
+    public String initPassword(@PathVariable("loginCode") String loginCode) {
         int flag = userService.initPassword(loginCode);
         return null;
     }

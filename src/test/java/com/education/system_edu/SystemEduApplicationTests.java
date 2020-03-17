@@ -1,8 +1,12 @@
 package com.education.system_edu;
 
+import com.education.system_edu.mapper.SysModelClassMapper;
 import com.education.system_edu.mapper.UserMapper;
+import com.education.system_edu.pojo.SysModelClass;
 import com.education.system_edu.pojo.User;
+import com.education.system_edu.pojo.insert.ClassSearchInsert;
 import com.education.system_edu.pojo.insert.UserInModel;
+import com.education.system_edu.pojo.output.ClassSearchOutput;
 import com.education.system_edu.pojo.pojo_child.parameter.PageUser;
 import com.education.system_edu.pojo.pojo_child.result.PageUserOutput;
 import com.education.system_edu.service.UserService;
@@ -19,6 +23,8 @@ class SystemEduApplicationTests {
 
     @Resource
     UserMapper userMapper;
+    @Resource
+    SysModelClassMapper sysModelClassMapper;
 
     UserService userService;
 
@@ -56,5 +62,14 @@ class SystemEduApplicationTests {
         userInModel.setClassNo("2");
         userInModel.setMajor("20841d007c844ed0840f2bdcb07a6d8c");
         userService.addUser(userInModel,"2000000");
+    }
+    @Test
+    void searchClass(){
+        ClassSearchInsert classSearchInsert = new ClassSearchInsert();
+        classSearchInsert.setFacultyName("智能科技学院");
+        List<ClassSearchOutput> classSearchOutputs =  sysModelClassMapper.selectByClassSearchInsert(classSearchInsert);
+        for (ClassSearchOutput classSearchOutput:classSearchOutputs ) {
+            System.out.println(classSearchOutput.getDepartmentName());
+        }
     }
 }

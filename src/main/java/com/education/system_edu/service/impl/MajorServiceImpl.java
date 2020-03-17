@@ -2,11 +2,16 @@ package com.education.system_edu.service.impl;
 
 import com.education.system_edu.mapper.*;
 import com.education.system_edu.pojo.*;
+import com.education.system_edu.pojo.insert.ClassAddInsert;
+import com.education.system_edu.pojo.insert.ClassInsert;
+import com.education.system_edu.pojo.insert.ClassSearchInsert;
+import com.education.system_edu.pojo.output.ClassSearchOutput;
 import com.education.system_edu.pojo.output.OutputClass;
 import com.education.system_edu.pojo.output.OutputMajor;
 import com.education.system_edu.pojo.pojo.Major;
 import com.education.system_edu.service.MajorService;
 import com.education.system_edu.utils.*;
+import com.education.system_edu.utils.value.ClassValue;
 import com.education.system_edu.utils.value.Entry;
 import com.education.system_edu.utils.value.UserValue;
 import org.springframework.stereotype.Service;
@@ -28,6 +33,8 @@ public class MajorServiceImpl implements MajorService {
     SysModelClassMapper sysModelClassMapper;
     @Resource
     UserMapper userMapper;
+    @Resource
+    ConnectUserStudentAndClassMapper connectUserStudentAndClassMapper;
 
     /**
      * 添加专业
@@ -234,6 +241,55 @@ public class MajorServiceImpl implements MajorService {
         sysModelClassExample.createCriteria().andTypeEqualTo((short) 2).andSysCollegeNodeCodeEqualTo(major).andGradeEqualTo(UserValue.PREFIX_CLASS_NO+grade);
         List<SysModelClass> sysModelClasses = sysModelClassMapper.selectByExample(sysModelClassExample);
         return OutPutEntryUtils.sysModelClassesToOutputClasses(sysModelClasses);
+    }
+
+    @Override
+    public List<ClassSearchOutput> addClass(ClassInsert classInsert, String loginCode) {
+        ClassUtils<SysModelClass> classUtils = new ClassUtils<>();
+
+        SysModelClass sysModelClass = new SysModelClass();
+        sysModelClass.setCode(UU3D.uu3d());
+        sysModelClass.setClassCode(classInsert.getClassClassCode());
+        sysModelClass.setType(ClassValue.ADMINISTRATIVE_CLASS);
+        sysModelClass.setTeacherType((short)1);
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andLoginCodeEqualTo(classInsert.getTeacherName());
+        User user = userMapper.selectByExample(userExample).get(0);
+        sysModelClass.setTeacherCode(user.getCode());
+        sysModelClass.setTeacherLoginCode(user.getLoginCode());
+        sysModelClass.setGrade(UserValue.PREFIX_CLASS_NO+classInsert.getGrade());
+        sysModelClass.setSysCollegeNodeCode(classInsert.getMajor());
+        sysModelClass.setSysCollegeNodeType(Entry.MAJOR);
+        sysModelClass = classUtils.addUserCreateUseInfo(sysModelClass,loginCode);
+        sysModelClassMapper.insert(sysModelClass);
+        return null;
+    }
+
+    @Override
+    public List<ClassSearchOutput> searchClassByClassInsert(ClassSearchInsert classSearchInsert) {
+        List<ClassSearchOutput> classSearchOutputs =  sysModelClassMapper.selectByClassSearchInsert(classSearchInsert);
+
+        ConnectUserStudentAndClassExample connectUserStudentAndClassExample;
+        List<ClassSearchOutput> _ClassSearchOutputList = new ArrayList<>();
+        for (ClassSearchOutput classSearchOutputToAddNumOfClassStudentAndTeacher:
+                classSearchOutputs) {
+            connectUserStudentAndClassExample = new ConnectUserStudentAndClassExample();
+            connectUserStudentAndClassExample.createCriteria().andClassCodeEqualTo(classSearchOutputToAddNumOfClassStudentAndTeacher.getCode());
+            classSearchOutputToAddNumOfClassStudentAndTeacher.setNumberOfClass((int) connectUserStudentAndClassMapper.countByExample(connectUserStudentAndClassExample));
+            _ClassSearchOutputList.add(classSearchOutputToAddNumOfClassStudentAndTeacher);
+        }
+        return _ClassSearchOutputList;
+    }
+
+    @Override
+    public Integer countPageByPageSizeAndClassSearchInsert(ClassSearchInsert classSearchInsert, Integer pageSize) {
+        int i = sysModelClassMapper.countByClassSearchInsert(classSearchInsert);
+        boolean flag = IntegerUtils.isExactlyDivisible(i,pageSize);
+        if (flag){
+            return i/pageSize;
+        }else {
+            return i/pageSize+1;
+        }
     }
 
 

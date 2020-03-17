@@ -1,11 +1,18 @@
 package com.education.system_edu;
 
 import com.education.system_edu.pojo.SysDataTree;
+import com.education.system_edu.pojo.insert.ClassAddInsert;
 import com.education.system_edu.utils.ClassUtils;
 import com.education.system_edu.utils.StringUtils;
 
 public class Test {
     public static void main(String[] args) {
+        //test1();
+        ClassAddInsert classAddInsert = new ClassAddInsert();
+        System.out.println(classAddInsert.getClassClassCode()==null);
+    }
+
+    private static void test1(){
         ClassUtils classUtils = new ClassUtils();
         SysDataTree sysDataTree = new SysDataTree();
         sysDataTree = (SysDataTree) classUtils.addUserCreateUseInfo(sysDataTree, "41602342");

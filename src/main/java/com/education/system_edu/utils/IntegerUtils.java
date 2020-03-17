@@ -15,4 +15,9 @@ public class IntegerUtils {
             if (x <= sizeTable[i])
                 return i+1;
     }
+
+    //判断是否为整除
+    public static boolean isExactlyDivisible(int x,int y) {
+        return x % y == 0;
+    }
 }

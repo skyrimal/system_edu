@@ -54,12 +54,6 @@ public class ManageController {
     }
 
     @RequiresRoles({"user", "manager"})
-    @RequestMapping("m_manage_faculty_class")
-    public String m_manage_faculty_class() {
-        return "/m_manage_faculty_class";
-    }
-
-    @RequiresRoles({"user", "manager"})
     @RequestMapping("m_manage_faculty_courseclass")
     public String m_manage_faculty_courseclass() {
         return "/m_manage_faculty_courseclass";

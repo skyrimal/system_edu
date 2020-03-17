@@ -1,13 +1,22 @@
 package com.education.system_edu.controller.manage;
 
 import com.education.system_edu.pojo.UserExample;
+import com.education.system_edu.pojo.insert.ClassAddInsert;
+import com.education.system_edu.pojo.insert.ClassInsert;
+import com.education.system_edu.pojo.insert.ClassSearchInsert;
+import com.education.system_edu.pojo.model.Page;
+import com.education.system_edu.pojo.model.PageMsg;
+import com.education.system_edu.pojo.output.ClassSearchOutput;
 import com.education.system_edu.pojo.pojo.Department;
 import com.education.system_edu.pojo.pojo.Faculty;
 import com.education.system_edu.service.FacultyService;
+import com.education.system_edu.service.MajorService;
 import com.education.system_edu.service.PageService;
 import com.education.system_edu.utils.FacultyFactory;
 import com.education.system_edu.utils.MsgUtil;
+import com.education.system_edu.utils.PageUtils;
 import com.education.system_edu.utils.UserInfoUtils;
+import com.education.system_edu.utils.value.PageValue;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +32,7 @@ import java.util.List;
 public class FacultyController {
     FacultyService facultyService;
     PageService pageService;
+    MajorService majorService;
 
     @Autowired
     public void setFacultyService(FacultyService facultyService) {
@@ -32,6 +42,11 @@ public class FacultyController {
     @Autowired
     public void setPageService(PageService pageService) {
         this.pageService = pageService;
+    }
+
+    @Autowired
+    public void setMajorService(MajorService majorService) {
+        this.majorService = majorService;
     }
 
     /**
@@ -175,4 +190,51 @@ public class FacultyController {
     }
 
 
+    /**
+     * 初次进入行政班级管理页面
+     * @param model
+     * @return
+     */
+    @RequiresRoles({"user", "manager"})
+    @RequestMapping("m_manage_faculty_class")
+    public String m_manage_faculty_class(Model model) {
+        ClassSearchInsert classSearchInsert = new ClassSearchInsert();
+        classSearchInsert.init();
+        List<ClassSearchOutput> classSearchOutput = majorService.searchClassByClassInsert(classSearchInsert);
+        model.addAttribute("classSearchOutput", classSearchOutput);
+
+        PageMsg page = PageUtils.madePageMsg(classSearchInsert.getPageNum(),classSearchInsert.getPageSize(),
+                                             majorService.countPageByPageSizeAndClassSearchInsert(classSearchInsert,PageValue.PAGE_SIZE));
+        if (!PageUtils.sendPageMsgToModel(model,page)){
+            return "/error";
+        }
+        return "/m_manage_faculty_class";
+    }
+
+    @RequiresRoles({"user", "manager"})
+    @PostMapping("searchClass/{pageNum}/{pageSize}")
+    public String searchClass(ClassSearchInsert classSearchInsert,
+                              Model model,
+                              @PathVariable("pageNum") Integer pageNum,
+                              @PathVariable("pageSize") Integer pageSize) {
+        classSearchInsert.setPageSize(pageSize);
+        classSearchInsert.setPageNum(pageNum);
+        List<ClassSearchOutput> classSearchOutput = majorService.searchClassByClassInsert(classSearchInsert);
+        model.addAttribute("classSearchOutput", classSearchOutput);
+        model.addAttribute("classSearchInsert", classSearchInsert);
+        PageMsg page = PageUtils.madePageMsg(pageNum,pageSize,
+                                             majorService.countPageByPageSizeAndClassSearchInsert(classSearchInsert,PageValue.PAGE_SIZE));
+        if (!PageUtils.sendPageMsgToModel(model,page)){
+            return "/error";
+        }
+        return "/m_manage_faculty_class";
+    }
+
+    @RequiresRoles({"user", "manager"})
+    @PostMapping("addClass")
+    public String addClass(ClassInsert classInsert) {
+        UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
+        majorService.addClass(classInsert, userInfoUtils.getLoginCode());
+        return "redirect:/manage/faculty/m_manage_faculty_class";
+    }
 }
