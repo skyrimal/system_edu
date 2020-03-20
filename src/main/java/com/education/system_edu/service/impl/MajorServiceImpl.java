@@ -284,7 +284,7 @@ public class MajorServiceImpl implements MajorService {
     @Override
     public Integer countPageByPageSizeAndClassSearchInsert(ClassSearchInsert classSearchInsert, Integer pageSize) {
         int i = sysModelClassMapper.countByClassSearchInsert(classSearchInsert);
-        boolean flag = IntegerUtils.isExactlyDivisible(i,pageSize);
+                boolean flag = IntegerUtils.isExactlyDivisible(i,pageSize);
         if (flag){
             return i/pageSize;
         }else {

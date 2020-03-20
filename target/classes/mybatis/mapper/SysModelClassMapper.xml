@@ -172,10 +172,10 @@
         </if>
         0=0
         <if test="keyWord != null &amp;&amp; keyWord != '' ">
-            and( fac.`name` LIKE #{keyWord,jdbcType=VARCHAR}
-            OR major.`name` LIKE #{keyWord,jdbcType=VARCHAR}
-            OR depart.`name` LIKE #{keyWord,jdbcType=VARCHAR}
-            OR users.user_name LIKE #{keyWord,jdbcType=VARCHAR})
+            and (fac.`name` LIKE CONCAT(CONCAT('%', #{keyWord,jdbcType=VARCHAR}), '%')
+            OR major.`name` LIKE CONCAT(CONCAT('%', #{keyWord,jdbcType=VARCHAR}), '%')
+            OR depart.`name` LIKE CONCAT(CONCAT('%', #{keyWord,jdbcType=VARCHAR}), '%')
+            OR users.user_name LIKE CONCAT(CONCAT('%', #{keyWord,jdbcType=VARCHAR}), '%'))
         </if>
         <bind name="page_start" value="(pageNum-1)*pageSize"></bind>
         LIMIT #{page_start} ,#{pageSize}

@@ -202,7 +202,7 @@ public class FacultyController {
         classSearchInsert.init();
         List<ClassSearchOutput> classSearchOutput = majorService.searchClassByClassInsert(classSearchInsert);
         model.addAttribute("classSearchOutput", classSearchOutput);
-
+        model.addAttribute("classSearchInsert", classSearchInsert);
         PageMsg page = PageUtils.madePageMsg(classSearchInsert.getPageNum(),classSearchInsert.getPageSize(),
                                              majorService.countPageByPageSizeAndClassSearchInsert(classSearchInsert,PageValue.PAGE_SIZE));
         if (!PageUtils.sendPageMsgToModel(model,page)){
