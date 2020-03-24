@@ -1,12 +1,16 @@
 package com.education.system_edu;
 
 import com.education.system_edu.mapper.SysModelClassMapper;
+import com.education.system_edu.mapper.SysModelCourseMapper;
 import com.education.system_edu.mapper.UserMapper;
 import com.education.system_edu.pojo.SysModelClass;
+import com.education.system_edu.pojo.SysModelCourse;
 import com.education.system_edu.pojo.User;
 import com.education.system_edu.pojo.insert.ClassSearchInsert;
+import com.education.system_edu.pojo.insert.CourseSearchInsert;
 import com.education.system_edu.pojo.insert.UserInModel;
 import com.education.system_edu.pojo.output.ClassSearchOutput;
+import com.education.system_edu.pojo.output.CourseSearchOutput;
 import com.education.system_edu.pojo.pojo_child.parameter.PageUser;
 import com.education.system_edu.pojo.pojo_child.result.PageUserOutput;
 import com.education.system_edu.service.UserService;
@@ -25,6 +29,9 @@ class SystemEduApplicationTests {
     UserMapper userMapper;
     @Resource
     SysModelClassMapper sysModelClassMapper;
+
+    @Resource
+    SysModelCourseMapper sysModelCourseMapper;
 
     UserService userService;
 
@@ -70,6 +77,15 @@ class SystemEduApplicationTests {
         List<ClassSearchOutput> classSearchOutputs =  sysModelClassMapper.selectByClassSearchInsert(classSearchInsert);
         for (ClassSearchOutput classSearchOutput:classSearchOutputs ) {
             System.out.println(classSearchOutput.getDepartmentName());
+        }
+    }
+    @Test
+    void searchCourseSearchOutput(){
+        CourseSearchInsert courseSearchInsert = new CourseSearchInsert();
+        courseSearchInsert.init();
+        List<CourseSearchOutput> courseSearchOutputs = sysModelCourseMapper.selectCourseSearchOutputBycourseSearchInsert(courseSearchInsert);
+        for (CourseSearchOutput courseSearchOutput:courseSearchOutputs) {
+            System.out.println(courseSearchOutput.getName());
         }
     }
 }

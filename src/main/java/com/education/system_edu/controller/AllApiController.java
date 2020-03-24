@@ -55,7 +55,7 @@ public class AllApiController {
      * *********************************************************************
      * *********************************************************************
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @RequestMapping("m_main")
     public String m_main() {
         return "/m_main";
@@ -68,25 +68,25 @@ public class AllApiController {
      * *********************************************************************
      * *********************************************************************
      */
-    @RequiresRoles({"user", "student"})
+    @RequiresRoles({"student"})
     @RequestMapping("stu_course")
     public String stu_course() {
         return "/stu_course";
     }
 
-    @RequiresRoles({"user", "student"})
+    @RequiresRoles({"student"})
     @RequestMapping("stu_main")
     public String stu_main() {
         return "/stu_main";
     }
 
-    @RequiresRoles({"user", "student"})
+    @RequiresRoles({"student"})
     @RequestMapping("stu_message")
     public String stu_message() {
         return "/stu_message";
     }
 
-    @RequiresRoles({"user", "student"})
+    @RequiresRoles({"student"})
     @RequestMapping("stu_sign")
     public String stu_sign() {
         return "/stu_sign";
@@ -100,47 +100,42 @@ public class AllApiController {
      * *********************************************************************
      * *********************************************************************
      */
-    @RequiresRoles({"user", "teacher"})
+    @RequiresRoles({"teacher"})
     @RequestMapping("t_course")
     public String t_course() {
         return "/t_course";
     }
 
-    @RequiresRoles({"user", "teacher"})
+    @RequiresRoles({"teacher"})
     @RequestMapping("t_main")
     public String t_main() {
         return "/t_main";
     }
 
-    @RequiresRoles({"user", "teacher"})
+    @RequiresRoles({"teacher"})
     @RequestMapping("t_message")
     public String t_message() {
         return "/t_message";
     }
 
-    @RequiresRoles({"user", "teacher"})
+    @RequiresRoles({"teacher"})
     @RequestMapping("t_questionnaire")
     public String t_questionnaire() {
         return "/t_questionnaire";
     }
 
-    @RequiresRoles({"user", "teacher"})
+    @RequiresRoles({"teacher"})
     @RequestMapping("t_sign")
     public String t_sign() {
         return "/t_sign";
     }
 
-    @RequiresRoles({"user", "teacher"})
+    @RequiresRoles({"teacher"})
     @RequestMapping("t_tesk")
     public String t_tesk() {
         return "/t_tesk";
     }
 
-    @RequiresRoles({"user", "teacher"})
-    @RequestMapping("addQuwstionaier")
-    public String addQuwstionaier() {
-        return "add_questionaire";
-    }
 
 
     /**

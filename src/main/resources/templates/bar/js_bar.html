@@ -59,6 +59,7 @@
         });
 
         $(".department").change(function () {
+            console.info("系改变了");
             var id = $(this).children("option:checked").val();
             var f = $(this).parent().parent().children(" div:eq(2) ").children(" select").children(" option");
             var o = $(this).parent().parent().children(" div:eq(2) ").children(" select");
@@ -76,12 +77,18 @@
                         o.append("<option value=\"" + dataValue.majorCode + "\">" + dataValue.majorName + "</option>");
                     })
 
+                }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    // 状态码
+                    console.log(XMLHttpRequest.status);
+                    // 状态
+                    console.log(XMLHttpRequest.readyState);
+                    // 错误信息
+                    console.log(textStatus);
                 }
-            });
+            })
         });
 
         $(".grade").change(function () {
-
             var majorId = $(this).parent().parent().children(" div:eq(2) ").children(" select").children(" option:checked").val()
             var grade = $(this).children("option:checked").val();
             var f = $(this).parent().parent().children(" div:eq(4) ").children(" select").children(" option");

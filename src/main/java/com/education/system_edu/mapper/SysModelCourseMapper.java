@@ -3,6 +3,9 @@ package com.education.system_edu.mapper;
 import com.education.system_edu.pojo.SysModelCourse;
 import com.education.system_edu.pojo.SysModelCourseExample;
 import java.util.List;
+
+import com.education.system_edu.pojo.insert.CourseSearchInsert;
+import com.education.system_edu.pojo.output.CourseSearchOutput;
 import org.apache.ibatis.annotations.Param;
 
 public interface SysModelCourseMapper {
@@ -27,4 +30,8 @@ public interface SysModelCourseMapper {
     int updateByPrimaryKeySelective(SysModelCourse record);
 
     int updateByPrimaryKey(SysModelCourse record);
+
+    int countCourseSearchOutputBycourseSearchInsert(CourseSearchInsert courseSearchInsert);
+
+    List<CourseSearchOutput> selectCourseSearchOutputBycourseSearchInsert(CourseSearchInsert courseSearchInsert);
 }

@@ -68,7 +68,8 @@ function action3(pageNum, pageMaxNum) {
 
 }
 
-function clickA(pageNum, pageMaxNum, data, pageSize) {
+function clickA(pageNum, pageMaxNum, data, pageSize, url) {
+    console.info("跳转 的接口"+url);
     $("#pageFoot a").click(function () {
         var page_num = $(this).text();
         switch (page_num.trim(' ')) {
@@ -95,12 +96,13 @@ function clickA(pageNum, pageMaxNum, data, pageSize) {
             default:
                 break;
         }
-        console.info(page_num+"获取到");
+        console.info(page_num+"获取到"+url);
         $.ajax({
             type: "POST",
-            url: "/manage/faculty/searchClass/" + page_num + "/" + pageSize,
+            url: url + page_num + "/" + pageSize,
             data: data,
             success(d) {
+                console.info(d);
                 $(" body").html(d);
             }, error: function (XMLHttpRequest, textStatus, errorThrown) {
                 // 状态码

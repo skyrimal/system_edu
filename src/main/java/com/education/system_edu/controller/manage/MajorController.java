@@ -1,11 +1,20 @@
 package com.education.system_edu.controller.manage;
 
+import com.education.system_edu.pojo.insert.ClassSearchInsert;
+import com.education.system_edu.pojo.insert.CourseAddInsert;
+import com.education.system_edu.pojo.insert.CourseSearchInsert;
+import com.education.system_edu.pojo.model.PageMsg;
+import com.education.system_edu.pojo.output.ClassSearchOutput;
+import com.education.system_edu.pojo.output.CourseSearchOutput;
 import com.education.system_edu.pojo.output.OutputClass;
 import com.education.system_edu.pojo.output.OutputMajor;
 import com.education.system_edu.pojo.pojo.Major;
 import com.education.system_edu.service.MajorService;
 import com.education.system_edu.utils.MsgUtil;
+import com.education.system_edu.utils.PageUtils;
+import com.education.system_edu.utils.SubjectUtils;
 import com.education.system_edu.utils.UserInfoUtils;
+import com.education.system_edu.utils.value.PageValue;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Controller
@@ -32,7 +42,7 @@ public class MajorController {
      * @param major
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @PostMapping("addMajor")
     public String addMajor(Major major, HttpSession httpSession) {
         UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
@@ -48,7 +58,7 @@ public class MajorController {
      * @param httpSession
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @PostMapping("checkMajor")
     public String checkMajor(Model model,
                              HttpSession httpSession,
@@ -65,11 +75,11 @@ public class MajorController {
 
     /**
      * ajax
-     * 搜索专业
+     * 联级查询-搜索专业
      *
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @GetMapping("checkMajor")
     @ResponseBody
     public List<OutputMajor> checkMajor(@RequestParam("departmentCode") String departmentCode) {
@@ -82,7 +92,7 @@ public class MajorController {
      * @param majorCode
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @GetMapping("initChangeMajor")
     @ResponseBody
     public Major initChangeMajor(@RequestParam("majorCode") String majorCode) {
@@ -90,12 +100,12 @@ public class MajorController {
     }
 
     /**
-     * 获取一个专业信息
+     * 修改专业信息
      *
      * @param major
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @PostMapping("changeMajor")
     public String changeMajor(Major major, HttpSession httpSession) {
         UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
@@ -106,16 +116,80 @@ public class MajorController {
 
     /**
      * ajax
-     * 获取班级
+     * 联级查询--获取班级
      *
      * @param major
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @GetMapping("checkClassNo")
     @ResponseBody
-    public List<OutputClass> checkClassNo(@RequestParam("majorId") String major, @RequestParam("grade") String grade) {
-        return majorService.findClassByMajorCodeAndGrade(major,grade);
+    public List<OutputClass> checkClassNo(@RequestParam("majorId") String major,
+                                          @RequestParam("grade") String grade) {
+        return majorService.findClassByMajorCodeAndGrade(major, grade);
     }
+
+
+    /**
+     * 课程查看界面
+     *
+     * @param model
+     * @return
+     */
+    @RequiresRoles({"manager"})
+    @RequestMapping("/m_manage_course_course")
+    public String m_manage_course_course(Model model) {
+        CourseSearchInsert courseSearchInsert = new CourseSearchInsert();
+        courseSearchInsert.init();
+        List<CourseSearchOutput> courseSearchOutputs = majorService.searchCourseByCourseSearchInsert(courseSearchInsert);
+        model.addAttribute("courseSearchOutputs",courseSearchOutputs);
+        model.addAttribute("courseSearchInsert",courseSearchInsert);
+        PageMsg page = PageUtils.madePageMsg(courseSearchInsert.getPageNum(), courseSearchInsert.getPageSize(),
+                                             majorService.countCourseByCourseSearchInsert(courseSearchInsert, PageValue.PAGE_SIZE));
+        if (!PageUtils.sendPageMsgToModel(model,page)){
+            return "/error";
+        }
+        return "/m_manage_course_course";
+    }
+    /**
+     * 查询课程 一页
+     * @param courseSearchInsert
+     * @param model
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequiresRoles({"manager"})
+    @PostMapping("searchCourse/{pageNum}/{pageSize}")
+    public String searchCourse(CourseSearchInsert courseSearchInsert,
+                              Model model,
+                              @PathVariable("pageNum") Integer pageNum,
+                              @PathVariable("pageSize") Integer pageSize) {
+        courseSearchInsert.setPageSize(pageSize);
+        courseSearchInsert.setPageNum(pageNum);
+        List<CourseSearchOutput> courseSearchOutputs = majorService.searchCourseByCourseSearchInsert(courseSearchInsert);
+        model.addAttribute("courseSearchOutputs", courseSearchOutputs);
+        model.addAttribute("courseSearchInsert", courseSearchInsert);
+        PageMsg page = PageUtils.madePageMsg(pageNum,pageSize,
+                                             majorService.countCourseByCourseSearchInsert(courseSearchInsert,PageValue.PAGE_SIZE));
+        if (!PageUtils.sendPageMsgToModel(model,page)){
+            return "/error";
+        }
+        return "/m_manage_course_course";
+    }
+    /**
+     * 添加课程班级
+     *
+     * @param courseAddInsert
+     * @return
+     */
+    @RequiresRoles({"manager"})
+    @PostMapping("addCourse")
+    public String addCourse(CourseAddInsert courseAddInsert) {
+        UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
+        majorService.addCourse(courseAddInsert, userInfoUtils.getLoginCode());
+        return "redirect:/manage/faculty/major/m_manage_course_course";
+    }
+
 
 }

@@ -56,7 +56,7 @@ public class FacultyController {
      * @param httpSession
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @RequestMapping("m_manage_faculty_faculty")
     public String m_manage_faculty_faculty(Model model, HttpSession httpSession) {
         List<Faculty> faculties = facultyService.findFaculty(1);
@@ -73,7 +73,7 @@ public class FacultyController {
      * @param model
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @RequestMapping("checkDepartment")
     @ResponseBody
     public List<Department> checkDepartment(@RequestParam("facultyId") String facultyId,
@@ -87,7 +87,7 @@ public class FacultyController {
      * @param departmentId
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @RequestMapping("checkDepartmentByDepartmentId")
     @ResponseBody
     public Department checkDepartment(@RequestParam("facultyId") String departmentId) {
@@ -102,7 +102,7 @@ public class FacultyController {
      * @param httpSession
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @PostMapping("addDepartment")
     public String addDepartment(@RequestParam("parentCode") String parentCode,
                                 Department department,
@@ -129,7 +129,7 @@ public class FacultyController {
      * @param model
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @RequestMapping("deleteDepartment")
     public String deleteDepartment(@RequestParam("departmentCode") String departmentCode,
                                    Model model) {
@@ -145,7 +145,7 @@ public class FacultyController {
      * @param httpSession
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @PostMapping("changeDepartment")
     public String updateDepartment(@RequestParam("departmentCode") String departmentCode,
                                    Department department,
@@ -167,7 +167,7 @@ public class FacultyController {
      * @param httpSession
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @GetMapping("m_manage_faculty_major")
     public String m_manage_faculty_major(Model model,
                                          HttpSession httpSession) {
@@ -182,7 +182,7 @@ public class FacultyController {
      *
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @GetMapping("initSearch")
     @ResponseBody
     public List<String[]> initSearch() {
@@ -195,7 +195,7 @@ public class FacultyController {
      * @param model
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @RequestMapping("m_manage_faculty_class")
     public String m_manage_faculty_class(Model model) {
         ClassSearchInsert classSearchInsert = new ClassSearchInsert();
@@ -211,7 +211,15 @@ public class FacultyController {
         return "/m_manage_faculty_class";
     }
 
-    @RequiresRoles({"user", "manager"})
+    /**
+     * 查询班级信息
+     * @param classSearchInsert
+     * @param model
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequiresRoles({"manager"})
     @PostMapping("searchClass/{pageNum}/{pageSize}")
     public String searchClass(ClassSearchInsert classSearchInsert,
                               Model model,
@@ -230,7 +238,12 @@ public class FacultyController {
         return "/m_manage_faculty_class";
     }
 
-    @RequiresRoles({"user", "manager"})
+    /**
+     * 添加一个班级
+     * @param classInsert
+     * @return
+     */
+    @RequiresRoles({"manager"})
     @PostMapping("addClass")
     public String addClass(ClassInsert classInsert) {
         UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());

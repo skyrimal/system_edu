@@ -64,7 +64,7 @@
                             <button type="button" class="btn btn-info">下载班级xls文件</button>
                         </div>
                         <form id="search_form"
-                              th:action="'/manage/faculty/searchClass/1/'+${Model_Page.getPageSize()}"
+                              th:action="'/manage/faculty/searchCourse/1/'+${Model_Page.getPageSize()}"
                               method="post" class="form-inline">
                             <div class="form-group">
                                 <label for="keyword" class="sr-only">专业关键字</label>
@@ -112,20 +112,6 @@
                         </tr>
                         </thead>
                         <tbody id="major_msg">
-                        <tr>
-                            <th scope="row">2016</th>
-                            <td>20000000</td>
-                            <td>王大</td>
-                            <td>064</td>
-                            <td>64</td>
-                            <td>智能科技学院/计算机系/软件应用</td>
-                            <td>
-                                <a class="btn btn-outline-success btn-sm" data-toggle="modal"
-                                   data-target="#check_class">查看</a>
-                                <a class="btn btn-warning btn-sm change_major_init" data-toggle="modal"
-                                   data-target="#change_class">修改</a>
-                            </td>
-                        </tr>
                         <tr th:each="class:${classSearchOutput}">
                             <th scope="row" th:text="${class.getGrade()}"></th>
                             <td th:text="${class.getTeacherLoginCode()}"></td>
@@ -401,9 +387,8 @@
         data.departmentCode = '[[${classSearchInsert.getDepartmentCode()}]]';
         data.keyWord = '[[${classSearchInsert.getKeyWord()}]]';
 
-
         pageHelperInit(pageNum, pageMaxNum);
-        clickA(pageNum,pageMaxNum,data,pageSize);
+        clickA(pageNum,pageMaxNum,data,pageSize,'/manage/faculty/searchClass/');
 
 
     })

@@ -12,6 +12,7 @@ import com.education.system_edu.utils.UserUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 import java.util.Map;
 
 /**
@@ -56,6 +58,7 @@ public class UserController {
      * @param httpSession
      * @return
      */
+    @RequiresGuest
     @PostMapping("/login")
     @ResponseBody
     public String checkUser(@RequestParam("loginUsername") String loginUsername,
@@ -106,7 +109,6 @@ public class UserController {
      * @return
      */
     @RequiresAuthentication
-    @RequiresRoles({"user"})
     @PostMapping("/edit/password")
     public ModelAndView changePassword(@RequestParam("oldPassword") String oldPassword,
                                        @RequestParam("newPassword") String newPassword,
@@ -127,8 +129,7 @@ public class UserController {
      * @param httpSession
      * @return
      */
-    @RequiresAuthentication
-    @RequiresRoles({"user"})
+    @RequiresGuest
     @RequestMapping("/rewrite_password")
     public String rewrite_password(Model model,HttpSession httpSession) {
         model.addAttribute("msg",httpSession.getAttribute("msg"));
@@ -140,7 +141,7 @@ public class UserController {
      * 显示用户基础信息 -- 用户名和用户类型
      * @return
      */
-    @RequiresRoles({"user"})
+    @RequiresAuthentication
     @GetMapping("/user_message")
     @ResponseBody
     public Map<String,String> user(){
@@ -153,7 +154,7 @@ public class UserController {
      * 显示用户基础信息 -- 用户名和用户类型
      * @return
      */
-    @RequiresRoles({"user"})
+    @RequiresAuthentication
     @GetMapping("/user_message/{loginCode}")
     @ResponseBody
     public OutputUserForEditUserAction user(@PathVariable("loginCode") String loginCode){

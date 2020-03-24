@@ -35,7 +35,7 @@ public class UserController {
      * @param httpSession
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @PostMapping("userSearch")
     public String userManageMain(@RequestParam("pageSize") Integer pageSize,
                                  @RequestParam("pageNum") Integer pageNum,
@@ -61,7 +61,7 @@ public class UserController {
      * @param httpSession
      * @return
      */
-    @RequiresRoles({"user", "manager"})
+    @RequiresRoles({"manager"})
     @GetMapping("userSearch")
     public String userManageMain(@RequestParam("pageSize") Integer pageSize,
                                  @RequestParam("pageNum") Integer pageNum,
@@ -83,6 +83,11 @@ public class UserController {
         return "/m_manage_userManage";
     }
 
+    /**
+     * 修改学生信息
+     * @param userInModel
+     * @return
+     */
     @PostMapping("editUser")
     public String editUser(UserInModel userInModel) {
         UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
@@ -93,7 +98,12 @@ public class UserController {
         return "/m_manage_userManage";
     }
 
-    @RequiresRoles({"user", "manager"})
+    /**
+     * 添加用户信息
+     * @param userInModel
+     * @return
+     */
+    @RequiresRoles({"manager"})
     @PostMapping("addUser")
     public String addUser(UserInModel userInModel) {
         UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
@@ -104,7 +114,12 @@ public class UserController {
         return "/m_manage_userManage";
     }
 
-    @RequiresRoles({"user", "manager"})
+    /**
+     * 初始化用户密码
+     * @param loginCode
+     * @return
+     */
+    @RequiresRoles({"manager"})
     @RequestMapping("initPassword/{loginCode}")
     @ResponseBody
     public String initPassword(@PathVariable("loginCode") String loginCode) {

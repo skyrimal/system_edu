@@ -1,113 +1,211 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.education.system_edu.mapper.SysModelCourseMapper">
-  <resultMap id="BaseResultMap" type="com.education.system_edu.pojo.SysModelCourse">
-    <id column="code" jdbcType="VARCHAR" property="code" />
-    <result column="course_code" jdbcType="VARCHAR" property="courseCode" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="grade" jdbcType="VARCHAR" property="grade" />
-    <result column="huors" jdbcType="INTEGER" property="huors" />
-    <result column="credit" jdbcType="INTEGER" property="credit" />
-    <result column="sys_node_code" jdbcType="VARCHAR" property="sysNodeCode" />
-    <result column="sys_node_type" jdbcType="SMALLINT" property="sysNodeType" />
-    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
-    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
-    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
-    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="com.education.system_edu.pojo.SysModelCourse">
+        <id column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="course_code" jdbcType="VARCHAR" property="courseCode"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="grade" jdbcType="VARCHAR" property="grade"/>
+        <result column="huors" jdbcType="INTEGER" property="huors"/>
+        <result column="credit" jdbcType="INTEGER" property="credit"/>
+        <result column="sys_node_code" jdbcType="VARCHAR" property="sysNodeCode"/>
+        <result column="sys_node_type" jdbcType="SMALLINT" property="sysNodeType"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
+    </resultMap>
+    <resultMap id="CourseSearchOutput" type="com.education.system_edu.pojo.output.CourseSearchOutput">
+        <id column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="course_code" jdbcType="VARCHAR" property="courseCode"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="parent_code" jdbcType="VARCHAR" property="parentCode"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="hours" jdbcType="INTEGER" property="hours"/>
+        <result column="credit" jdbcType="INTEGER" property="credit"/>
+        <result column="faculty_name" jdbcType="VARCHAR" property="facultyName"/>
+        <result column="department_name" jdbcType="VARCHAR" property="departmentName"/>
+        <result column="major_name" jdbcType="VARCHAR" property="majorName"/>
+    </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     code, course_code, name, grade, huors, credit, sys_node_code, sys_node_type, create_by, 
     create_date, update_by, update_date
   </sql>
-  <select id="selectByExample" parameterType="com.education.system_edu.pojo.SysModelCourseExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from sys_model_course
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_model_course
-    where code = #{code,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+
+    <!--添加搜索计数-->
+    <select id="countCourseSearchOutputBycourseSearchInsert"
+            parameterType="com.education.system_edu.pojo.insert.CourseSearchInsert" resultType="java.lang.Integer">
+        SELECT distinct COUNT(course.`code`)
+        FROM
+        sys_model_course AS course
+        LEFT JOIN sys_data_tree AS major ON course.sys_node_code = major.`code`
+        LEFT JOIN sys_data_tree AS depart ON major.parent_node = depart.`code`
+        LEFT JOIN sys_data_tree AS fac ON depart.parent_node = fac.`code`
+        where
+        0=0
+        <if test="majorCode != null &amp;&amp; majorCode != '' ">
+            and major.`code` = #{majorCode,jdbcType=VARCHAR}
+        </if>
+        <if test="departmentCode != null &amp;&amp; departmentCode != '' ">
+            and depart.`code` = #{departmentCode,jdbcType=VARCHAR}
+        </if>
+        <if test="facultyId != null &amp;&amp; facultyId != '' ">
+            and fac.`code` = #{facultyId,jdbcType=VARCHAR}
+        </if>
+        <if test="keyWord != null &amp;&amp; keyWord != '' ">
+            and (fac.`name` LIKE CONCAT(CONCAT('%', #{keyWord,jdbcType=VARCHAR}), '%')
+            OR major.`name` LIKE CONCAT(CONCAT('%', #{keyWord,jdbcType=VARCHAR}), '%')
+            OR depart.`name` LIKE CONCAT(CONCAT('%', #{keyWord,jdbcType=VARCHAR}), '%')
+            OR users.user_name LIKE CONCAT(CONCAT('%', #{keyWord,jdbcType=VARCHAR}), '%'))
+        </if>
+    </select>
+    <!--添加获取查询的课程信息的sql-->
+    <select id="selectCourseSearchOutputBycourseSearchInsert"
+            parameterType="com.education.system_edu.pojo.insert.CourseSearchInsert" resultMap="CourseSearchOutput">
+        SELECT distinct
+        course.`code`,
+        course.course_code,
+        course.`name`,
+        course.huors,
+        course.credit,
+        course.sys_node_code AS parent_code,
+        course.sys_node_type AS type,
+        major.`name` AS major_name,
+        depart.`name` AS department_name,
+        fac.`name` AS faculty_name
+        FROM
+        sys_model_course AS course
+        LEFT JOIN sys_data_tree AS major ON course.sys_node_code = major.`code`
+        LEFT JOIN sys_data_tree AS depart ON major.parent_node = depart.`code`
+        LEFT JOIN sys_data_tree AS fac ON depart.parent_node = fac.`code`
+        where
+        0=0
+        <choose>
+            <when  test="majorCode != null &amp;&amp; majorCode != '' ">
+                and major.`code` = #{majorCode,jdbcType=VARCHAR}
+                or depart.`code` = #{majorCode,jdbcType=VARCHAR}
+                or fac.`code` = #{facultyId,jdbcType=VARCHAR}
+            </when >
+            <otherwise>
+                <choose>
+                    <when test="departmentCode != null &amp;&amp; departmentCode != ''" >
+                        and major.`code` = #{departmentCode,jdbcType=VARCHAR}
+                    or depart.`code` = #{departmentCode,jdbcType=VARCHAR}
+                    or fac.`code` = #{departmentCode,jdbcType=VARCHAR}
+                    </when>
+                    <otherwise>
+                        <choose>
+                            <when test="facultyId != null &amp;&amp; facultyId != ''" >
+                                and major.`code` = #{facultyId,jdbcType=VARCHAR}
+                                or depart.`code` = #{facultyId,jdbcType=VARCHAR}
+                                or fac.`code` = #{facultyId,jdbcType=VARCHAR}
+                            </when></choose>
+                    </otherwise>
+                </choose>
+            </otherwise>
+        </choose>
+        <if test="keyWord != null &amp;&amp; keyWord != '' ">
+            and (fac.`name` LIKE CONCAT(CONCAT('%', #{keyWord,jdbcType=VARCHAR}), '%')
+            OR major.`name` LIKE CONCAT(CONCAT('%', #{keyWord,jdbcType=VARCHAR}), '%')
+            OR depart.`name` LIKE CONCAT(CONCAT('%', #{keyWord,jdbcType=VARCHAR}), '%'))
+        </if>
+        <bind name="page_start" value="(pageNum-1)*pageSize"></bind>
+        LIMIT #{page_start} ,#{pageSize}
+    </select>
+
+    <select id="selectByExample" parameterType="com.education.system_edu.pojo.SysModelCourseExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from sys_model_course
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_model_course
+        where code = #{code,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sys_model_course
     where code = #{code,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.education.system_edu.pojo.SysModelCourseExample">
-    delete from sys_model_course
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.education.system_edu.pojo.SysModelCourse">
+    <delete id="deleteByExample" parameterType="com.education.system_edu.pojo.SysModelCourseExample">
+        delete from sys_model_course
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.education.system_edu.pojo.SysModelCourse">
     insert into sys_model_course (code, course_code, name, 
       grade, huors, credit, 
       sys_node_code, sys_node_type, create_by, 
@@ -119,193 +217,194 @@
       #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.education.system_edu.pojo.SysModelCourse">
-    insert into sys_model_course
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="code != null">
-        code,
-      </if>
-      <if test="courseCode != null">
-        course_code,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="grade != null">
-        grade,
-      </if>
-      <if test="huors != null">
-        huors,
-      </if>
-      <if test="credit != null">
-        credit,
-      </if>
-      <if test="sysNodeCode != null">
-        sys_node_code,
-      </if>
-      <if test="sysNodeType != null">
-        sys_node_type,
-      </if>
-      <if test="createBy != null">
-        create_by,
-      </if>
-      <if test="createDate != null">
-        create_date,
-      </if>
-      <if test="updateBy != null">
-        update_by,
-      </if>
-      <if test="updateDate != null">
-        update_date,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="courseCode != null">
-        #{courseCode,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="grade != null">
-        #{grade,jdbcType=VARCHAR},
-      </if>
-      <if test="huors != null">
-        #{huors,jdbcType=INTEGER},
-      </if>
-      <if test="credit != null">
-        #{credit,jdbcType=INTEGER},
-      </if>
-      <if test="sysNodeCode != null">
-        #{sysNodeCode,jdbcType=VARCHAR},
-      </if>
-      <if test="sysNodeType != null">
-        #{sysNodeType,jdbcType=SMALLINT},
-      </if>
-      <if test="createBy != null">
-        #{createBy,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null">
-        #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateBy != null">
-        #{updateBy,jdbcType=VARCHAR},
-      </if>
-      <if test="updateDate != null">
-        #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.education.system_edu.pojo.SysModelCourseExample" resultType="java.lang.Long">
-    select count(*) from sys_model_course
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update sys_model_course
-    <set>
-      <if test="record.code != null">
-        code = #{record.code,jdbcType=VARCHAR},
-      </if>
-      <if test="record.courseCode != null">
+    <insert id="insertSelective" parameterType="com.education.system_edu.pojo.SysModelCourse">
+        insert into sys_model_course
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
+            <if test="courseCode != null">
+                course_code,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="grade != null">
+                grade,
+            </if>
+            <if test="huors != null">
+                huors,
+            </if>
+            <if test="credit != null">
+                credit,
+            </if>
+            <if test="sysNodeCode != null">
+                sys_node_code,
+            </if>
+            <if test="sysNodeType != null">
+                sys_node_type,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateDate != null">
+                update_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="courseCode != null">
+                #{courseCode,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="grade != null">
+                #{grade,jdbcType=VARCHAR},
+            </if>
+            <if test="huors != null">
+                #{huors,jdbcType=INTEGER},
+            </if>
+            <if test="credit != null">
+                #{credit,jdbcType=INTEGER},
+            </if>
+            <if test="sysNodeCode != null">
+                #{sysNodeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sysNodeType != null">
+                #{sysNodeType,jdbcType=SMALLINT},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.education.system_edu.pojo.SysModelCourseExample"
+            resultType="java.lang.Long">
+        select count(*) from sys_model_course
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update sys_model_course
+        <set>
+            <if test="record.code != null">
+                code = #{record.code,jdbcType=VARCHAR},
+            </if>
+            <if test="record.courseCode != null">
+                course_code = #{record.courseCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.name != null">
+                name = #{record.name,jdbcType=VARCHAR},
+            </if>
+            <if test="record.grade != null">
+                grade = #{record.grade,jdbcType=VARCHAR},
+            </if>
+            <if test="record.huors != null">
+                huors = #{record.huors,jdbcType=INTEGER},
+            </if>
+            <if test="record.credit != null">
+                credit = #{record.credit,jdbcType=INTEGER},
+            </if>
+            <if test="record.sysNodeCode != null">
+                sys_node_code = #{record.sysNodeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sysNodeType != null">
+                sys_node_type = #{record.sysNodeType,jdbcType=SMALLINT},
+            </if>
+            <if test="record.createBy != null">
+                create_by = #{record.createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createDate != null">
+                create_date = #{record.createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateBy != null">
+                update_by = #{record.updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updateDate != null">
+                update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update sys_model_course
+        set code = #{record.code,jdbcType=VARCHAR},
         course_code = #{record.courseCode,jdbcType=VARCHAR},
-      </if>
-      <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.grade != null">
         grade = #{record.grade,jdbcType=VARCHAR},
-      </if>
-      <if test="record.huors != null">
         huors = #{record.huors,jdbcType=INTEGER},
-      </if>
-      <if test="record.credit != null">
         credit = #{record.credit,jdbcType=INTEGER},
-      </if>
-      <if test="record.sysNodeCode != null">
         sys_node_code = #{record.sysNodeCode,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sysNodeType != null">
         sys_node_type = #{record.sysNodeType,jdbcType=SMALLINT},
-      </if>
-      <if test="record.createBy != null">
         create_by = #{record.createBy,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createDate != null">
         create_date = #{record.createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updateBy != null">
         update_by = #{record.updateBy,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updateDate != null">
-        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update sys_model_course
-    set code = #{record.code,jdbcType=VARCHAR},
-      course_code = #{record.courseCode,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      grade = #{record.grade,jdbcType=VARCHAR},
-      huors = #{record.huors,jdbcType=INTEGER},
-      credit = #{record.credit,jdbcType=INTEGER},
-      sys_node_code = #{record.sysNodeCode,jdbcType=VARCHAR},
-      sys_node_type = #{record.sysNodeType,jdbcType=SMALLINT},
-      create_by = #{record.createBy,jdbcType=VARCHAR},
-      create_date = #{record.createDate,jdbcType=TIMESTAMP},
-      update_by = #{record.updateBy,jdbcType=VARCHAR},
-      update_date = #{record.updateDate,jdbcType=TIMESTAMP}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.education.system_edu.pojo.SysModelCourse">
-    update sys_model_course
-    <set>
-      <if test="courseCode != null">
-        course_code = #{courseCode,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="grade != null">
-        grade = #{grade,jdbcType=VARCHAR},
-      </if>
-      <if test="huors != null">
-        huors = #{huors,jdbcType=INTEGER},
-      </if>
-      <if test="credit != null">
-        credit = #{credit,jdbcType=INTEGER},
-      </if>
-      <if test="sysNodeCode != null">
-        sys_node_code = #{sysNodeCode,jdbcType=VARCHAR},
-      </if>
-      <if test="sysNodeType != null">
-        sys_node_type = #{sysNodeType,jdbcType=SMALLINT},
-      </if>
-      <if test="createBy != null">
-        create_by = #{createBy,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null">
-        create_date = #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateBy != null">
-        update_by = #{updateBy,jdbcType=VARCHAR},
-      </if>
-      <if test="updateDate != null">
-        update_date = #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where code = #{code,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.education.system_edu.pojo.SysModelCourse">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.education.system_edu.pojo.SysModelCourse">
+        update sys_model_course
+        <set>
+            <if test="courseCode != null">
+                course_code = #{courseCode,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="grade != null">
+                grade = #{grade,jdbcType=VARCHAR},
+            </if>
+            <if test="huors != null">
+                huors = #{huors,jdbcType=INTEGER},
+            </if>
+            <if test="credit != null">
+                credit = #{credit,jdbcType=INTEGER},
+            </if>
+            <if test="sysNodeCode != null">
+                sys_node_code = #{sysNodeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sysNodeType != null">
+                sys_node_type = #{sysNodeType,jdbcType=SMALLINT},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where code = #{code,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.education.system_edu.pojo.SysModelCourse">
     update sys_model_course
     set course_code = #{courseCode,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
