@@ -80,6 +80,25 @@
     code, option_num, questionnaire_type, score, level, group_1, group_2, type, title, 
     comment, remarks, create_by, create_date, update_by, update_date
   </sql>
+  <!-- 手动添加插入List<> -->
+  <insert id="insertList" parameterType="java.util.List" useGeneratedKeys="false">
+    insert into sys_model_questionnaire_question_repository (code, option_num, questionnaire_type,
+      score, level, group_1,
+      group_2, type, title,
+      comment, remarks, create_by,
+      create_date, update_by, update_date
+      )
+    values
+    <foreach collection="questions" item="item" index="index" separator=",">
+      (#{code,jdbcType=VARCHAR}, #{optionNum,jdbcType=INTEGER}, #{questionnaireType,jdbcType=SMALLINT},
+      #{score,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{group1,jdbcType=INTEGER},
+      #{group2,jdbcType=INTEGER}, #{type,jdbcType=SMALLINT}, #{title,jdbcType=VARCHAR},
+      #{comment,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR},
+      #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+    </foreach>
+  </insert>
+
   <select id="selectByExample" parameterType="com.education.system_edu.pojo.SysModelQuestionnaireQuestionRepositoryExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

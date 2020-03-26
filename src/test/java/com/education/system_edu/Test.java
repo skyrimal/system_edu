@@ -10,6 +10,8 @@ public class Test {
         //test1();
         ClassAddInsert classAddInsert = new ClassAddInsert();
         System.out.println(classAddInsert.getClassClassCode()==null);
+
+        System.out.println(StringUtils.outLast("单选,.,【单选】",",.,"));
     }
 
     private static void test1(){
@@ -28,5 +30,6 @@ public class Test {
         System.out.println("".length());
         System.out.println(StringUtils.lengthControl("12345", 10));
         System.out.println(StringUtils.lengthControl("12345", 10).length());
+
     }
 }

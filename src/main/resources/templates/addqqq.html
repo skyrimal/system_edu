@@ -7,10 +7,56 @@
     <link rel="stylesheet" type="text/css" href="/statics/css/wenjuan_ht.css">
     <script src="/statics/js/jquery.min.js"></script>
     <script src="/statics/js/index.js"></script>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" th:href="@{/statics/vendor/bootstrap/css/bootstrap.min.css}">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" th:href="@{/statics/vendor/font-awesome/css/font-awesome.min.css}">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" th:href="@{/statics/css/fontastic.css}">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" th:href="@{/statics/css/style.green.css}" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" th:href="@{/statics/css/custom.css}">
+    <!-- Favicon-->
+    <link rel="shortcut icon" th:href="@{/statics/img/favicon.ico}">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 
 <body>
 <h5>页面选项默认值从上到下为0-n</h5>
+
+<div class="col-lg-6 bg-white">
+    <div class="form d-flex align-items-center" style="background-color: #3ea6a4">
+        <div class="content">
+            <div class="form-group">
+                <label for="titleName" class="label-material">&ensp;&ensp;问卷名</label>
+                <input id="titleName" type="text" name="" class="input-material" style="background-color: #54e69d">
+            </div>
+            <div class="form-group">
+                <label for="astractWord" class="label-material">&ensp;&ensp;简介</label>
+                <input id="astractWord" type="text" name="" class="input-material" style="background-color: #54e69d">
+            </div>
+            <div class="form-group">
+                <label class="label-material">&ensp;&ensp;问卷类型</label>
+                <select id="qType" name="userType" class="faculty form-control mb-3" style="background-color: #54e69d">
+                    <option value="">--请选择--</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class=" all_660">
     <div class="yd_box"></div>
     <div class="but" style="padding-top: 20px">
@@ -142,8 +188,10 @@
         $("#submit").click(function () {
             var q = [];
             var as = [];
+            var qAndAss = [];
+
             $(".btwenzi").each(function (index, value) {
-                q.push($(this).text());
+                q.push($(this).text()+",.,");
             });
             $(".tip_wz").each(function (index, value) {
                 q[index] = q[index] + $(this).text();
@@ -153,14 +201,32 @@
                 });
                 as.push(a);
             });
-            console.info(JSON.stringify(q));
-            console.info(JSON.stringify(as));
+
+            for (var i = 0; i < q.length; i++) {
+                var qAndAs = {};
+                qAndAs.question = q[i];
+                qAndAs.answers = as[i];
+                qAndAss.push(qAndAs);
+            }
+            var a = $("#titleName").val();
+            var b = $("#astractWord").val();
+            var c = $("#qType").children(" :selected").val();
+            var msg = {};
+            msg.titleName = a;
+            msg.astractWord = b;
+            msg.qType = c;
+            console.info("a" + a);
+            console.info("b" + b);
+            console.info("c" + c);
             $.ajax({
                 type: "POST",
                 url: "/questionaier/addq",
                 dataType: "json",
                 traditional: true,
-                data: {"q": JSON.stringify(q), "as":JSON.stringify(as)},
+                data: {
+                    "msg": JSON.stringify(msg),
+                    "qAndAss": JSON.stringify(qAndAss),
+                },
                 success(d) {
                     console.info(d);
                     $(" body").html(d);
@@ -169,25 +235,11 @@
                     console.log(XMLHttpRequest.status);
                     // 状态
                     console.log(XMLHttpRequest.readyState);
+                    window.location.replace("m_manage_questionnaire_qm");
                     // 错误信息
                     console.log(textStatus);
                 }
             });
-            // $.ajax({
-            //     url: '/questionaier/addq',
-            //     type: 'POST',
-            //     data: {"q": q, "as": as},
-            //     success: function (responseJSON) {
-            //         alert(responseJSON);
-            //     }, error: function (XMLHttpRequest, textStatus, errorThrown) {
-            //         // 状态码
-            //         console.log(XMLHttpRequest.status);
-            //         // 状态
-            //         console.log(XMLHttpRequest.readyState);
-            //         // 错误信息
-            //         console.log(textStatus);
-            //     }
-            // })
 
         })
     })

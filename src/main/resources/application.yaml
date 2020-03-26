@@ -8,7 +8,7 @@ spring:
     encoding: utf-8
     servlet:
       content-type: text/html
-    check-template: true
+    check-template: on
     mode: HTML
   mvc:
     static-path-pattern: /**

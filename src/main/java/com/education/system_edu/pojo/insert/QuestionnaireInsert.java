@@ -1,8 +1,12 @@
 package com.education.system_edu.pojo.insert;
 
+import lombok.Data;
+
+import java.util.List;
+
 public class QuestionnaireInsert {
     private String question;
-    private String answer;
+    private List<String> answers;
 
     public String getQuestion() {
         return question;
@@ -12,14 +16,11 @@ public class QuestionnaireInsert {
         this.question = question;
     }
 
-    public String getAnswer() {
-        return answer;
+    public List<String> getAnswers() {
+        return answers;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    public QuestionnaireInsert() {
+    public void setAnswers(List<String> answers) {
+        this.answers = answers;
     }
 }

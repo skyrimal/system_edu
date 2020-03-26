@@ -27,4 +27,6 @@ public interface SysModelQuestionnaireQuestionOptionRepositoryMapper {
     int updateByPrimaryKeySelective(SysModelQuestionnaireQuestionOptionRepository record);
 
     int updateByPrimaryKey(SysModelQuestionnaireQuestionOptionRepository record);
+
+    int insertListList(List<List<SysModelQuestionnaireQuestionOptionRepository>> optionses);
 }

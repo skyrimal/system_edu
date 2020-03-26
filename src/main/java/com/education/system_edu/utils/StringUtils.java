@@ -35,4 +35,24 @@ public class StringUtils {
         return "error";
     }
 
+    private static String[] splitString(String str,String splitStr){
+        return  str.split(splitStr);
+    }
+
+    private static String stringPre(String[] str){
+        return str[0];
+    }
+
+    private static String stringLast(String[] str){
+        return str[str.length-1];
+    }
+
+    public static String outPre(String str,String splitStr){
+        return stringPre(splitString(str, splitStr));
+    }
+
+    public static String outLast(String str,String splitStr){
+        return stringLast(splitString(str,splitStr));
+    }
+
 }

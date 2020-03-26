@@ -75,6 +75,25 @@
     code, question_code, score, type, is_right, comment, create_by, create_date, update_by, 
     update_date
   </sql>
+
+  <!-- 手动添加插入List<List> -->
+  <insert id="insertListList" parameterType="java.util.List">
+    insert into sys_model_questionnaire_question_option_repository (code, question_code, score,
+      type, is_right, comment,
+      create_by, create_date, update_by,
+      update_date)
+    values
+    <foreach collection="optionses" item="options" index="index" separator=",">
+      <foreach collection="options" item="item" index="index" separator=",">
+        (#{code,jdbcType=VARCHAR}, #{questionCode,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER},
+        #{type,jdbcType=SMALLINT}, #{isRight,jdbcType=CHAR}, #{comment,jdbcType=VARCHAR},
+        #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR},
+        #{updateDate,jdbcType=TIMESTAMP})
+      </foreach>
+    </foreach>
+  </insert>
+
+
   <select id="selectByExample" parameterType="com.education.system_edu.pojo.SysModelQuestionnaireQuestionOptionRepositoryExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -110,9 +129,9 @@
       type, is_right, comment, 
       create_by, create_date, update_by, 
       update_date)
-    values (#{code,jdbcType=VARCHAR}, #{questionCode,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, 
-      #{type,jdbcType=SMALLINT}, #{isRight,jdbcType=CHAR}, #{comment,jdbcType=VARCHAR}, 
-      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+    values (#{code,jdbcType=VARCHAR}, #{questionCode,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER},
+      #{type,jdbcType=SMALLINT}, #{isRight,jdbcType=CHAR}, #{comment,jdbcType=VARCHAR},
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR},
       #{updateDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.education.system_edu.pojo.SysModelQuestionnaireQuestionOptionRepository">
