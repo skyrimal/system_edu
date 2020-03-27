@@ -16,6 +16,11 @@
     <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
   </resultMap>
+  <resultMap id="questionnaire_output" type="com.education.system_edu.pojo.output.QuestionnaireOutput">
+    <id column="code" jdbcType="VARCHAR" property="code" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -92,6 +97,50 @@
       order by ${orderByClause}
     </if>
   </select>
+<!--计数用 countBySearchQuestionnaireInsert-->
+  <select id="countBySearchQuestionnaireInsert"
+          parameterType="com.education.system_edu.pojo.insert.SearchQuestionnaireInsert" resultType="java.lang.Integer">
+    SELECT distinct COUNT(questionnaire.`code`)
+    FROM
+    sys_model_questionnaire_repository AS questionnaire
+    WHERE
+    0=0
+    <if test="code !=null &amp;&amp; code!=''">
+      AND questionnaire.`code` = #{code,jdbcType=VARCHAR}
+    </if>
+    <if test="type !=null &amp;&amp; type!=''">
+      AND questionnaire.title LIKE CONCAT(CONCAT('%', #{type,jdbcType=VARCHAR}), '%')
+    </if>
+    <if test="keyword !=null &amp;&amp; keyword!=''">
+      AND questionnaire.title LIKE CONCAT(CONCAT('%', #{keyword,jdbcType=VARCHAR}), '%')
+    </if>
+    AND questionnaire.`type` = 1
+  </select>
+  <!-- selectBySearchQuestionnaireInsert -->
+  <select id="selectBySearchQuestionnaireInsert"
+          parameterType="com.education.system_edu.pojo.insert.SearchQuestionnaireInsert" resultMap="questionnaire_output">
+    SELECT distinct
+    questionnaire.`code` as `code`,
+    questionnaire.title as title,
+    questionnaire.title AS type
+    FROM
+    sys_model_questionnaire_repository AS questionnaire
+    WHERE
+    0=0
+    <if test="code !=null &amp;&amp; code!=''">
+      AND questionnaire.`code` = #{code,jdbcType=VARCHAR}
+    </if>
+    <if test="type !=null &amp;&amp; type!=''">
+      AND questionnaire.title LIKE CONCAT(CONCAT('%', #{type,jdbcType=VARCHAR}), '%')
+    </if>
+    <if test="keyword !=null &amp;&amp; keyword!=''">
+      AND questionnaire.title LIKE CONCAT(CONCAT('%', #{keyword,jdbcType=VARCHAR}), '%')
+    </if>
+    AND questionnaire.`type` = 1
+    <bind name="page_start" value="(pageNum-1)*pageSize"></bind>
+    LIMIT #{page_start} ,#{pageSize}
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

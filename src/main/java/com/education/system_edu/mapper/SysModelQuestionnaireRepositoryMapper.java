@@ -3,6 +3,9 @@ package com.education.system_edu.mapper;
 import com.education.system_edu.pojo.SysModelQuestionnaireRepository;
 import com.education.system_edu.pojo.SysModelQuestionnaireRepositoryExample;
 import java.util.List;
+
+import com.education.system_edu.pojo.insert.SearchQuestionnaireInsert;
+import com.education.system_edu.pojo.output.QuestionnaireOutput;
 import org.apache.ibatis.annotations.Param;
 
 public interface SysModelQuestionnaireRepositoryMapper {
@@ -27,4 +30,8 @@ public interface SysModelQuestionnaireRepositoryMapper {
     int updateByPrimaryKeySelective(SysModelQuestionnaireRepository record);
 
     int updateByPrimaryKey(SysModelQuestionnaireRepository record);
+
+    List<QuestionnaireOutput> selectBySearchQuestionnaireInsert(SearchQuestionnaireInsert searchQuestionnaireInsert);
+
+    Integer countBySearchQuestionnaireInsert(SearchQuestionnaireInsert searchQuestionnaireInsert);
 }

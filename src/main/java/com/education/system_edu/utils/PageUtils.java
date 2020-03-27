@@ -34,4 +34,13 @@ public class PageUtils {
         model.addAttribute(PageValue.PAGE_MODEL_KEY, pageMsg);
         return model.getAttribute(PageValue.PAGE_MODEL_KEY) != null;
     }
+
+    public static Integer coutPageSize(Integer i, Integer pageSize){
+        boolean flag = IntegerUtils.isExactlyDivisible(i, pageSize);
+        if (flag) {
+            return i / pageSize;
+        } else {
+            return i / pageSize + 1;
+        }
+    }
 }

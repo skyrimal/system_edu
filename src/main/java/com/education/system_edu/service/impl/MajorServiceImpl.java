@@ -396,12 +396,7 @@ public class MajorServiceImpl implements MajorService {
     @Override
     public Integer countCourseByCourseSearchInsert(CourseSearchInsert courseSearchInsert,Integer pageSize) {
         int i = sysModelCourseMapper.countCourseSearchOutputBycourseSearchInsert(courseSearchInsert);
-        boolean flag = IntegerUtils.isExactlyDivisible(i, pageSize);
-        if (flag) {
-            return i / pageSize;
-        } else {
-            return i / pageSize + 1;
-        }
+        return PageUtils.coutPageSize(i,pageSize);
     }
 
     private List<SysDataTree> getListDateTrees(List<SysDataTree> sysDataTrees) {

@@ -141,15 +141,7 @@ public class MajorController {
     public String m_manage_course_course(Model model) {
         CourseSearchInsert courseSearchInsert = new CourseSearchInsert();
         courseSearchInsert.init();
-        List<CourseSearchOutput> courseSearchOutputs = majorService.searchCourseByCourseSearchInsert(courseSearchInsert);
-        model.addAttribute("courseSearchOutputs",courseSearchOutputs);
-        model.addAttribute("courseSearchInsert",courseSearchInsert);
-        PageMsg page = PageUtils.madePageMsg(courseSearchInsert.getPageNum(), courseSearchInsert.getPageSize(),
-                                             majorService.countCourseByCourseSearchInsert(courseSearchInsert, PageValue.PAGE_SIZE));
-        if (!PageUtils.sendPageMsgToModel(model,page)){
-            return "/error";
-        }
-        return "/m_manage_course_course";
+        return searchCourseJump(model,courseSearchInsert);
     }
     /**
      * 查询课程 一页
@@ -167,15 +159,7 @@ public class MajorController {
                               @PathVariable("pageSize") Integer pageSize) {
         courseSearchInsert.setPageSize(pageSize);
         courseSearchInsert.setPageNum(pageNum);
-        List<CourseSearchOutput> courseSearchOutputs = majorService.searchCourseByCourseSearchInsert(courseSearchInsert);
-        model.addAttribute("courseSearchOutputs", courseSearchOutputs);
-        model.addAttribute("courseSearchInsert", courseSearchInsert);
-        PageMsg page = PageUtils.madePageMsg(pageNum,pageSize,
-                                             majorService.countCourseByCourseSearchInsert(courseSearchInsert,PageValue.PAGE_SIZE));
-        if (!PageUtils.sendPageMsgToModel(model,page)){
-            return "/error";
-        }
-        return "/m_manage_course_course";
+        return searchCourseJump(model,courseSearchInsert);
     }
     /**
      * 添加课程班级
@@ -191,5 +175,17 @@ public class MajorController {
         return "redirect:/manage/faculty/major/m_manage_course_course";
     }
 
+
+    public String searchCourseJump(Model model,CourseSearchInsert courseSearchInsert){
+        List<CourseSearchOutput> courseSearchOutputs = majorService.searchCourseByCourseSearchInsert(courseSearchInsert);
+        model.addAttribute("courseSearchOutputs", courseSearchOutputs);
+        model.addAttribute("courseSearchInsert", courseSearchInsert);
+        PageMsg page = PageUtils.madePageMsg(courseSearchInsert.getPageNum(),courseSearchInsert.getPageSize(),
+                                             majorService.countCourseByCourseSearchInsert(courseSearchInsert,PageValue.PAGE_SIZE));
+        if (!PageUtils.sendPageMsgToModel(model,page)){
+            return "/error";
+        }
+        return "/m_manage_course_course";
+    }
 
 }
