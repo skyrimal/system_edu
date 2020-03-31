@@ -55,7 +55,7 @@ public class QuestionnaireController {
      * @param model
      * @return
      */
-   // @RequiresRoles({"manager"})
+    @RequiresRoles({"manager"})
     @RequestMapping("/m_manage_questionnaire_qm")
     public String m_manage_course_course(Model model) {
         SearchQuestionnaireInsert searchQuestionnaireInsert = new SearchQuestionnaireInsert();
@@ -86,10 +86,10 @@ public class QuestionnaireController {
     public String searchQuestionnaireJump(Model model,SearchQuestionnaireInsert searchQuestionnaireInsert){
         List<QuestionnaireOutput> questionnaireOutputs = questionnaireService.searchCourseBySearchQuestionnaireInsert(searchQuestionnaireInsert);
         model.addAttribute("questionnaireOutputs",questionnaireOutputs);
-        model.addAttribute("SearchQuestionnaireInsert",searchQuestionnaireInsert);
+        model.addAttribute("searchQuestionnaireInsert",searchQuestionnaireInsert);
         PageMsg page = PageUtils.madePageMsg(searchQuestionnaireInsert.getPageNum(), searchQuestionnaireInsert.getPageSize(),
                                              questionnaireService.countCourseByCourseSearchInsert(searchQuestionnaireInsert, PageValue.PAGE_SIZE));
-        if (!PageUtils.sendPageMsgToModel(model,page)){
+            if (!PageUtils.sendPageMsgToModel(model,page)){
             return "/error";
         }
         return "/m_manage_questionnaire_qm";

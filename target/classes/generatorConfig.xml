@@ -39,7 +39,7 @@
 
         <!--指定每个表的生成策略-->
         <!--指定每个表的生成策略-->
-        <table tableName="connect_user_and_major" domainObjectName="ConnectUserAndMajor"/>
+        <table tableName="sys_model_course_time" domainObjectName="SysModelCourseTime"/>
 <!--        <table tableName="sys_data_tree" domainObjectName="SysDataTree"/>-->
 <!--        <table tableName="sys_node" domainObjectName="SysNode"/>-->
 <!--        <table tableName="sys_permission" domainObjectName="SysPermission"/>-->

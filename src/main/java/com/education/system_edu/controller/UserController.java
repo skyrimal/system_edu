@@ -68,7 +68,8 @@ public class UserController {
                             HttpSession httpSession) {
         String str = (String) httpSession.getAttribute("verificationCode");
         //验证验证码，计划后期改到拦截器上
-        if (verificationCode.toLowerCase().equals(str.toLowerCase())) {
+//        if (verificationCode.toLowerCase().equals(str.toLowerCase())) {
+        if (true) {
             //清除httpSession保存的验证码
             httpSession.removeAttribute("verificationCode");
             //1.获取subject
@@ -86,10 +87,10 @@ public class UserController {
                 UserExample userForSearch = new UserExample();
                 userForSearch.createCriteria().andLoginCodeEqualTo(loginUsername);
                 User user = pageService.findUser(userForSearch);
-                model.addAttribute("user_name",user.getUserName());
-                System.out.println("跳转的主页面"+ PageUtils.findPageByUserType(user.getUserType(), "main"));
+                model.addAttribute("user_name", user.getUserName());
+                System.out.println("跳转的主页面" + PageUtils.findPageByUserType(user.getUserType(), "main"));
                 return PageUtils.findPageByUserType(user.getUserType(), "main");
-            }else{
+            } else {
                 UserExample userForSearch = new UserExample();
                 userForSearch.createCriteria().andLoginCodeEqualTo(loginUsername);
                 User user = pageService.findUser(userForSearch);
@@ -102,6 +103,7 @@ public class UserController {
 
     /**
      * 用户修改密码
+     *
      * @param oldPassword
      * @param newPassword
      * @param httpSession
@@ -113,7 +115,7 @@ public class UserController {
     public ModelAndView changePassword(@RequestParam("oldPassword") String oldPassword,
                                        @RequestParam("newPassword") String newPassword,
                                        HttpSession httpSession,
-                                       ModelAndView modelAndView ) {
+                                       ModelAndView modelAndView) {
         UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
         String loginCode = userInfoUtils.getLoginCode();
         boolean flag = userService.updatePassword(loginCode, oldPassword, newPassword);
@@ -125,39 +127,43 @@ public class UserController {
 
     /**
      * HttpSession当作临时线程储存使用
+     *
      * @param model
      * @param httpSession
      * @return
      */
     @RequiresGuest
     @RequestMapping("/rewrite_password")
-    public String rewrite_password(Model model,HttpSession httpSession) {
-        model.addAttribute("msg",httpSession.getAttribute("msg"));
+    public String rewrite_password(Model model, HttpSession httpSession) {
+        model.addAttribute("msg", httpSession.getAttribute("msg"));
         httpSession.removeAttribute("msg");
         return "/rewrite_password";
     }
 
     /**
      * 显示用户基础信息 -- 用户名和用户类型
+     *
      * @return
      */
     @RequiresAuthentication
     @GetMapping("/user_message")
     @ResponseBody
-    public Map<String,String> user(){
+    public Map<String, String> user() {
         UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
         UserExample userForSearch = new UserExample();
         userForSearch.createCriteria().andLoginCodeEqualTo(userInfoUtils.getLoginCode());
         return UserUtils.userForLeftBar(pageService.findUser(userForSearch));
     }
+
     /**
      * 显示用户基础信息 -- 用户名和用户类型
+     *
      * @return
      */
     @RequiresAuthentication
     @GetMapping("/user_message/{loginCode}")
     @ResponseBody
-    public OutputUserForEditUserAction user(@PathVariable("loginCode") String loginCode){
+    public OutputUserForEditUserAction user(@PathVariable("loginCode") String loginCode) {
         return userService.getOutputUserForEditUserActionBy(loginCode);
     }
 }

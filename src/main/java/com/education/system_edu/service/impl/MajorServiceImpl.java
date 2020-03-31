@@ -2,14 +2,8 @@ package com.education.system_edu.service.impl;
 
 import com.education.system_edu.mapper.*;
 import com.education.system_edu.pojo.*;
-import com.education.system_edu.pojo.insert.ClassInsert;
-import com.education.system_edu.pojo.insert.ClassSearchInsert;
-import com.education.system_edu.pojo.insert.CourseAddInsert;
-import com.education.system_edu.pojo.insert.CourseSearchInsert;
-import com.education.system_edu.pojo.output.ClassSearchOutput;
-import com.education.system_edu.pojo.output.CourseSearchOutput;
-import com.education.system_edu.pojo.output.OutputClass;
-import com.education.system_edu.pojo.output.OutputMajor;
+import com.education.system_edu.pojo.insert.*;
+import com.education.system_edu.pojo.output.*;
 import com.education.system_edu.pojo.pojo.Major;
 import com.education.system_edu.service.MajorService;
 import com.education.system_edu.utils.*;
@@ -227,6 +221,7 @@ public class MajorServiceImpl implements MajorService {
 
     /**
      * 查找部门下专业
+     *
      * @param departmentCode
      * @return
      */
@@ -246,6 +241,7 @@ public class MajorServiceImpl implements MajorService {
 
     /**
      * 查找某年级下某专业的班级
+     *
      * @param major
      * @param grade
      * @return
@@ -260,6 +256,7 @@ public class MajorServiceImpl implements MajorService {
 
     /**
      * 添加专业
+     *
      * @param classInsert
      * @param loginCode
      * @return
@@ -289,6 +286,7 @@ public class MajorServiceImpl implements MajorService {
     /**
      * 通过输入信息查找班级
      * 结合了分页
+     *
      * @param classSearchInsert
      * @return
      */
@@ -310,6 +308,7 @@ public class MajorServiceImpl implements MajorService {
 
     /**
      * 通过输入信息获取查询数据集分页后页数
+     *
      * @param classSearchInsert
      * @param pageSize
      * @return
@@ -327,6 +326,7 @@ public class MajorServiceImpl implements MajorService {
 
     /**
      * 添加课程
+     *
      * @param courseAddInsert
      * @param loginCode
      * @return
@@ -339,11 +339,11 @@ public class MajorServiceImpl implements MajorService {
         sysModelCourse.setCode(UU3D.uu3d());
         sysModelCourse.setCourseCode(courseAddInsert.getCourseCode());
         sysModelCourse.setName(courseAddInsert.getCourseName());
-        sysModelCourse.setGrade("20");
+        sysModelCourse.setGrade("00");
         sysModelCourse.setHuors(courseAddInsert.getHours());
         sysModelCourse.setCredit(courseAddInsert.getCredit());
         sysModelCourse.setSysNodeType((short) (int) courseAddInsert.getCourseType());
-        switch((int) courseAddInsert.getCourseType()){
+        switch ((int) courseAddInsert.getCourseType()) {
             case 3:
                 sysModelCourse.setSysNodeCode(courseAddInsert.getFaculty());
                 return sysModelCourseMapper.insert(sysModelCourse);
@@ -361,6 +361,7 @@ public class MajorServiceImpl implements MajorService {
 
     /**
      * 结合分页查询课程
+     *
      * @param courseSearchInsert
      * @return
      */
@@ -369,14 +370,15 @@ public class MajorServiceImpl implements MajorService {
         List<CourseSearchOutput> courseSearchOutputs = sysModelCourseMapper.selectCourseSearchOutputBycourseSearchInsert(courseSearchInsert);
         List<CourseSearchOutput> _courseSearchOutputs = new ArrayList<>();
         String str = "";
-        for (CourseSearchOutput courseSearchOutput:courseSearchOutputs) {
-            if(courseSearchOutput.getFacultyName()==null
-                    && courseSearchOutput.getDepartmentName()!=null){
+        for (CourseSearchOutput courseSearchOutput : courseSearchOutputs) {
+            if (courseSearchOutput.getFacultyName() == null
+                    && courseSearchOutput.getDepartmentName() != null) {
                 courseSearchOutput.setFacultyName(courseSearchOutput.getDepartmentName());
                 courseSearchOutput.setDepartmentName(courseSearchOutput.getMajorName());
                 courseSearchOutput.setMajorName("--");
-            }if(courseSearchOutput.getFacultyName()==null
-                    && courseSearchOutput.getDepartmentName()==null){
+            }
+            if (courseSearchOutput.getFacultyName() == null
+                    && courseSearchOutput.getDepartmentName() == null) {
                 courseSearchOutput.setFacultyName(courseSearchOutput.getMajorName());
                 courseSearchOutput.setDepartmentName("--");
                 courseSearchOutput.setMajorName("--");
@@ -386,17 +388,102 @@ public class MajorServiceImpl implements MajorService {
         return _courseSearchOutputs;
     }
 
+    @Override
+    public List<CourseOutput> getAllCourse() {
+        List<CourseOutput> courseSearchOutputs = new ArrayList<>();
+        for (SysModelCourse course : sysModelCourseMapper.selectByExample(new SysModelCourseExample())) {
+            if (!course.getCode().equals("001")) {
+                CourseOutput courseSearchOutput = new CourseOutput();
+                courseSearchOutput.setCode(course.getCode());
+                courseSearchOutput.setName(course.getName());
+                courseSearchOutput.setType(course.getSysNodeType() + "");
+                courseSearchOutput.setParentCode(course.getSysNodeCode());
+                courseSearchOutputs.add(courseSearchOutput);
+            }
+        }
+        return courseSearchOutputs;
+    }
+
+    @Override
+    public List<CourseOutput> chooseAllCourse(String faculty, String department, String major) {
+        List<CourseOutput> courseOutputs = new ArrayList<>();
+        if (!faculty.trim().equals("*")) {
+            //获取学院、部门、专业下的课程
+            if (department.trim().equals("*")) {
+                //获取学院课程,当部门、专业为空时
+                SysModelCourseExample sysModelCourseExample = new SysModelCourseExample();
+                sysModelCourseExample.createCriteria()
+                        .andSysNodeCodeEqualTo(faculty.replaceAll("\\*", ""))
+                        .andSysNodeTypeEqualTo((short) 3);
+                SysDataTreeExample sysDataTreeExample = new SysDataTreeExample();
+                sysDataTreeExample.createCriteria().andParentNodeEqualTo(faculty.replaceAll("\\*", ""));
+
+                for (SysDataTree dep : sysDataTreeMapper.selectByExample(sysDataTreeExample)) {
+                    //获取学院下所有部门课程
+                    SysModelCourseExample sysModelCourseExample1 = new SysModelCourseExample();
+                    sysModelCourseExample1.createCriteria()
+                            .andSysNodeCodeEqualTo(dep.getCode())
+                            .andSysNodeTypeEqualTo((short) 6);
+
+                    SysDataTreeExample sysDataTreeExample1 = new SysDataTreeExample();
+                    sysDataTreeExample1.createCriteria().andParentNodeEqualTo(dep.getCode());
+
+
+                    courseOutputs.addAll(outCourseOutput(sysModelCourseExample1));
+                }
+                courseOutputs.addAll(outCourseOutput(sysModelCourseExample));
+
+            } else {
+                //当部门不为空，获取部门、专业课程
+                //获取部门课程
+                SysModelCourseExample sysModelCourseExample = new SysModelCourseExample();
+                sysModelCourseExample.createCriteria()
+                        .andSysNodeCodeEqualTo(department.replaceAll("\\*", ""))
+                        .andSysNodeTypeEqualTo((short) 6);
+                SysDataTreeExample sysDataTreeExample = new SysDataTreeExample();
+                sysDataTreeExample.createCriteria().andParentNodeEqualTo(department.replaceAll("\\*", ""));
+                if (major.equals("*")) {
+                } else {
+                    //当专业不为空时
+                    SysModelCourseExample sysModelCourseExample1 = new SysModelCourseExample();
+                    sysModelCourseExample1.createCriteria()
+                            .andSysNodeCodeEqualTo(major.replaceAll("\\*", ""))
+                            .andSysNodeTypeEqualTo((short) 7);
+                    courseOutputs.addAll(outCourseOutput(sysModelCourseExample1));
+                }
+                courseOutputs.addAll(outCourseOutput(sysModelCourseExample));
+
+            }
+        }
+        return courseOutputs;
+    }
+
+    @Override
+    public int addCourseClass(AddCourseClassInsert courseAddInsert) {
+        //当学院为空时出错
+        if(courseAddInsert.getFaculty()==null&courseAddInsert.getFaculty()==""){
+            return 0;
+        }
+        //当只有学院时给学院所有学生添加该课程
+        else if (courseAddInsert.getDepartmentCode() == null&courseAddInsert.getDepartmentCode() ==""
+                &&courseAddInsert.getMajor()==null&courseAddInsert.getMajor()==""){
+            String factory = courseAddInsert.getFaculty();
+        }
+        return 0;
+    }
+
 
     /**
      * 通过输入信息获取查询课程分页后页数
+     *
      * @param courseSearchInsert
      * @param pageSize
      * @return
      */
     @Override
-    public Integer countCourseByCourseSearchInsert(CourseSearchInsert courseSearchInsert,Integer pageSize) {
+    public Integer countCourseByCourseSearchInsert(CourseSearchInsert courseSearchInsert, Integer pageSize) {
         int i = sysModelCourseMapper.countCourseSearchOutputBycourseSearchInsert(courseSearchInsert);
-        return PageUtils.coutPageSize(i,pageSize);
+        return PageUtils.coutPageSize(i, pageSize);
     }
 
     private List<SysDataTree> getListDateTrees(List<SysDataTree> sysDataTrees) {
@@ -411,5 +498,20 @@ public class MajorServiceImpl implements MajorService {
             }
         }
         return sysDataTreeMapper.selectByExample(sysDataTreeDepartmentExample);
+    }
+
+    private List<CourseOutput> outCourseOutput(SysModelCourseExample sysModelCourseExample) {
+        List<CourseOutput> courseOutputs = new ArrayList<>();
+        for (SysModelCourse course : sysModelCourseMapper.selectByExample(sysModelCourseExample)) {
+            if (!course.getCode().equals("001")) {
+                CourseOutput courseSearchOutput = new CourseOutput();
+                courseSearchOutput.setCode(course.getCode());
+                courseSearchOutput.setName(course.getName());
+                courseSearchOutput.setType(course.getSysNodeType() + "");
+                courseSearchOutput.setParentCode(course.getSysNodeCode());
+                courseOutputs.add(courseSearchOutput);
+            }
+        }
+        return courseOutputs;
     }
 }

@@ -16,14 +16,15 @@
     <script src="/statics/js/front.js"></script>
     <script src="/statics/js/user_message.js"></script>
 </div>
-    <script th:fragment="faculty_options">
+<script th:fragment="faculty_options">
     $(function () {
         initSelect();
         $("#submit_form").click(function () {
             $("#search_form").submit();
         });
     });
-    function initSelect(){
+
+    function initSelect() {
         $.ajax({
             type: "GET",
             url: "/manage/faculty/initSearch",
@@ -95,7 +96,7 @@
             var o = $(this).parent().parent().children(" div:eq(4) ").children(" select");
             console.info(majorId);
             console.info(grade);
-            if(majorId!=''){
+            if (majorId != '') {
                 $.ajax({
                     type: "GET",
                     url: "/manage/faculty/major/checkClassNo",
@@ -113,7 +114,7 @@
 
                     }
                 });
-            }else {
+            } else {
                 alert("专业不能为空");
             }
 

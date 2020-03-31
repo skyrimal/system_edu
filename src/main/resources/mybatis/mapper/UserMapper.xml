@@ -275,7 +275,7 @@
         ,
         f.`name` as faculty,d.`name` as department,m.`name` as major, class.class_code
         from all_users a
-        LEFT JOIN connect_user_student_and_class c ON c.student_no = a.login_code
+        LEFT JOIN connect_user_student_and_class c ON c.student_code = a.`code`
         LEFT JOIN sys_model_class class ON class.`code` = c.class_code
         LEFT JOIN sys_data_tree m ON m.`code` = class.sys_college_node_code
         LEFT JOIN sys_data_tree d ON d.`code` = m.parent_node

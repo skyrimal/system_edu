@@ -1,10 +1,7 @@
 package com.education.system_edu.service;
 
 import com.education.system_edu.pojo.insert.*;
-import com.education.system_edu.pojo.output.ClassSearchOutput;
-import com.education.system_edu.pojo.output.CourseSearchOutput;
-import com.education.system_edu.pojo.output.OutputClass;
-import com.education.system_edu.pojo.output.OutputMajor;
+import com.education.system_edu.pojo.output.*;
 import com.education.system_edu.pojo.pojo.Major;
 
 import java.util.List;
@@ -33,4 +30,10 @@ public interface MajorService {
     Integer addCourse(CourseAddInsert courseAddInsert, String loginCode);
 
     List<CourseSearchOutput> searchCourseByCourseSearchInsert(CourseSearchInsert courseSearchInsert);
+
+    List<CourseOutput> getAllCourse();
+
+    List<CourseOutput> chooseAllCourse(String faculty, String department, String major);
+
+    int addCourseClass(AddCourseClassInsert courseAddInsert);
 }

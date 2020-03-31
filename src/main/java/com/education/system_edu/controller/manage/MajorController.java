@@ -1,13 +1,11 @@
 package com.education.system_edu.controller.manage;
 
+import com.education.system_edu.pojo.insert.AddCourseClassInsert;
 import com.education.system_edu.pojo.insert.ClassSearchInsert;
 import com.education.system_edu.pojo.insert.CourseAddInsert;
 import com.education.system_edu.pojo.insert.CourseSearchInsert;
 import com.education.system_edu.pojo.model.PageMsg;
-import com.education.system_edu.pojo.output.ClassSearchOutput;
-import com.education.system_edu.pojo.output.CourseSearchOutput;
-import com.education.system_edu.pojo.output.OutputClass;
-import com.education.system_edu.pojo.output.OutputMajor;
+import com.education.system_edu.pojo.output.*;
 import com.education.system_edu.pojo.pojo.Major;
 import com.education.system_edu.service.MajorService;
 import com.education.system_edu.utils.MsgUtil;
@@ -141,10 +139,12 @@ public class MajorController {
     public String m_manage_course_course(Model model) {
         CourseSearchInsert courseSearchInsert = new CourseSearchInsert();
         courseSearchInsert.init();
-        return searchCourseJump(model,courseSearchInsert);
+        return searchCourseJump(model, courseSearchInsert);
     }
+
     /**
      * 查询课程 一页
+     *
      * @param courseSearchInsert
      * @param model
      * @param pageNum
@@ -154,15 +154,16 @@ public class MajorController {
     @RequiresRoles({"manager"})
     @PostMapping("searchCourse/{pageNum}/{pageSize}")
     public String searchCourse(CourseSearchInsert courseSearchInsert,
-                              Model model,
-                              @PathVariable("pageNum") Integer pageNum,
-                              @PathVariable("pageSize") Integer pageSize) {
+                               Model model,
+                               @PathVariable("pageNum") Integer pageNum,
+                               @PathVariable("pageSize") Integer pageSize) {
         courseSearchInsert.setPageSize(pageSize);
         courseSearchInsert.setPageNum(pageNum);
-        return searchCourseJump(model,courseSearchInsert);
+        return searchCourseJump(model, courseSearchInsert);
     }
+
     /**
-     * 添加课程班级
+     * 添加课程
      *
      * @param courseAddInsert
      * @return
@@ -175,17 +176,53 @@ public class MajorController {
         return "redirect:/manage/faculty/major/m_manage_course_course";
     }
 
+    /**
+     * 添加课程班级
+     *
+     * @param courseAddInsert
+     * @return
+     */
+    @RequiresRoles({"manager"})
+    @PostMapping("addCourseClass")
+    public String addCourseClass(CourseAddInsert courseAddInsert) {
+        UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
+        majorService.addCourse(courseAddInsert, userInfoUtils.getLoginCode());
+        return "redirect:/manage/faculty/major/m_manage_course_course";
+    }
 
-    public String searchCourseJump(Model model,CourseSearchInsert courseSearchInsert){
+    public String searchCourseJump(Model model, CourseSearchInsert courseSearchInsert) {
         List<CourseSearchOutput> courseSearchOutputs = majorService.searchCourseByCourseSearchInsert(courseSearchInsert);
         model.addAttribute("courseSearchOutputs", courseSearchOutputs);
         model.addAttribute("courseSearchInsert", courseSearchInsert);
-        PageMsg page = PageUtils.madePageMsg(courseSearchInsert.getPageNum(),courseSearchInsert.getPageSize(),
-                                             majorService.countCourseByCourseSearchInsert(courseSearchInsert,PageValue.PAGE_SIZE));
-        if (!PageUtils.sendPageMsgToModel(model,page)){
+        PageMsg page = PageUtils.madePageMsg(courseSearchInsert.getPageNum(), courseSearchInsert.getPageSize(),
+                                             majorService.countCourseByCourseSearchInsert(courseSearchInsert, PageValue.PAGE_SIZE));
+        if (!PageUtils.sendPageMsgToModel(model, page)) {
             return "/error";
         }
         return "/m_manage_course_course";
     }
 
+    /**
+     * 查询课程 一页
+     *
+     * @return
+     */
+    @RequiresRoles({"manager"})
+    @GetMapping("searchCourses/{faculty}/{department}/{major}")
+    @ResponseBody
+    public List<CourseOutput> searchAllCourses(@PathVariable String department,
+                                               @PathVariable String faculty,
+                                               @PathVariable String major) {
+        System.out.println(department);
+        System.out.println(faculty);
+        System.out.println(major);
+        return majorService.chooseAllCourse(faculty, department, major);
+    }
+
+    @PostMapping("addCourseClass/course_class")
+    public String addCouseClass(AddCourseClassInsert courseAddInsert) {
+
+        int i = majorService.addCourseClass(courseAddInsert);
+        return "";
+    }
 }

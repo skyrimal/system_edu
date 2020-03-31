@@ -5,6 +5,8 @@ import java.util.Date;
 public class SysModelCourseTime {
     private String code;
 
+    private String courseClassCode;
+
     private Short type;
 
     private Integer time;
@@ -29,6 +31,14 @@ public class SysModelCourseTime {
 
     public void setCode(String code) {
         this.code = code == null ? null : code.trim();
+    }
+
+    public String getCourseClassCode() {
+        return courseClassCode;
+    }
+
+    public void setCourseClassCode(String courseClassCode) {
+        this.courseClassCode = courseClassCode == null ? null : courseClassCode.trim();
     }
 
     public Short getType() {

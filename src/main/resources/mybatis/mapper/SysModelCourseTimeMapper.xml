@@ -3,6 +3,7 @@
 <mapper namespace="com.education.system_edu.mapper.SysModelCourseTimeMapper">
   <resultMap id="BaseResultMap" type="com.education.system_edu.pojo.SysModelCourseTime">
     <id column="code" jdbcType="VARCHAR" property="code" />
+    <result column="course_class_code" jdbcType="VARCHAR" property="courseClassCode" />
     <result column="type" jdbcType="SMALLINT" property="type" />
     <result column="time" jdbcType="INTEGER" property="time" />
     <result column="course_num" jdbcType="INTEGER" property="courseNum" />
@@ -72,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    code, type, time, course_num, starttime, endTime, create_by, create_date, update_by, 
-    update_date
+    code, course_class_code, type, time, course_num, starttime, endTime, create_by, create_date, 
+    update_by, update_date
   </sql>
   <select id="selectByExample" parameterType="com.education.system_edu.pojo.SysModelCourseTimeExample" resultMap="BaseResultMap">
     select
@@ -106,20 +107,23 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.education.system_edu.pojo.SysModelCourseTime">
-    insert into sys_model_course_time (code, type, time, 
-      course_num, starttime, endTime, 
-      create_by, create_date, update_by, 
-      update_date)
-    values (#{code,jdbcType=VARCHAR}, #{type,jdbcType=SMALLINT}, #{time,jdbcType=INTEGER}, 
-      #{courseNum,jdbcType=INTEGER}, #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
-      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
-      #{updateDate,jdbcType=TIMESTAMP})
+    insert into sys_model_course_time (code, course_class_code, type, 
+      time, course_num, starttime, 
+      endTime, create_by, create_date, 
+      update_by, update_date)
+    values (#{code,jdbcType=VARCHAR}, #{courseClassCode,jdbcType=VARCHAR}, #{type,jdbcType=SMALLINT}, 
+      #{time,jdbcType=INTEGER}, #{courseNum,jdbcType=INTEGER}, #{starttime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.education.system_edu.pojo.SysModelCourseTime">
     insert into sys_model_course_time
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="code != null">
         code,
+      </if>
+      <if test="courseClassCode != null">
+        course_class_code,
       </if>
       <if test="type != null">
         type,
@@ -152,6 +156,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="courseClassCode != null">
+        #{courseClassCode,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
         #{type,jdbcType=SMALLINT},
@@ -194,6 +201,9 @@
       <if test="record.code != null">
         code = #{record.code,jdbcType=VARCHAR},
       </if>
+      <if test="record.courseClassCode != null">
+        course_class_code = #{record.courseClassCode,jdbcType=VARCHAR},
+      </if>
       <if test="record.type != null">
         type = #{record.type,jdbcType=SMALLINT},
       </if>
@@ -229,6 +239,7 @@
   <update id="updateByExample" parameterType="map">
     update sys_model_course_time
     set code = #{record.code,jdbcType=VARCHAR},
+      course_class_code = #{record.courseClassCode,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=SMALLINT},
       time = #{record.time,jdbcType=INTEGER},
       course_num = #{record.courseNum,jdbcType=INTEGER},
@@ -245,6 +256,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.education.system_edu.pojo.SysModelCourseTime">
     update sys_model_course_time
     <set>
+      <if test="courseClassCode != null">
+        course_class_code = #{courseClassCode,jdbcType=VARCHAR},
+      </if>
       <if test="type != null">
         type = #{type,jdbcType=SMALLINT},
       </if>
@@ -277,7 +291,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.education.system_edu.pojo.SysModelCourseTime">
     update sys_model_course_time
-    set type = #{type,jdbcType=SMALLINT},
+    set course_class_code = #{courseClassCode,jdbcType=VARCHAR},
+      type = #{type,jdbcType=SMALLINT},
       time = #{time,jdbcType=INTEGER},
       course_num = #{courseNum,jdbcType=INTEGER},
       starttime = #{starttime,jdbcType=TIMESTAMP},

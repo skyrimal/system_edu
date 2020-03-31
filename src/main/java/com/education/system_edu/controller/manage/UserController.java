@@ -92,7 +92,7 @@ public class UserController {
     public String editUser(UserInModel userInModel) {
         UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
         int flag = userService.editUser(userInModel, userInfoUtils.getLoginCode());
-        if (flag < 4) {
+        if (flag == 0) {
             return "/error";
         }
         return "/m_manage_userManage";

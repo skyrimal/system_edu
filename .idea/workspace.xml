@@ -2,39 +2,258 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdeef863-6002-4678-b368-3c2ba637caad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/insert/SearchQuestionnaireInsert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/QuestionnaireOutput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/teacher/TeacherController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/insert/AddCourseClassInsert.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/CourseOutput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/RandomUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/rebel-remote.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/rebel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/statics/js/teacher.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/MajorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/MajorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/questionaier/QuestionnaireController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/questionaier/QuestionnaireController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/SysModelQuestionnaireRepositoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/SysModelQuestionnaireRepositoryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/QuestionnaireService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/QuestionnaireService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/SysModelCourseTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/SysModelCourseTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/SysModelCourseTimeExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/SysModelCourseTimeExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/MajorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/MajorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/MajorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/MajorServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/QuestionnaireServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/QuestionnaireServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/PageUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/PageUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SysModelQuestionnaireRepositoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SysModelQuestionnaireRepositoryMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/StringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/value/PageValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/value/PageValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SysModelCourseTimeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SysModelCourseTimeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bar/js_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bar/js_bar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bar/left_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bar/left_bar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/m_manage_course_made_courseclass.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/m_manage_course_made_courseclass.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/m_manage_faculty_class.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/m_manage_faculty_class.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/m_manage_questionnaire_qm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/m_manage_questionnaire_qm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/t_main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/t_main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/education/system_edu/SystemEduApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/education/system_edu/SystemEduApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system_edu.iml" beforeDir="false" afterPath="$PROJECT_DIR$/system_edu.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/SystemEduApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/SystemEduApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/config/ScanConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/config/ScanConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/config/ShiroConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/config/ShiroConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/AllApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/AllApiController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/JumpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/JumpController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/PageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/PageController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/manage/MajorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/manage/MajorController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ClassPublishAssignmentActionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ClassPublishAssignmentActionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectQuestionnaireAndQuestionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectQuestionnaireAndQuestionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectQuestionnaireQuestionAndOptionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectQuestionnaireQuestionAndOptionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectUserAndDepartmentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectUserAndDepartmentMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectUserAndRoleMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectUserAndRoleMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectUserStudentAndClassMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectUserStudentAndClassMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/CorrectAssignmenrtActionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/CorrectAssignmenrtActionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/StudentLSubmitTaskActionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/StudentLSubmitTaskActionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/StudentSignActionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/StudentSignActionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/StudentSubmitQuestionnaireMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/StudentSubmitQuestionnaireMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/StudentSubmitQuestionnaireTextAnswerMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/StudentSubmitQuestionnaireTextAnswerMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysDataTreeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysDataTreeMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysMessageMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysMessageMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelClassAssignmentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelClassAssignmentMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelClassMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelClassMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseTableModelHasCourseMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseTableModelHasCourseMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseTableModelMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseTableModelMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseTimeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseTimeMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelQuestionnaireQuestionOptionRepositoryMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelQuestionnaireQuestionOptionRepositoryMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelQuestionnaireQuestionRepositoryMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelQuestionnaireQuestionRepositoryMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelQuestionnaireRepositoryMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelQuestionnaireRepositoryMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysNodeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysNodeMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysPermissionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysPermissionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysReaderMessageMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysReaderMessageMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysScheduleMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysScheduleMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/userExecutionAssignmentLogMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/userExecutionAssignmentLogMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ClassPublishAssignmentAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ClassPublishAssignmentAction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ClassPublishAssignmentActionExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ClassPublishAssignmentActionExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ClassPublishAssignmentActionExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ClassPublishAssignmentActionExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ClassPublishAssignmentActionExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ClassPublishAssignmentActionExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ClassPublishAssignmentActionExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ClassPublishAssignmentActionExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireAndQuestion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireAndQuestion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireAndQuestionExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireAndQuestionExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireAndQuestionExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireAndQuestionExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireAndQuestionExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireAndQuestionExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireAndQuestionExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireAndQuestionExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireQuestionAndOption.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireQuestionAndOption.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireQuestionAndOptionExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireQuestionAndOptionExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireQuestionAndOptionExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireQuestionAndOptionExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireQuestionAndOptionExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireQuestionAndOptionExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireQuestionAndOptionExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectQuestionnaireQuestionAndOptionExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndDepartment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndDepartment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndDepartmentExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndDepartmentExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndDepartmentExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndDepartmentExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndDepartmentExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndDepartmentExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndDepartmentExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndDepartmentExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndRole.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndRole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndRoleExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndRoleExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndRoleExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndRoleExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndRoleExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndRoleExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndRoleExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserAndRoleExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserStudentAndClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserStudentAndClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserStudentAndClassExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserStudentAndClassExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserStudentAndClassExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserStudentAndClassExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserStudentAndClassExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserStudentAndClassExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserStudentAndClassExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/ConnectUserStudentAndClassExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/CorrectAssignmenrtAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/CorrectAssignmenrtAction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/CorrectAssignmenrtActionExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/CorrectAssignmenrtActionExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/CorrectAssignmenrtActionExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/CorrectAssignmenrtActionExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/CorrectAssignmenrtActionExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/CorrectAssignmenrtActionExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/CorrectAssignmenrtActionExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/CorrectAssignmenrtActionExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentLSubmitTaskAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentLSubmitTaskAction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentLSubmitTaskActionExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentLSubmitTaskActionExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentLSubmitTaskActionExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentLSubmitTaskActionExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentLSubmitTaskActionExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentLSubmitTaskActionExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentLSubmitTaskActionExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentLSubmitTaskActionExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSignAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSignAction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSignActionExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSignActionExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSignActionExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSignActionExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSignActionExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSignActionExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSignActionExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSignActionExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaire.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaire.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireTextAnswer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireTextAnswer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireTextAnswerExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireTextAnswerExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireTextAnswerExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireTextAnswerExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireTextAnswerExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireTextAnswerExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireTextAnswerExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/StudentSubmitQuestionnaireTextAnswerExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysDataTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysDataTree.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysDataTreeExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysDataTreeExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysDataTreeExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysDataTreeExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysDataTreeExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysDataTreeExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysDataTreeExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysDataTreeExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysMessageExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysMessageExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysMessageExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysMessageExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysMessageExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysMessageExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysMessageExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysMessageExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassAssignment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassAssignment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassAssignmentExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassAssignmentExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassAssignmentExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassAssignmentExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassAssignmentExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassAssignmentExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassAssignmentExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassAssignmentExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelClassExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelHasCourse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelHasCourse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelHasCourseExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelHasCourseExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelHasCourseExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelHasCourseExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelHasCourseExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelHasCourseExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelHasCourseExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTableModelHasCourseExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTime.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTime.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTimeExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTimeExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTimeExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTimeExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTimeExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTimeExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTimeExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelCourseTimeExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionOptionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionOptionRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionOptionRepositoryExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionOptionRepositoryExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionOptionRepositoryExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionOptionRepositoryExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionOptionRepositoryExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionOptionRepositoryExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionOptionRepositoryExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionOptionRepositoryExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionRepositoryExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionRepositoryExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionRepositoryExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionRepositoryExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionRepositoryExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionRepositoryExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionRepositoryExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireQuestionRepositoryExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireRepositoryExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireRepositoryExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireRepositoryExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireRepositoryExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireRepositoryExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireRepositoryExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireRepositoryExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysModelQuestionnaireRepositoryExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysNodeExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysNodeExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysNodeExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysNodeExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysNodeExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysNodeExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysNodeExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysNodeExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysPermission.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysPermission.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysPermissionExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysPermissionExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysPermissionExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysPermissionExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysPermissionExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysPermissionExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysPermissionExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysPermissionExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysReaderMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysReaderMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysReaderMessageExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysReaderMessageExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysReaderMessageExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysReaderMessageExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysReaderMessageExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysReaderMessageExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysReaderMessageExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysReaderMessageExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysSchedule.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysSchedule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysScheduleExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysScheduleExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysScheduleExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysScheduleExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysScheduleExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysScheduleExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysScheduleExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/SysScheduleExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/UserExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/UserExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/UserExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/UserExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/UserExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/UserExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/UserExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/UserExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/pojo/Department.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/pojo/Department.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/pojo/Faculty.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/pojo/Faculty.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/pojo/Major.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/pojo/Major.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLogExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLogExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLogExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLogExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLogExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLogExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLogExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLogExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/FacultyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/FacultyService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/MajorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/MajorService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/PageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/PageService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/FacultyServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/FacultyServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/MajorServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/MajorServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/PageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/PageServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/shiro/ShiroRealm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/shiro/ShiroRealm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/ClassUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/ClassUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/DateUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/DateUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/EmptyUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/EmptyUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/EncryptionUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/EncryptionUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/FacultyFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/FacultyFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/ImgMaker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/ImgMaker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/IntegerUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/IntegerUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/ListUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/ListUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/MsgUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/MsgUtil.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/PageUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/PageUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/RandomStudentMaker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/RandomStudentMaker.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/StringUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/StringUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/SysTreeAndNodeUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/SysTreeAndNodeUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/UU3D.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/UU3D.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/UserMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/UserMessage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/UserUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/UserUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/SysModelQuestionnaireRepositoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/SysModelQuestionnaireRepositoryMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/bar/left_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/bar/left_bar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/SysModelCourseTimeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/SysModelCourseTimeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/m_manage_course_made_courseclass.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/m_manage_course_made_courseclass.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/m_manage_faculty_class.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/m_manage_faculty_class.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/m_manage_questionnaire_qm.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/m_manage_questionnaire_qm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/t_main.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/t_main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/education/system_edu/SystemEduApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/education/system_edu/SystemEduApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/education/system_edu/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/education/system_edu/Test.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -53,9 +272,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
         <option value="Interface" />
+        <option value="JavaScript File" />
         <option value="Class" />
       </list>
     </option>
@@ -63,6 +282,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="JRebelWorkspace">
+    <option name="jrebelEnabledAutocompile" value="true" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -101,26 +323,32 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/statics/css" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/statics/js" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="com.zeroturnaround.javarebel.idea.plugin.settings.RemoteServersConfigurable" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\project\system_edu\src\main\resources\static\statics\js" />
       <recent name="D:\project\system_edu\src\main\resources\static\statics\css" />
       <recent name="D:\project\system_edu\src\main\resources\static\statics\vendor\jquery" />
       <recent name="D:\project\system_edu\src\main\java\com\education\system_edu\controller" />
       <recent name="D:\project\system_edu\src\main\java\com\education\system_edu\aop" />
-      <recent name="D:\project\system_edu\src\main\java\com\education\system_edu\config" />
     </key>
   </component>
   <component name="RestServicesNavigator">
     <treeState>
       <expand>
         <path>
-          <item name="Found 57 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+          <item name="Found 58 services " type="fcff1e1b:RestServiceStructure$RootNode" />
         </path>
         <path>
-          <item name="Found 57 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+          <item name="Found 58 services " type="fcff1e1b:RestServiceStructure$RootNode" />
           <item name="system_edu" type="c588b436:RestServiceStructure$ProjectNode" />
         </path>
       </expand>
@@ -128,8 +356,34 @@
     </treeState>
   </component>
   <component name="RunManager" selected="Spring Boot.SystemEduApplication">
+    <configuration name="EncryptionUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.education.system_edu.utils.EncryptionUtils" />
+      <module name="system_edu" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.education.system_edu.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="JsonUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.education.system_edu.utils.JsonUtils" />
+      <module name="system_edu" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.education.system_edu.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RandomUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.education.system_edu.utils.RandomUtils" />
       <module name="system_edu" />
       <extension name="coverage">
         <pattern>
@@ -154,7 +408,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SystemEduApplicationTests.searchClass" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SystemEduApplicationTests.insertTestData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="system_edu" />
       <extension name="coverage">
         <pattern>
@@ -164,39 +418,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.education.system_edu" />
       <option name="MAIN_CLASS_NAME" value="com.education.system_edu.SystemEduApplicationTests" />
-      <option name="METHOD_NAME" value="searchClass" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SystemEduApplicationTests.searchCourseSearchOutput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="system_edu" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.education.system_edu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.education.system_edu" />
-      <option name="MAIN_CLASS_NAME" value="com.education.system_edu.SystemEduApplicationTests" />
-      <option name="METHOD_NAME" value="searchCourseSearchOutput" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SystemEduApplicationTests.testAddOneUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="system_edu" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.education.system_edu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.education.system_edu" />
-      <option name="MAIN_CLASS_NAME" value="com.education.system_edu.SystemEduApplicationTests" />
-      <option name="METHOD_NAME" value="testAddOneUser" />
+      <option name="METHOD_NAME" value="insertTestData" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -211,11 +433,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.EncryptionUtils" />
+        <item itemvalue="JUnit.SystemEduApplicationTests.insertTestData" />
+        <item itemvalue="Application.RandomUtils" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.JsonUtils" />
-        <item itemvalue="JUnit.SystemEduApplicationTests.searchCourseSearchOutput" />
-        <item itemvalue="JUnit.SystemEduApplicationTests.searchClass" />
-        <item itemvalue="JUnit.SystemEduApplicationTests.testAddOneUser" />
       </list>
     </recent_temporary>
   </component>
@@ -275,7 +497,17 @@
       <workItem from="1585131404861" duration="337000" />
       <workItem from="1585136742310" duration="8720000" />
       <workItem from="1585182970654" duration="6869000" />
-      <workItem from="1585269627889" duration="845000" />
+      <workItem from="1585269627889" duration="5166000" />
+      <workItem from="1585279869398" duration="4152000" />
+      <workItem from="1585452732130" duration="12977000" />
+      <workItem from="1585527912282" duration="5823000" />
+      <workItem from="1585539844242" duration="2088000" />
+      <workItem from="1585557874823" duration="248000" />
+      <workItem from="1585558530607" duration="226000" />
+      <workItem from="1585559443477" duration="2691000" />
+      <workItem from="1585615947140" duration="302000" />
+      <workItem from="1585616280541" duration="9585000" />
+      <workItem from="1585631781913" duration="5000" />
     </task>
     <task id="LOCAL-00001" summary="制作到管理员管理学院/系/专业&#10;即将制作用户管理">
       <created>1582852222232</created>
@@ -368,7 +600,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585183257553</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="完成查询问卷，剔除分页重复代码">
+      <created>1585270580675</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1585270580675</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,7 +627,9 @@
     <MESSAGE value="完成课程查询功能，开始做问卷模板保存" />
     <MESSAGE value="完成课程添加、查询功能，开始做问卷模板保存" />
     <MESSAGE value="完成了问卷模板添加功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成了问卷模板添加功能" />
+    <MESSAGE value="提出分页查询的公共方法" />
+    <MESSAGE value="完成查询问卷，剔除分页重复代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成查询问卷，剔除分页重复代码" />
   </component>
   <component name="WindowStateProjectService">
     <state x="359" y="75" key="#Custom_Plugin_Repositories" timestamp="1585030861904">
@@ -407,6 +648,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="76" key="#Notifications/0.0.1536.834@0.0.1536.834" timestamp="1582852806879" />
+    <state x="361" y="79" key="#Project_Structure" timestamp="1585455077947">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="79" key="#Project_Structure/0.0.1536.834@0.0.1536.834" timestamp="1585455077947" />
     <state x="361" y="76" key="#SQL_Dialects" timestamp="1583394394402">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -415,10 +660,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="483" y="266" width="594" height="294" key="#com.intellij.codeInsight.template.impl.EditVariableDialog/0.0.1536.834@0.0.1536.834" timestamp="1585031790897" />
-    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser" timestamp="1585270215376">
+    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser" timestamp="1585622623337">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1585270215376" />
+    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1585622623337" />
     <state x="388" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1584320183190">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -431,14 +676,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1582789438486" />
-    <state x="261" y="2" key="CommitChangelistDialog2" timestamp="1585183254386">
+    <state x="410" y="14" key="CommitChangelistDialog2" timestamp="1585270576924">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="261" y="2" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1585183254386" />
-    <state width="534" height="466" key="DebuggerActiveHint" timestamp="1585188766483">
+    <state x="410" y="14" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1585270576924" />
+    <state width="568" height="466" key="DebuggerActiveHint" timestamp="1585622719238">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="534" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1585188766483" />
+    <state width="568" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1585622719238" />
     <state x="549" y="158" key="FileChooserDialogImpl" timestamp="1585030866449">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -447,58 +692,58 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="632" y="308" width="272" height="287" key="Github.ShareDialog/0.0.1536.834@0.0.1536.834" timestamp="1582853113702" />
-    <state width="1492" height="189" key="GridCell.Tab.0.bottom" timestamp="1585189927453">
+    <state width="1492" height="146" key="GridCell.Tab.0.bottom" timestamp="1585631745674">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="189" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585189927453" />
-    <state width="1492" height="189" key="GridCell.Tab.0.center" timestamp="1585189927453">
+    <state width="1492" height="146" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585631745674" />
+    <state width="1492" height="146" key="GridCell.Tab.0.center" timestamp="1585631745674">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="189" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1585189927453" />
-    <state width="1492" height="189" key="GridCell.Tab.0.left" timestamp="1585189927453">
+    <state width="1492" height="146" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1585631745674" />
+    <state width="1492" height="146" key="GridCell.Tab.0.left" timestamp="1585631745674">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="189" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1585189927453" />
-    <state width="1492" height="189" key="GridCell.Tab.0.right" timestamp="1585189927453">
+    <state width="1492" height="146" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1585631745674" />
+    <state width="1492" height="146" key="GridCell.Tab.0.right" timestamp="1585631745674">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="189" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1585189927453" />
-    <state width="1492" height="189" key="GridCell.Tab.1.bottom" timestamp="1585189927453">
+    <state width="1492" height="146" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1585631745674" />
+    <state width="1492" height="189" key="GridCell.Tab.1.bottom" timestamp="1585631745636">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="189" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585189927453" />
-    <state width="1492" height="189" key="GridCell.Tab.1.center" timestamp="1585189927453">
+    <state width="1492" height="189" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585631745636" />
+    <state width="1492" height="189" key="GridCell.Tab.1.center" timestamp="1585631745635">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="189" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1585189927453" />
-    <state width="1492" height="189" key="GridCell.Tab.1.left" timestamp="1585189927453">
+    <state width="1492" height="189" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1585631745635" />
+    <state width="1492" height="189" key="GridCell.Tab.1.left" timestamp="1585631745635">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="189" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1585189927453" />
-    <state width="1492" height="189" key="GridCell.Tab.1.right" timestamp="1585189927453">
+    <state width="1492" height="189" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1585631745635" />
+    <state width="1492" height="189" key="GridCell.Tab.1.right" timestamp="1585631745636">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="189" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1585189927453" />
-    <state width="1492" height="189" key="GridCell.Tab.2.bottom" timestamp="1585189927453">
+    <state width="1492" height="189" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1585631745636" />
+    <state width="1492" height="189" key="GridCell.Tab.2.bottom" timestamp="1585631745636">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="189" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585189927453" />
-    <state width="1492" height="189" key="GridCell.Tab.2.center" timestamp="1585189927453">
+    <state width="1492" height="189" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585631745636" />
+    <state width="1492" height="189" key="GridCell.Tab.2.center" timestamp="1585631745636">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="189" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1585189927453" />
-    <state width="1492" height="189" key="GridCell.Tab.2.left" timestamp="1585189927453">
+    <state width="1492" height="189" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1585631745636" />
+    <state width="1492" height="189" key="GridCell.Tab.2.left" timestamp="1585631745636">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="189" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1585189927453" />
-    <state width="1492" height="189" key="GridCell.Tab.2.right" timestamp="1585189927453">
+    <state width="1492" height="189" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1585631745636" />
+    <state width="1492" height="189" key="GridCell.Tab.2.right" timestamp="1585631745636">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="189" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1585189927453" />
-    <state x="270" y="59" width="1211" height="709" key="SettingsEditor" timestamp="1585183104291">
+    <state width="1492" height="189" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1585631745636" />
+    <state x="270" y="59" width="1211" height="709" key="SettingsEditor" timestamp="1585529302295">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="270" y="59" width="1211" height="709" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1585183104291" />
+    <state x="270" y="59" width="1211" height="709" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1585529302295" />
     <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1585183349977">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -515,14 +760,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="470" y="44" key="refactoring.ChangeSignatureDialog/0.0.1536.834@0.0.1536.834" timestamp="1585109678892" />
-    <state x="425" y="189" key="run.anything.popup" timestamp="1585027256386">
+    <state x="425" y="189" width="672" height="677" key="run.anything.popup" timestamp="1585459015098">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1585027256386" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1585269963909">
+    <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1585459015098" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1585541807132">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1585269963909" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1585541807132" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
