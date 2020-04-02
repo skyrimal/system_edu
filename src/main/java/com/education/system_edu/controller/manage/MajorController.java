@@ -1,5 +1,6 @@
 package com.education.system_edu.controller.manage;
 
+import com.education.system_edu.pojo.User;
 import com.education.system_edu.pojo.insert.AddCourseClassInsert;
 import com.education.system_edu.pojo.insert.ClassSearchInsert;
 import com.education.system_edu.pojo.insert.CourseAddInsert;
@@ -119,7 +120,6 @@ public class MajorController {
      * @param major
      * @return
      */
-    @RequiresRoles({"manager"})
     @GetMapping("checkClassNo")
     @ResponseBody
     public List<OutputClass> checkClassNo(@RequestParam("majorId") String major,
@@ -221,8 +221,9 @@ public class MajorController {
 
     @PostMapping("addCourseClass/course_class")
     public String addCouseClass(AddCourseClassInsert courseAddInsert) {
-
-        int i = majorService.addCourseClass(courseAddInsert);
-        return "";
+        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
+        User user = (User) subjectUtils.getPrincipal();
+        int i = majorService.addCourseClass(courseAddInsert,user.getLoginCode());
+        return "redirect:/manage/m_manage_course_made_courseclass";
     }
 }

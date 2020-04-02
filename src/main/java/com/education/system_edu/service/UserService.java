@@ -1,6 +1,9 @@
 package com.education.system_edu.service;
 
+import com.education.system_edu.pojo.User;
+import com.education.system_edu.pojo.insert.TeacherSearchStudentInsert;
 import com.education.system_edu.pojo.insert.UserInModel;
+import com.education.system_edu.pojo.output.CourseClassUserStudentOutPut;
 import com.education.system_edu.pojo.output.OutputUserForEditUserAction;
 import com.education.system_edu.pojo.pojo_child.result.PageUserOutput;
 import com.education.system_edu.pojo.pojo_getData.SearchUserByFaculty;
@@ -19,4 +22,10 @@ public interface UserService {
     Integer editUser(UserInModel userInModel, String userLoginCode);
 
     Integer initPassword(String loginCode);
+
+    List<CourseClassUserStudentOutPut> getUserByCourseCode(String courseClassCode);
+
+    Integer countCourseByCourseSearchInsert(TeacherSearchStudentInsert teacherSearchStudentInsert, Integer pageSize, String courseClassCode);
+
+    List<CourseClassUserStudentOutPut> getUserByTeacherSearchStudentInsert(TeacherSearchStudentInsert teacherSearchStudentInsert,String courseClassCode);
 }

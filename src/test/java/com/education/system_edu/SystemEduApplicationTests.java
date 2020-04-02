@@ -37,6 +37,10 @@ class SystemEduApplicationTests {
     ConnectUserAndMajorMapper connectUserAndMajorMapper;
     @Resource
     ConnectUserStudentAndClassMapper connectUserStudentAndClassMapper;
+    @Resource
+    ConnectTeacherCourseMapper connectTeacherCourseMapper;
+
+
     UserService userService;
 
     @Autowired
@@ -187,7 +191,7 @@ class SystemEduApplicationTests {
             for (int i = 0; i < 50; i++) {
                 User user = madeUser(aClassInfo, i, "2", "0");
                 ConnectUserAndMajor connect2 = new ConnectUserAndMajor();
-                connect2.setCode(UU3D.uu3d()+i);
+                connect2.setCode(UU3D.uu3d() + i);
                 connect2.setUseCode(user.getCode());
                 connect2.setSysNodeCode(aClass.getSysCollegeNodeCode());
                 connect2.setSysNodeType(aClass.getSysCollegeNodeType());
@@ -316,14 +320,60 @@ class SystemEduApplicationTests {
     }
 
     @Test
-    void addTeacherCouseClass(){
+    void addTeacherCouseClass() {
         List<SysModelCourse> courses = sysModelCourseMapper.selectByExample(new SysModelCourseExample());
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserTypeEqualTo("1");
         List<User> users = userMapper.selectByExample(userExample);
         for (User user : users) {
-            int i = RandomUtils.randomNumber(0,courses.size()-1);
+            int i = RandomUtils.randomNumber(0, courses.size() - 1);
 
         }
+    }
+
+    @Test
+    void connectTeacherCourse() {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andUserTypeEqualTo("1");
+        List<User> users = userMapper.selectByExample(userExample);
+
+        List<SysModelCourse> courses = sysModelCourseMapper.selectByExample(new SysModelCourseExample());
+        List<SysModelCourse> _courses = new ArrayList<> ();
+        for(SysModelCourse course:courses){
+            if (!course.getCode().equals("001")){
+                System.out.println(course.getName());
+                _courses.add(course);
+            }
+        }
+        courses = _courses;
+        List<User> teachers = new ArrayList<User>();
+        int flag = 0;
+        for (int i = 0; i < courses.size(); i++) {
+            for (int j = 1; j <= 10; j++) {
+                teachers.add(users.get(flag));
+                flag++;
+            }
+        }
+
+        for (User user:
+        teachers) {
+
+            System.out.println(user.getLoginCode());
+        }
+
+        List<ConnectTeacherCourse> connectTeacherCourseList = new ArrayList<>();
+        ClassUtils<ConnectTeacherCourse> con = new ClassUtils<>();
+        for (int j = 0; j < teachers.size(); j++) {
+
+            ConnectTeacherCourse teacherCourse = new ConnectTeacherCourse();
+            teacherCourse.setCode(UU3D.uu3d());
+            teacherCourse.setCourseCode(courses.get(RandomUtils.randomNumber(0, courses.size() - 1))
+                                                .getCode());
+            teacherCourse.setTeacherCode(teachers.get(j).getCode());
+            teacherCourse = con.addUserCreateUseInfo(teacherCourse, "20000000");
+            connectTeacherCourseList.add(teacherCourse);
+            connectTeacherCourseMapper.insert(teacherCourse);
+        }
+        System.out.println("结束");
     }
 }

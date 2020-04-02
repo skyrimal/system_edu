@@ -10,13 +10,24 @@ import java.util.List;
  * @date: 2020年03月31日 10:39
  */
 public class AddCourseClassInsert {
-    String departmentCode;
-    String faculty;
-    String major;
-    String grade;
-    List<String> publicCourse;
-    List<String> majorCourse;
+    private String departmentCode;
+    private String faculty;
+    private String major;
+    private String grade;
+    private String teacherCode;
 
+    private List<String> publicCourse;
+    private List<String> majorCourse;
+
+
+
+    public String getTeacherCode() {
+        return teacherCode;
+    }
+
+    public void setTeacherCode(String teacherCode) {
+        this.teacherCode = teacherCode;
+    }
     public String getDepartmentCode() {
         return departmentCode;
     }

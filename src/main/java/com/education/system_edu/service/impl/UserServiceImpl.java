@@ -1,17 +1,19 @@
 package com.education.system_edu.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.education.system_edu.mapper.*;
 import com.education.system_edu.pojo.*;
+import com.education.system_edu.pojo.insert.TeacherSearchStudentInsert;
 import com.education.system_edu.pojo.insert.UserInModel;
+import com.education.system_edu.pojo.output.CourseClassUserStudentOutPut;
 import com.education.system_edu.pojo.output.OutputUserForEditUserAction;
 import com.education.system_edu.pojo.pojo_child.parameter.PageUser;
 import com.education.system_edu.pojo.pojo_child.result.PageUserOutput;
 import com.education.system_edu.pojo.pojo_getData.SearchUserByFaculty;
 import com.education.system_edu.service.UserService;
-import com.education.system_edu.utils.ClassUtils;
-import com.education.system_edu.utils.EmptyUtil;
-import com.education.system_edu.utils.EncryptionUtils;
-import com.education.system_edu.utils.UserUtils;
+import com.education.system_edu.utils.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -184,7 +186,6 @@ public class UserServiceImpl implements UserService {
         userExample.createCriteria().andLoginCodeEqualTo(userInModel.getUserId());
         User user = userMapper.selectByExample(userExample).get(0);
         user.setUserName(userInModel.getUserName());
-        user = (User) updateObject(user, userLoginCode);
 
         userMapper.updateByPrimaryKey(user);
         //修改user—class连接
@@ -223,11 +224,79 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public List<CourseClassUserStudentOutPut> getUserByCourseCode(String courseClassCode) {
+        List<CourseClassUserStudentOutPut> courseClassUserStudentOutPutlist = userMapper.getUserMsgForCourseClassOutput(courseClassCode);
+        return courseClassUserStudentOutPutlist;
+    }
 
-    public static Object updateObject(Object o, String userLoginCode) {
-        ClassUtils<Object> classUtils = new ClassUtils<>();
-        return classUtils.addUserUpdateUseInfo(o, userLoginCode);
+    @Override
+    public Integer countCourseByCourseSearchInsert(TeacherSearchStudentInsert teacherSearchStudentInsert, Integer pageSize, String courseClassCode) {
+        if (teacherSearchStudentInsert == null
+                || (StringUtils.isEmpty(teacherSearchStudentInsert.getStudentLoginCode())
+                && StringUtils.isEmpty(teacherSearchStudentInsert.getStudentName()))) {
+            return userMapper.countSelectByCourseClassCode(courseClassCode);
+        }
+        UserExample userExample = new UserExample();
+        if (!StringUtils.isEmpty(teacherSearchStudentInsert.getStudentLoginCode())) {
+            userExample.createCriteria().andLoginCodeEqualTo(teacherSearchStudentInsert.getStudentLoginCode());
+            return userMapper.countSelectByCourseClassCodeAndName(courseClassCode
+                    , teacherSearchStudentInsert.getStudentName());
+        } else if (!StringUtils.isEmpty(teacherSearchStudentInsert.getStudentName())) {
+            return 0;   }
+        return null;
+    }
+
+    @Override
+    public List<CourseClassUserStudentOutPut> getUserByTeacherSearchStudentInsert(TeacherSearchStudentInsert teacherSearchStudentInsert, String courseClassCode) {
+        if (teacherSearchStudentInsert == null
+                || (StringUtils.isEmpty(teacherSearchStudentInsert.getStudentLoginCode())
+                && StringUtils.isEmpty(teacherSearchStudentInsert.getStudentName()))) {
+            return usersToCourseClassUserStudentOutPuts(userMapper.selectByCourseClassCode(courseClassCode
+                    , (teacherSearchStudentInsert.getPageNum()-1) * teacherSearchStudentInsert.getPageSize()
+                    ,  teacherSearchStudentInsert.getPageSize()), courseClassCode);
+        }
+        UserExample userExample = new UserExample();
+        if (!StringUtils.isEmpty(teacherSearchStudentInsert.getStudentLoginCode())) {
+            userExample.createCriteria().andLoginCodeEqualTo(teacherSearchStudentInsert.getStudentLoginCode());
+            return usersToCourseClassUserStudentOutPuts(userMapper.selectByExample(userExample), courseClassCode);
+        } else if (!StringUtils.isEmpty(teacherSearchStudentInsert.getStudentName())) {
+            return usersToCourseClassUserStudentOutPuts(userMapper.selectByCourseClassCodeAndName(courseClassCode
+                    , teacherSearchStudentInsert.getStudentName()
+                    , (teacherSearchStudentInsert.getPageNum()-1) * teacherSearchStudentInsert.getPageSize()
+                    ,  teacherSearchStudentInsert.getPageSize()), courseClassCode);
+        }
+        return null;
     }
 
 
+    private List<CourseClassUserStudentOutPut> usersToCourseClassUserStudentOutPuts(List<User> students, String courseClassCode) {
+        List<CourseClassUserStudentOutPut> result = new ArrayList<>();
+        for (User user : students) {
+            result.add(userToCourseClassUserStudentOutPut(user, courseClassCode));
+        }
+        return result;
+    }
+
+    private CourseClassUserStudentOutPut userToCourseClassUserStudentOutPut(User user, String courseClassCode) {
+        CourseClassUserStudentOutPut userStudentOutPut = new CourseClassUserStudentOutPut();
+        userStudentOutPut.setCode(user.getCode());
+        userStudentOutPut.setLoginCode(user.getLoginCode());
+        userStudentOutPut.setUserName(user.getUserName());
+
+        ConnectUserAndMajorExample connectUserAndMajorExample = new ConnectUserAndMajorExample();
+        connectUserAndMajorExample.createCriteria()
+                .andUseCodeEqualTo(user.getCode());
+        SysDataTree major = sysDataTreeMapper.selectByPrimaryKey(
+                connectUserAndMajorMapper
+                        .selectByExample(connectUserAndMajorExample)
+                        .get(0).getSysNodeCode());
+        SysDataTree department = sysDataTreeMapper.selectByPrimaryKey(major.getParentNode());
+        SysDataTree factory = sysDataTreeMapper.selectByPrimaryKey(department.getParentNode());
+        userStudentOutPut.setMajor(major.getName());
+        userStudentOutPut.setDepartment(department.getName());
+        userStudentOutPut.setFactory(factory.getName());
+        userStudentOutPut.setClassCode(courseClassCode);
+        return userStudentOutPut;
+    }
 }

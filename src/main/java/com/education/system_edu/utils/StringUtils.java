@@ -58,4 +58,11 @@ public class StringUtils {
         return stringLast(splitString(str, splitStr));
     }
 
+    public static boolean isEmpty(String str) {
+        return str == null || str.equals("");
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isEmpty(null));
+    }
 }

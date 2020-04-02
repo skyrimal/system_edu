@@ -1,5 +1,7 @@
 package com.education.system_edu.service.impl;
 
+import java.util.List;
+
 import com.education.system_edu.mapper.*;
 import com.education.system_edu.pojo.*;
 import com.education.system_edu.pojo.insert.*;
@@ -459,17 +461,71 @@ public class MajorServiceImpl implements MajorService {
     }
 
     @Override
-    public int addCourseClass(AddCourseClassInsert courseAddInsert) {
-        //当学院为空时出错
-        if(courseAddInsert.getFaculty()==null&courseAddInsert.getFaculty()==""){
+    public int addCourseClass(AddCourseClassInsert courseAddInsert, String loginUser_loginCode) {
+        int flag = 0;
+        String departmentCode = courseAddInsert.getDepartmentCode();
+        String faculty = courseAddInsert.getFaculty();
+        String major = courseAddInsert.getMajor();
+        String grade = courseAddInsert.getGrade();
+        String teacherCode = courseAddInsert.getTeacherCode();
+        List<String> publicCourse = courseAddInsert.getPublicCourse();
+        List<String> majorCourse = courseAddInsert.getMajorCourse();
+        List<SysModelClass> courseClasses = new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        //获取课程信息
+        List<SysModelCourse> courses = new ArrayList<>();
+        if (publicCourse != null) {
+            for (int i = 0; i < publicCourse.size(); i++) {
+                courses.add(sysModelCourseMapper.selectByCourseCode(publicCourse.get(i)));
+            }
+        }
+
+        if (majorCourse != null) {
+            for (int i = 0; i < majorCourse.size(); i++) {
+                courses.add(sysModelCourseMapper.selectByCourseCode(majorCourse.get(i)));
+            }
+        }
+
+
+        //获取要排课的学生
+        //根据课程获取老师
+        //生成课程班级
+        //联系学生和班级
+        //保存班级
+        //保存学生与班级的联系
+
+
+        //当学院为空时，不添加课程
+        if (StringUtils.isEmpty(faculty)) {
             return 0;
         }
-        //当只有学院时给学院所有学生添加该课程
-        else if (courseAddInsert.getDepartmentCode() == null&courseAddInsert.getDepartmentCode() ==""
-                &&courseAddInsert.getMajor()==null&courseAddInsert.getMajor()==""){
-            String factory = courseAddInsert.getFaculty();
+
+        //当部门为空时,给学院下所有学生添加课程班级
+        if (StringUtils.isEmpty(departmentCode)) {
+
+            //获取所有学院学生
+            users = userMapper.selectStudentByFactoryCode(faculty);
+
+            return insertCourseClasses(0, courses, grade, loginUser_loginCode, users);
         }
-        return 0;
+
+        //当专业为空时，给部门下学生添加所有课程
+        if (StringUtils.isEmpty(major)) {
+            users = userMapper.selectStudentByDepartmentCode(departmentCode);
+
+            return insertCourseClasses(0, courses, grade, loginUser_loginCode, users);
+        }
+        //当都不为空时，给专业下学生添加课程
+        users = userMapper.selectStudentByMajorCode(major);
+        return insertCourseClasses(0, courses, grade, loginUser_loginCode, users);
+    }
+
+    @Override
+    public List<TeacherCourseClassLineInfoOutput> getTeacherCourse(String loginCode) {
+        List<TeacherCourseClassLineInfoOutput> courseOutputlist = sysModelCourseMapper.getTeacherCourse(loginCode);
+        courseOutputlist.remove(0);
+        return courseOutputlist;
+
     }
 
 
@@ -513,5 +569,66 @@ public class MajorServiceImpl implements MajorService {
             }
         }
         return courseOutputs;
+    }
+
+
+    //排课
+    private int insertCourseClasses(int flag,
+                                    List<SysModelCourse> courses,
+                                    String grade,
+                                    String loginUser_loginCode,
+                                    List<User> users) {
+
+        List<SysModelClass> newCourseClasses = new ArrayList<>();
+        //老师与班级创建合并
+        //获取所有授课老师
+        List<User> teachers = new ArrayList<User>();
+        int i = 0;
+        for (SysModelCourse str : courses) {
+            List<User> teacheres = userMapper.selectTeacherByCoueseCode(str.getCode());
+            SysModelClass newCourseClass = null;
+            for (User user : teacheres) {
+                newCourseClass = ClassesUtils.madeCourseClass(grade, loginUser_loginCode, str, i++, user);
+                newCourseClasses.add(newCourseClass);
+            }
+            teachers.addAll(teacheres);
+        }
+
+        //联系学生和班级
+        List<ConnectUserStudentAndClass> connectUserStudentAndClassesList = new ArrayList<>();
+        int stuNumber = 0;
+        if (users.size() % newCourseClasses.size() > 0) {
+            stuNumber = (users.size() / newCourseClasses.size()) + 1;
+        } else {
+            stuNumber = users.size() / newCourseClasses.size();
+        }
+
+        //x*stuNumber-(x+1)*stuNumber
+        for (int x = 0; x < newCourseClasses.size(); x++) {
+            int _stuNum = 0;
+            for (int y = x * (stuNumber); y < (x + 1) * stuNumber; y++) {
+                if (y < users.size()) {
+                    ConnectUserStudentAndClass cUAC = new ConnectUserStudentAndClass();
+                    cUAC.setCode(UU3D.uu3d());
+                    cUAC.setClassCode(newCourseClasses.get(x).getCode());
+                    cUAC.setStudentCode(users.get(y).getCode());
+                    cUAC.setStudentNo(users.get(y).getLoginCode());
+                    connectUserStudentAndClassesList.add(cUAC);
+                    _stuNum++;
+                }
+            }
+            newCourseClasses.get(x).setStudentNum(_stuNum);
+        }
+        for (SysModelClass sysModelClass :
+                newCourseClasses) {
+            sysModelClassMapper.insert(sysModelClass);
+            flag++;
+        }
+        for (ConnectUserStudentAndClass cUAC :
+                connectUserStudentAndClassesList) {
+            connectUserStudentAndClassMapper.insert(cUAC);
+            flag++;
+        }
+        return flag;
     }
 }

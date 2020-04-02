@@ -182,7 +182,6 @@ public class FacultyController {
      *
      * @return
      */
-    @RequiresRoles({"manager"})
     @GetMapping("initSearch")
     @ResponseBody
     public List<String[]> initSearch() {

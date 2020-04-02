@@ -1,4 +1,5 @@
 function pageHelperInit(pageNum, pageMaxNum) {//页脚页码加工功能
+    console.log("进入生成")
 //1.生成页面超链接
 //1.1 生成上一页下一页首页尾页四个超链接
     $("#pageFoot").append("<a class=\" text-black-50\" href=\"#\"><< \t&ensp; </a>");

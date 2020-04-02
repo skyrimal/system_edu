@@ -35,5 +35,7 @@ public interface MajorService {
 
     List<CourseOutput> chooseAllCourse(String faculty, String department, String major);
 
-    int addCourseClass(AddCourseClassInsert courseAddInsert);
+    int addCourseClass(AddCourseClassInsert courseAddInsert,String loginUser_loginCode);
+
+    List<TeacherCourseClassLineInfoOutput> getTeacherCourse(String loginCode);
 }
