@@ -243,8 +243,9 @@ public interface UserMapper {
             "LEFT JOIN sys_model_class AS course_class ON c_u_s_c.class_code = course_class.`code`\n" +
             "WHERE\n" +
             "course_class.class_code ='${courseClassCode}'\n" +
+            "ORDER BY users.login_code " +
             "LIMIT ${start},${end}")
-    List<User> selectByCourseClassCode(String courseClassCode,Integer start, Integer end);
+    List<User> selectByCourseClassCode(String courseClassCode, Integer start, Integer end);
 
     @Select("SELECT\n" +
             "users.`code`,\n" +
@@ -284,8 +285,9 @@ public interface UserMapper {
             "WHERE\n" +
             "course_class.class_code ='${courseClassCode}' AND\n" +
             "users.user_name LIKE '%${studentName}%'\n" +
+            "ORDER BY users.login_code " +
             "LIMIT ${start},${end}")
-    List<User> selectByCourseClassCodeAndName(String courseClassCode, String studentName,Integer start, Integer end);
+    List<User> selectByCourseClassCodeAndName(String courseClassCode, String studentName, Integer start, Integer end);
 
     @Select("SELECT\n" +
             "count(users.`code`)\n" +
@@ -307,4 +309,44 @@ public interface UserMapper {
             "course_class.class_code ='${courseClassCode}' AND\n" +
             "users.user_name LIKE '%${studentName}%'")
     Integer countSelectByCourseClassCodeAndName(String courseClassCode, String studentName);
+
+    @Select("SELECT\n" +
+            "users.`code`,\n" +
+            "users.login_code,\n" +
+            "users.user_name,\n" +
+            "users.`password`,\n" +
+            "users.email,\n" +
+            "users.mobile,\n" +
+            "users.phone,\n" +
+            "users.sex,\n" +
+            "users.avatar,\n" +
+            "users.sign,\n" +
+            "users.user_type,\n" +
+            "users.mgr_type,\n" +
+            "users.pwd_update_date,\n" +
+            "users.pwd_update_record,\n" +
+            "users.pwd_question,\n" +
+            "users.pwd_question_answer,\n" +
+            "users.pwd_question_2,\n" +
+            "users.pwd_question_answer_2,\n" +
+            "users.pwd_question_3,\n" +
+            "users.pwd_question_answer_3,\n" +
+            "users.pwd_quest_update_date,\n" +
+            "users.last_login_ip,\n" +
+            "users.last_login_date,\n" +
+            "users.freeze_date,\n" +
+            "users.freeze_cause,\n" +
+            "users.`status`,\n" +
+            "users.create_by,\n" +
+            "users.create_date,\n" +
+            "users.update_by,\n" +
+            "users.update_date\n" +
+            "FROM\n" +
+            "all_users AS users\n" +
+            "LEFT JOIN connect_user_student_and_class AS c_u_s_c ON c_u_s_c.student_code = users.`code`\n" +
+            "LEFT JOIN sys_model_class AS course_class ON c_u_s_c.class_code = course_class.`code`\n" +
+            "WHERE\n" +
+            "course_class.class_code ='${courseClassCode}' \n" +
+            "ORDER BY users.login_code ")
+    List<User> selectAllByCourseClassCode(String courseClassCode);
 }

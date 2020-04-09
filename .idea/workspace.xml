@@ -2,42 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdeef863-6002-4678-b368-3c2ba637caad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/ConnectTeacherCourseMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/ConnectTeacherCourse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/ConnectTeacherCourseExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/insert/TeacherSearchStudentInsert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/CourseClassUserStudentOutPut.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/TeacherCourseClassLineInfoOutput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/ClassesUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/StudentUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ConnectTeacherCourseMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/config/FileConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/GroupMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/Group.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/GroupExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/insert/HomeworkModelInsert.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/CourseClassTeamOutput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/CourseClassService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/HomeworkService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/CourseClassServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/HomeworkServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/FileUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/GroupMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/FacultyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/FacultyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/MajorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/MajorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/teacher/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/teacher/TeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/SysModelCourseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/SysModelCourseMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/insert/AddCourseClassInsert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/insert/AddCourseClassInsert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/model/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/model/Page.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/MajorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/MajorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/MajorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/MajorServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/StringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/statics/js/page_helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/statics/js/page_helper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/statics/js/teacher.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/statics/js/teacher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bar/left_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bar/left_bar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/m_manage_course_made_courseclass.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/m_manage_course_made_courseclass.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/t_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/t_course.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/education/system_edu/SystemEduApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/education/system_edu/SystemEduApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/t_tesk.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/t_tesk.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system_edu.iml" beforeDir="false" afterPath="$PROJECT_DIR$/system_edu.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/SystemEduApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/SystemEduApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/config/ScanConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/config/ScanConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/AllApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/AllApiController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/JumpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/JumpController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/PageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/PageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/manage/FacultyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/manage/FacultyController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/manage/MajorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/manage/MajorController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/manage/ManageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/manage/ManageController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ClassPublishAssignmentActionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ClassPublishAssignmentActionMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectQuestionnaireAndQuestionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectQuestionnaireAndQuestionMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectQuestionnaireQuestionAndOptionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/ConnectQuestionnaireQuestionAndOptionMapper.class" afterDir="false" />
@@ -53,7 +47,6 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysMessageMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysMessageMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelClassAssignmentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelClassAssignmentMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelClassMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelClassMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseTableModelHasCourseMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseTableModelHasCourseMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseTableModelMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseTableModelMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseTimeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseTimeMapper.class" afterDir="false" />
@@ -210,12 +203,8 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLogExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLogExample$GeneratedCriteria.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLogExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/pojo/userExecutionAssignmentLogExample.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/FacultyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/FacultyService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/MajorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/MajorService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/PageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/PageService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/UserService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/FacultyServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/FacultyServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/MajorServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/MajorServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/UserServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/ClassUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/ClassUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/DateUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/DateUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/EmptyUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/EmptyUtil.class" afterDir="false" />
@@ -232,9 +221,11 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/UU3D.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/UU3D.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/UserMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/UserMessage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/bar/left_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/bar/left_bar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/m_manage_course_made_courseclass.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/m_manage_course_made_courseclass.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/t_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/t_course.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/education/system_edu/SystemEduApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/education/system_edu/SystemEduApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/t_tesk.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/t_tesk.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/education/system_edu/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/education/system_edu/Test.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -263,8 +254,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Interface" />
         <option value="JavaScript File" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -503,7 +494,14 @@
       <workItem from="1585631781913" duration="5000" />
       <workItem from="1585637068426" duration="9726000" />
       <workItem from="1585709802746" duration="1210000" />
-      <workItem from="1585711803331" duration="38943000" />
+      <workItem from="1585711803331" duration="39936000" />
+      <workItem from="1585877210197" duration="13331000" />
+      <workItem from="1585899899481" duration="312000" />
+      <workItem from="1585900453604" duration="1851000" />
+      <workItem from="1586259140072" duration="50000" />
+      <workItem from="1586259224551" duration="10443000" />
+      <workItem from="1586408438074" duration="120000" />
+      <workItem from="1586415026965" duration="681000" />
     </task>
     <task id="LOCAL-00001" summary="制作到管理员管理学院/系/专业&#10;即将制作用户管理">
       <created>1582852222232</created>
@@ -610,7 +608,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585637379806</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="完成排课和进入老师页面查看课程班级学生">
+      <created>1585815813613</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1585815813613</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -633,7 +638,8 @@
     <MESSAGE value="提出分页查询的公共方法" />
     <MESSAGE value="完成查询问卷，剔除分页重复代码" />
     <MESSAGE value="先停一下管理员，做了些数据开始做老师课程管理功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="先停一下管理员，做了些数据开始做老师课程管理功能" />
+    <MESSAGE value="完成排课和进入老师页面查看课程班级学生" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成排课和进入老师页面查看课程班级学生" />
   </component>
   <component name="WindowStateProjectService">
     <state x="359" y="75" key="#Custom_Plugin_Repositories" timestamp="1585030861904">
@@ -664,10 +670,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="483" y="266" width="594" height="294" key="#com.intellij.codeInsight.template.impl.EditVariableDialog/0.0.1536.834@0.0.1536.834" timestamp="1585031790897" />
-    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser" timestamp="1585808485107">
+    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser" timestamp="1586268665386">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1585808485107" />
+    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1586268665386" />
     <state x="388" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1584320183190">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -680,14 +686,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1582789438486" />
-    <state x="410" y="14" key="CommitChangelistDialog2" timestamp="1585637376889">
+    <state x="410" y="14" key="CommitChangelistDialog2" timestamp="1586415863272">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="410" y="14" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1585637376889" />
-    <state width="588" height="466" key="DebuggerActiveHint" timestamp="1585815136763">
+    <state x="410" y="14" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1586415863272" />
+    <state width="588" height="466" key="DebuggerActiveHint" timestamp="1586268599901">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="588" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1585815136763" />
+    <state width="588" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1586268599901" />
     <state x="549" y="158" key="FileChooserDialogImpl" timestamp="1585030866449">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -696,70 +702,70 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="632" y="308" width="272" height="287" key="Github.ShareDialog/0.0.1536.834@0.0.1536.834" timestamp="1582853113702" />
-    <state width="1492" height="190" key="GridCell.Tab.0.bottom" timestamp="1585804440064">
+    <state width="1145" height="209" key="GridCell.Tab.0.bottom" timestamp="1586415744924">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="190" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585804440064" />
-    <state width="1492" height="190" key="GridCell.Tab.0.center" timestamp="1585804440064">
+    <state width="1145" height="209" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586415744924" />
+    <state width="1145" height="209" key="GridCell.Tab.0.center" timestamp="1586415744924">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="190" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1585804440064" />
-    <state width="1492" height="190" key="GridCell.Tab.0.left" timestamp="1585804440063">
+    <state width="1145" height="209" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1586415744924" />
+    <state width="1145" height="209" key="GridCell.Tab.0.left" timestamp="1586415744922">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="190" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1585804440063" />
-    <state width="1492" height="190" key="GridCell.Tab.0.right" timestamp="1585804440064">
+    <state width="1145" height="209" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1586415744922" />
+    <state width="1145" height="209" key="GridCell.Tab.0.right" timestamp="1586415744924">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="190" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1585804440064" />
-    <state width="1492" height="190" key="GridCell.Tab.1.bottom" timestamp="1585804439864">
+    <state width="1145" height="209" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1586415744924" />
+    <state width="1146" height="209" key="GridCell.Tab.1.bottom" timestamp="1586265536713">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="190" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585804439864" />
-    <state width="1492" height="190" key="GridCell.Tab.1.center" timestamp="1585804439863">
+    <state width="1146" height="209" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586265536713" />
+    <state width="1146" height="209" key="GridCell.Tab.1.center" timestamp="1586265536712">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="190" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1585804439863" />
-    <state width="1492" height="190" key="GridCell.Tab.1.left" timestamp="1585804439863">
+    <state width="1146" height="209" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1586265536712" />
+    <state width="1146" height="209" key="GridCell.Tab.1.left" timestamp="1586265536712">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="190" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1585804439863" />
-    <state width="1492" height="190" key="GridCell.Tab.1.right" timestamp="1585804439864">
+    <state width="1146" height="209" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1586265536712" />
+    <state width="1146" height="209" key="GridCell.Tab.1.right" timestamp="1586265536713">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="190" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1585804439864" />
-    <state width="1492" height="190" key="GridCell.Tab.2.bottom" timestamp="1585804439864">
+    <state width="1146" height="209" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1586265536712" />
+    <state width="1146" height="209" key="GridCell.Tab.2.bottom" timestamp="1586265536714">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="190" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585804439864" />
-    <state width="1492" height="190" key="GridCell.Tab.2.center" timestamp="1585804439864">
+    <state width="1146" height="209" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586265536714" />
+    <state width="1146" height="209" key="GridCell.Tab.2.center" timestamp="1586265536713">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="190" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1585804439864" />
-    <state width="1492" height="190" key="GridCell.Tab.2.left" timestamp="1585804439864">
+    <state width="1146" height="209" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1586265536713" />
+    <state width="1146" height="209" key="GridCell.Tab.2.left" timestamp="1586265536713">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="190" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1585804439864" />
-    <state width="1492" height="190" key="GridCell.Tab.2.right" timestamp="1585804439864">
+    <state width="1146" height="209" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1586265536713" />
+    <state width="1146" height="209" key="GridCell.Tab.2.right" timestamp="1586265536714">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="190" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1585804439864" />
+    <state width="1146" height="209" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1586265536714" />
     <state x="349" y="163" key="IDE.errors.dialog" timestamp="1585794277785">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="349" y="163" key="IDE.errors.dialog/0.0.1536.834@0.0.1536.834" timestamp="1585794277785" />
-    <state x="270" y="59" width="1211" height="709" key="SettingsEditor" timestamp="1585794266645">
+    <state x="270" y="59" width="1211" height="709" key="SettingsEditor" timestamp="1585892561844">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="270" y="59" width="1211" height="709" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1585794266645" />
+    <state x="270" y="59" width="1211" height="709" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1585892561844" />
     <state x="490" y="159" width="540" height="524" key="StructurePopup" timestamp="1585641192802">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="490" y="159" width="540" height="524" key="StructurePopup/0.0.1536.834@0.0.1536.834" timestamp="1585641192802" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1585637411929">
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1585815894253">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1585637411929" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1585815894253" />
     <state x="499" y="182" key="extract.method.dialog" timestamp="1582869227969">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -768,18 +774,18 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="555" y="208" key="git4idea.merge.GitPullDialog/0.0.1536.834@0.0.1536.834" timestamp="1582853727572" />
-    <state x="470" y="44" key="refactoring.ChangeSignatureDialog" timestamp="1585109678892">
+    <state x="470" y="44" key="refactoring.ChangeSignatureDialog" timestamp="1585892734414">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="470" y="44" key="refactoring.ChangeSignatureDialog/0.0.1536.834@0.0.1536.834" timestamp="1585109678892" />
+    <state x="470" y="44" key="refactoring.ChangeSignatureDialog/0.0.1536.834@0.0.1536.834" timestamp="1585892734414" />
     <state x="425" y="189" width="672" height="677" key="run.anything.popup" timestamp="1585724913203">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1585724913203" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1585811210307">
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1586267795250">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1585811210307" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1586267795250" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

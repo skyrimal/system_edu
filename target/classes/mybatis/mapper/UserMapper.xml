@@ -128,6 +128,7 @@
     a.last_login_ip, a.last_login_date, a.freeze_date, a.freeze_cause, a.status, a.create_by, a.create_date,
     a.update_by, a.update_date
   </sql>
+    <!--  手动添加老师搜索学生用的 -->
 
     <!-- 手动添加为了修改用户信息获取OutputUserForEditUserAction -->
     <select id="selectOutputUserForEditUserActionByLoginCode" parameterType="java.lang.String"

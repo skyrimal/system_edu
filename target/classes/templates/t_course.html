@@ -40,13 +40,41 @@
 </head>
 
 <body>
+<div class="modal fade" id="made_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="made_group_label">输入小组数</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal"
+                      th:action="'/teacher/made_team/'+${teacherSearchStudentInsert.getCourseCode()}" method="post">
+                    <div class="form-group col">
+                        <label for="team_member_num" class="sr-only">小组数</label>
+                        <div class="row">
+                            <input id="team_member_num" name="memberNum" type="text" placeholder="请输入小组数"
+                                   class=" form-control" style="width: 300px">
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
 <div class="modal fade" id="sign_info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel1">发起签到成功</h4>
             </div>
-            <div class="modal-body">
+            <div id="sign_msg" class="modal-body">
                 数据管理20班签到发起成功
             </div>
             <div class="modal-footer">
@@ -71,7 +99,10 @@
                     <div class="card">
                         <div class="card-body">
                             <!--表单-->
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" enctype="multipart/form-data"
+                                  action="/teacher/homework/sendHomwork" method="post">
+                                <input name="classCode" hidden="hidden" type="text"
+                                       th:value="${teacherSearchStudentInsert.getCourseCode()}"/>
                                 <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">作业标题</label>
                                     <div class="col-sm-9">
@@ -92,12 +123,12 @@
                                     <label class="col-sm-3 form-control-label">助教批阅作业 <br><small class="text-primary">选择是助教可以给本次作业评分</small></label>
                                     <div class="col-sm-9">
                                         <div>
-                                            <input id="optionsRadios4" type="radio" value="true" name="judgement">
+                                            <input id="optionsRadios4" type="radio" value="1" name="acess">
                                             <label for="optionsRadios1">是</label>
                                         </div>
                                         <div>
-                                            <input id="optionsRadios5" type="radio" checked="true" value="true"
-                                                   name="judgement">
+                                            <input id="optionsRadios5" type="radio" checked="true" value="0"
+                                                   name="acess">
                                             <label for="optionsRadios2">否</label>
                                         </div>
                                     </div>
@@ -106,12 +137,12 @@
                                     <label class="col-sm-3 form-control-label">小组作业 <br><small class="text-primary">选择是同一小组只提交一份作业</small></label>
                                     <div class="col-sm-9">
                                         <div>
-                                            <input id="optionsRadios1" type="radio" value="true" name="judgement">
+                                            <input id="optionsRadios1" type="radio" value="1" name="team">
                                             <label for="optionsRadios1">是</label>
                                         </div>
                                         <div>
-                                            <input id="optionsRadios2" type="radio" checked="true" value="true"
-                                                   name="judgement">
+                                            <input id="optionsRadios2" type="radio" checked="true" value="0"
+                                                   name="team">
                                             <label for="optionsRadios2">否</label>
                                         </div>
                                     </div>
@@ -138,7 +169,7 @@
                                 <div class="form-group row">
                                     <label for="fileInput" class="col-sm-3 form-control-label">上传相关附件</label>
                                     <div class="col-sm-9">
-                                        <input id="fileInput" type="file" class="form-control-file">
+                                        <input id="fileInput" name="loadFile" type="file" class="form-control-file">
                                     </div>
                                 </div>
                                 <div class="line"></div>
@@ -247,7 +278,7 @@
                             </div>
 
                             <div class="form-group">
-                                <div >
+                                <div>
                                     <button type="submit" class="btn btn-primary">发送</button>
                                 </div>
                             </div>
@@ -336,8 +367,12 @@
                     </li>
                     <li class="breadcrumb-item active">Tables</li>
                 </ul>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#made_team">划分小组</button>
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#sign_info">发起签到</button>
+                <button id="to-made-group" type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#made_group">划分小组
+                </button>
+                <button type="button" id="made_sign" class="btn btn-info" data-toggle="modal" data-target="#sign_info">
+                    发起签到
+                </button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#made_tesk">发布作业</button>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#announcement">发布公告
                 </button>
@@ -371,7 +406,8 @@
                                                 <th scope="row" th:text="${student.getLoginCode()}">41602323</th>
                                                 <td th:text="${student.getUserName()}">李二白</td>
                                                 <td th:text="${student.getMajor()}">考古学</td>
-                                                <td th:text="${student.getFactory()+'--'+student.getDepartment()}">莫名堂</td>
+                                                <td th:text="${student.getFactory()+'--'+student.getDepartment()}">莫名堂
+                                                </td>
                                                 <td>
                                                     <a class="btn btn-outline-success btn-sm" href="#">详细信息</a>
                                                     <a class="btn btn-warning btn-sm" href="#">联系</a>
@@ -456,7 +492,7 @@
 <script src="/statics/js/teacher.js"></script>
 <script src="/statics/js/page_helper.js"></script>
 <script>
-    $(function() {
+    $(function () {
         var pageNum = '[[${Model_Page.getPageNum()}]]';
         var pageSize = '[[${Model_Page.getPageSize()}]]';
         var pageMaxNum = '[[${Model_Page.getMaxPage()}]]';
@@ -466,7 +502,42 @@
         data.studentLoginCode = '[[${teacherSearchStudentInsert.getStudentLoginCode()}]]';
         console.log("启动")
         pageHelperInit(pageNum, pageMaxNum);
-        clickA(pageNum,pageMaxNum,data,pageSize,'/teacher/course/[[${teacherSearchStudentInsert.getCourseCode()}]]/');
+        clickA(pageNum, pageMaxNum, data, pageSize, '/teacher/course/[[${teacherSearchStudentInsert.getCourseCode()}]]/');
+
+        $("#to-made-group").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/teacher/courseTeam/[[${teacherSearchStudentInsert.getCourseCode()}]]",
+                success(data) {
+                }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    // 状态码
+                    console.log(XMLHttpRequest.status);
+                    // 状态
+                    console.log(XMLHttpRequest.readyState);
+                    // 错误信息
+                    console.log(textStatus);
+                }
+            })
+        });
+
+        $("#made_sign").click(function () {
+            console.log("金属");
+            $.ajax({
+                type: "GET",
+                url: "/teacher/madeSign/[[${teacherSearchStudentInsert.getCourseCode()}]]",
+                dataType:"text",
+                success(data) {
+                    $("#sign_msg").text("").text(data)
+                }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    // 状态码
+                    console.log(XMLHttpRequest.status);
+                    // 状态
+                    console.log(XMLHttpRequest.readyState);
+                    // 错误信息
+                    console.log(textStatus);
+                }
+            })
+        })
     })
 </script>
 </body>

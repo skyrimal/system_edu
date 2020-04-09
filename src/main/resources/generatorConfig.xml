@@ -39,7 +39,7 @@
 
         <!--指定每个表的生成策略-->
         <!--指定每个表的生成策略-->
-        <table tableName="connect_teacher_course" domainObjectName="ConnectTeacherCourse"/>
+        <table tableName="connect_class_group_student" domainObjectName="Group"/>
 <!--        <table tableName="sys_data_tree" domainObjectName="SysDataTree"/>-->
 <!--        <table tableName="sys_node" domainObjectName="SysNode"/>-->
 <!--        <table tableName="sys_permission" domainObjectName="SysPermission"/>-->
