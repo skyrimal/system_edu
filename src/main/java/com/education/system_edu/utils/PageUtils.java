@@ -5,7 +5,7 @@ import com.education.system_edu.utils.value.PageValue;
 import org.springframework.ui.Model;
 
 public class PageUtils {
-    public static String TEACHER = "t_";
+    public static String TEACHER = "teacher/t_";
     public static String STUDENT = "stu_";
     public static String MANAGER = "m_";
 

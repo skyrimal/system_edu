@@ -59,10 +59,10 @@
                     </div>
                     <div class="card-body">
                         <p>请输入签到码</p>
-                        <form>
+                        <form action="/student/course/sign" method="get">
                             <div class="form-group">
-                                <label class="form-control-label">签到码</label>
-                                <input type="email" placeholder="在开启签到5分钟内输入签到码签到" class="form-control">
+                                <label class="form-control-label" >签到码<p th:text="${msg}" style="color: red"></p></label>
+                                <input type="text" name="signCode" placeholder="输入签到码签到" class="form-control">
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="签到" class="btn btn-primary">
@@ -78,13 +78,15 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped table-hover">
                                         <tbody>
-                                        <tr>
-                                            <th scope="row">2019.05.04 10:05</th>
-                                            <td class="bg-danger"><strong>缺席</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2019.05.03 10:05</th>
-                                            <td class="bg-info"><strong>正常</strong></td>
+                                        <tr th:each="msgHistory:${msgHistorys}">
+                                            <th scope="row" th:text="${msgHistory.getTime()}"></th>
+                                            <td class="bg-info" th:if="${msgHistory.getStatus()=='1'}"><strong>正常</strong></td>
+                                            <td class="bg-danger" th:if="${msgHistory.getStatus()=='2-1'}"><strong>缺席</strong></td>
+                                            <td class="bg-danger" th:if="${msgHistory.getStatus()=='2-2'}"><strong>迟到</strong></td>
+                                            <td class="bg-danger" th:if="${msgHistory.getStatus()=='2-3'}"><strong>早退</strong></td>
+                                            <td class="bg-warning" th:if="${msgHistory.getStatus()=='101'}"><strong>请假</strong></td>
+                                            <th scope="row" th:text="${msgHistory.getCourseName()}"></th>
+                                            <th scope="row" th:text="${msgHistory.getCourseClassCode()}"></th>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -113,6 +115,31 @@
 </div>
 
 <div th:insert="~{/bar/js_bar::js}"></div>
+<script>
+    $(function () {
+        $("#stu_sign").addClass("active");
+        $.ajax({
+            url: "/student/course/courseClass",
+            typ: "get",
+            success(date) {
+                $("#coursedropdownDropdown").children().remove();
+                $.each(date,function (index,value) {
+                    $("#coursedropdownDropdown").append("" +
+                        "                <li>\n" +
+                        "                    <a href=\"/student/course/into/"+value.code+"\">"+value.name+"</a>\n" +
+                        "                </li>");
+                })
+            }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                // 状态码
+                console.log(XMLHttpRequest.status);
+                // 状态
+                console.log(XMLHttpRequest.readyState);
+                // 错误信息
+                console.log(textStatus);
+            }
+        })
+    });
+</script>
 </body>
 
 </html>

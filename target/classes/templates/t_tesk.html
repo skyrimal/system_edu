@@ -40,6 +40,33 @@
 </head>
 
 <body>
+<div class="modal fade" id="stusubmit_context" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true"
+     data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 1000px">
+            <div class="modal-header">
+                批阅作业
+                <p id="msg" class="bg-info"></p>
+            </div>
+            <div class="modal-body">
+                <p id="context_"></p>
+                    <input id="hiddenSubmitCode" type="text" name="submitCode" value="" hidden="hidden"/>
+                    <input id="finalScore" type="number" name="finalScore" value="" placeholder="输入作业得分"/>
+                <button class="btn-info" onclick="clickc()">提交</button>
+                <a id="downFile" href="" class="btn btn-outline-info">下载作业附件</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal"
+                        data-target="#searchsubmit">关闭
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
 <!--发布作业-->
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="made_tesk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
@@ -144,6 +171,56 @@
     </div>
     <!-- /.modal -->
 </div>
+
+<div class="modal fade" id="searchsubmit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width: 1000px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="as">批阅作业</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th>学生名</th>
+                        <th>学号</th>
+                        <th>上传时间</th>
+                        <th>作业状态</th>
+                        <th>最终得分</th>
+                        <th>修改</th>
+                    </tr>
+                    </thead>
+                    <tbody id="SaaS">
+                    <tr class="">
+                        <th scope="row">0001</th>
+                        <td>数据结构</td>
+                        <td>2019年10月13日 12:51</td>
+                        <td>2019年10月14日 23:55</td>
+                        <td>web应用开发中的SSM.......</td>
+                        <td>
+                            <div class="btn-group-sm">
+                                <div class="btn btn-warning btn-sm" data-toggle="modal" data-target="#searchsubmit">批阅
+                                </div>
+                                <div id="check_stusubmit_context" class="btn btn-warning btn-sm" data-toggle="modal"
+                                     data-target="#stusubmit_context" onclick="">查看
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
+
 <div class="page">
     <!-- 主菜单栏-->
 
@@ -161,27 +238,29 @@
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
-                    <th>编号</th>
+                    <th>班级编号</th>
                     <th>课程名称</th>
+                    <th>作业标题</th>
                     <th>发布时间</th>
                     <th>截止时间</th>
-                    <th>标题</th>
                     <th>分数</th>
+                    <th>状态</th>
                     <th>修改</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr class="sign_in">
+                <tbody id="homworkMsg">
+                <tr class="">
                     <th scope="row">0001</th>
                     <td>数据结构</td>
                     <td>2019年10月13日 12:51</td>
                     <td>2019年10月14日 23:55</td>
                     <td>web应用开发中的SSM.......</td>
                     <td>7</td>
+                    <td>7</td>
                     <td>
                         <div class="btn-group-sm">
                             <div class="btn btn-warning btn-sm" data-toggle="modal" data-target="#made_tesk">修改</div>
-                            <div class="btn btn-warning btn-sm">批阅</div>
+                            <div class="btn btn-warning btn-sm" data-toggle="modal" data-target="#searchsubmit">批阅</div>
                             <div class="btn btn-warning btn-sm">查看</div>
                             <div class="btn btn-warning btn-sm">重新开放</div>
                         </div>
@@ -210,6 +289,112 @@
 <div th:insert="~{/bar/js_bar::js}"></div>
 <script src="/statics/js/teacher.js"></script>
 <script src="/statics/js/page_helper.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            type: "get",
+            url: "/teacher/homework/getHomework",
+            success: function (date) {
+                console.log(date);
+                $("#homworkMsg").children().remove();
+                $.each(date, function (index, value) {
+                    console.info(index);
+                    $("#homworkMsg").append("<tr class=\"\">\n" +
+                        "                    <th scope=\"row\">" + value.courseClassCode + "</th>\n" +
+                        "                    <td>" + value.courseName + "</td>\n" +
+                        "                    <td>" + value.title + "</td>\n" +
+                        "                    <td>" + value.startTime + "</td>\n" +
+                        "                    <td>" + value.endTime + "</td>\n" +
+                        "                    <td>" + value.score + "</td>\n" +
+                        "                    <td>" + value.status + "</td>\n" +
+                        "                    <td>\n" +
+                        "                        <div class=\"btn-group-sm\">\n" +
+                        "                            <div class=\"btn btn-warning btn-sm\" data-toggle=\"modal\" data-target=\"#made_tesk\">修改</div>\n" +
+                        "                            <div class=\"btn btn-warning btn-sm\" data-toggle=\"modal\" onclick = \"clicka(" + "'" + value.code + "'" + ")\" data-target=\"#searchsubmit\">批阅</div>\n" +
+                        "                            <div class=\"btn btn-warning btn-sm\">查看</div>\n" +
+                        "                            <div class=\"btn btn-warning btn-sm\">重新开放</div>\n" +
+                        "                        </div>\n" +
+                        "                    </td>" +
+                        "                </tr>");
+                })
+
+            }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                // 状态码
+                console.log(XMLHttpRequest.status);
+                // 状态
+                console.log(XMLHttpRequest.readyState);
+                // 错误信息
+                console.log(textStatus);
+            }
+        });
+
+    });
+
+    function clicka(a) {
+        $.ajax({
+            type: "get",
+            url: "teacher/correctHomeworkInfo/" + a,
+            success(data) {
+                $("#SaaS").children().remove();
+                $.each(data, function (index, value) {
+                    $("#SaaS").append(" <tr class=\"\">\n" +
+                        "                        <th scope=\"row\">" + value.stuName + "</th>\n" +
+                        "                        <td>" + value.loginCode + "</td>\n" +
+                        "                        <td>" + value.updateTime + "</td>\n" +
+                        "                        <td>" + value.status + "</td>\n" +
+                        "                        <td>" + value.finalScore + "</td>\n" +
+                        "                        <td>\n" +
+                        "                            <div class=\"btn-group-sm\">\n" +
+                        "                                <div class=\"btn btn-warning btn-sm\" data-toggle=\"modal\" data-target=\"#stusubmit_context\" data-dismiss=\"modal\" onclick=\"clickb('" + value.code + "','" + value.context + "','" + value.fileName + "');\">批阅</div>\n" +
+                        "                            </div>\n" +
+                        "                        </td>\n" +
+                        "                    </tr>");
+                })
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                // 状态码
+                console.log(XMLHttpRequest.status);
+                // 状态
+                console.log(XMLHttpRequest.readyState);
+                // 错误信息
+                console.log(textStatus);
+            }
+        })
+    }
+
+    function clickb(code, context, fileName) {
+        console.info("点了一下b");
+        console.info(context);
+        $("#context_").text("").text(context);
+        $("#downFile").attr("href", "/download/" + fileName + ".doc");
+        $("#hiddenSubmitCode").val("").val(code);
+    }
+
+    function clickc() {
+        var hiddenSubmitCode = $("#hiddenSubmitCode").val();
+        var finalScore = $("#finalScore").val();
+        $.ajax({
+            type:"get",
+            url:"/teacher/homework/correctHomework",
+            data:{
+                'submitCode':hiddenSubmitCode,
+                'finalScore':finalScore
+            },
+            success(data){
+                console.info(data);
+                $("#msg").text(data)
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                // 状态码
+                console.log(XMLHttpRequest.status);
+                // 状态
+                console.log(XMLHttpRequest.readyState);
+                // 错误信息
+                console.log(textStatus);
+            }
+        })
+    }
+</script>
 </body>
 
 </html>

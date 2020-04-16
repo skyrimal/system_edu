@@ -5,6 +5,7 @@ import com.education.system_edu.pojo.UserExample;
 
 import java.util.List;
 
+import com.education.system_edu.pojo.dbpojo.UserInSchoolMSG;
 import com.education.system_edu.pojo.insert.TeacherSearchStudentInsert;
 import com.education.system_edu.pojo.output.CourseClassUserStudentOutPut;
 import com.education.system_edu.pojo.output.OutputUserForEditUserAction;
@@ -349,4 +350,31 @@ public interface UserMapper {
             "course_class.class_code ='${courseClassCode}' \n" +
             "ORDER BY users.login_code ")
     List<User> selectAllByCourseClassCode(String courseClassCode);
+
+    @Select("SELECT DISTINCT\n" +
+            "cls.class_code AS cls,\n" +
+            "cls.grade,\n" +
+            "all_users.login_code,\n" +
+            "maj.`code` AS maj,\n" +
+            "dep.`code` AS dep,\n" +
+            "fac.`code` AS fac\n" +
+            "FROM\n" +
+            "sys_model_class AS cls\n" +
+            "INNER JOIN sys_data_tree AS maj ON cls.sys_college_node_code = maj.`code` AND cls.type = '2'\n" +
+            "INNER JOIN sys_data_tree AS dep ON maj.parent_node = dep.`code`\n" +
+            "INNER JOIN sys_data_tree AS fac ON dep.parent_node = fac.`code`\n" +
+            "INNER JOIN connect_user_student_and_class AS csu ON csu.class_code = cls.`code`\n" +
+            "INNER JOIN all_users ON csu.student_no = all_users.login_code AND all_users.login_code = '2020001001'\n")
+    List<UserInSchoolMSG> selectSchoolMSGByLoginCode(String loginCode);
+
+    @Select("SELECT DISTINCT\n" +
+            "\tsys_model_class.class_code,\n" +
+            "\tall_users.login_code\n" +
+            "FROM\n" +
+            "\tsys_model_class\n" +
+            "INNER JOIN connect_user_student_and_class ON sys_model_class.`code` = connect_user_student_and_class.class_code\n" +
+            "AND sys_model_class.type = '1'\n" +
+            "INNER JOIN all_users ON connect_user_student_and_class.student_no = all_users.login_code\n" +
+            "AND all_users.login_code = '${loginCode}'")
+    List<String> selectClassByLoginCode(String loginCode);
 }

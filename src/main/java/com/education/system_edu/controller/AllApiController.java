@@ -1,15 +1,23 @@
 package com.education.system_edu.controller;
 
+import com.education.system_edu.pojo.User;
 import com.education.system_edu.utils.ImgMaker;
+import com.education.system_edu.utils.SubjectUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.io.*;
+import java.net.URLEncoder;
 
 @Controller
 public class AllApiController {
@@ -86,11 +94,7 @@ public class AllApiController {
         return "/stu_message";
     }
 
-    @RequiresRoles({"student"})
-    @RequestMapping("stu_sign")
-    public String stu_sign() {
-        return "/stu_sign";
-    }
+
 
     /**
      * *********************************************************************
@@ -108,8 +112,12 @@ public class AllApiController {
 
     @RequiresRoles({"teacher"})
     @RequestMapping("t_main")
-    public String t_main() {
-        return "/t_main";
+    public ModelAndView t_main() {
+        ModelAndView modelAndView = new ModelAndView("/t_main");
+        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
+        User user = (User) subjectUtils.getPrincipal();
+
+        return modelAndView;
     }
 
     @RequiresRoles({"teacher"})
@@ -159,5 +167,23 @@ public class AllApiController {
         ivc.output(image, response.getOutputStream());//将验证码图片响应给客户端
     }
 
+    /**
+     * 下载文件
+     * @param request
+     * @param response
+     */
+    @GetMapping("/download/{fileName}")
+    public void download(@PathVariable String fileName, HttpServletRequest request, HttpServletResponse response) {
+        String path="D:\\file";
+        //下载
+        try (InputStream inputStream = new FileInputStream(new File(path, fileName ));
+             OutputStream outputStream = response.getOutputStream();) {
+            response.setContentType("application/x-download");
+            response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "utf-8"));
+            IOUtils.copy(inputStream, outputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

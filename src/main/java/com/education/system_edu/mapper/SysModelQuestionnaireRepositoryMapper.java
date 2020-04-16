@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.education.system_edu.pojo.insert.SearchQuestionnaireInsert;
 import com.education.system_edu.pojo.output.QuestionnaireOutput;
+import com.education.system_edu.pojo.output.QuestionnaireToAnswerOutput;
 import org.apache.ibatis.annotations.Param;
 
 public interface SysModelQuestionnaireRepositoryMapper {
@@ -34,4 +35,6 @@ public interface SysModelQuestionnaireRepositoryMapper {
     List<QuestionnaireOutput> selectBySearchQuestionnaireInsert(SearchQuestionnaireInsert searchQuestionnaireInsert);
 
     Integer countBySearchQuestionnaireInsert(SearchQuestionnaireInsert searchQuestionnaireInsert);
+
+    QuestionnaireToAnswerOutput selectQuestionnaireToAnswerOutput(String questionnaireCode);
 }

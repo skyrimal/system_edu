@@ -45,12 +45,12 @@
 <body>
 
 <!-- 模态框（Modal） -->
-<div class="modal fade " id="tesk_reach" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+<div class="modal fade " id="tesk_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
      data-backdrop="static" data-keyboard="false">>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">作业</h4>
+                <h4 class="modal-title" id="myModalLabel1">作业</h4>
             </div>
             <div class="modal-body">
                 <div class="col-lg-11">
@@ -58,38 +58,9 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>作业标题</th>
-                                        <td>这个不做就挂</td>
-                                    </tr>
+                                    <thead id="tesk_table_head">
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">作业发布时间</th>
-                                        <td>2019.10.12</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">作业截止时间</th>
-                                        <td>2019 10 21 23:55</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">提交作业</th>
-                                        <td>
-                                            <form action="" method="post">
-                                                <textarea class="form-control" rows="3" name="tip" required
-                                                          placeholder="内容在1000字以内"></textarea>
-                                                <input type="submit" value="提交"/>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">上传文件</th>
-                                        <td>
-                                            <input type="file" name="my" class="file" id="update_tesk"
-                                                   data-show-upload="true" data-show-caption="true"><br>
-                                        </td>
-                                    </tr>
+                                    <tbody id="tesk_table_body">
                                     </tbody>
                                 </table>
 
@@ -99,7 +70,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-dismiss="modal"
+                        data-target="#tesk_reach">关闭
+                </button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -107,12 +80,12 @@
     <!-- /.modal -->
 </div>
 <!-- 模态框（Modal） -->
-<div class="modal fade" id="course_msg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+<div class="modal fade" id="course_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
      data-backdrop="static" data-keyboard="false">>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">班级信息</h4>
+                <h4 class="modal-title" id="myModalLabel2">班级信息</h4>
             </div>
             <div class="modal-body">
                 <div class="col-lg-11">
@@ -161,7 +134,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">知识点</h4>
+                <h4 class="modal-title" id="myModalLabel3">知识点</h4>
             </div>
             <div class="modal-body">
                 <div class="col-lg-11">
@@ -204,6 +177,79 @@
     <!-- /.modal -->
 </div>
 <!-- /.modal -->
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="tesk_reach" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     data-backdrop="static" data-keyboard="false">>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">作业信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-11">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>班级编号</th>
+                                        <th>作业标题</th>
+                                        <th>发布时间</th>
+                                        <th>截止时间</th>
+                                        <th>分数</th>
+                                        <th>得分</th>
+                                        <th>状态</th>
+                                        <th>修改</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="homework_msg">
+                                    <tr th:each="mgs:${homeworkMSGs}">
+                                        <th scope="row" th:text="${mgs.getCourseClassCode()}"></th>
+                                        <th th:text="${mgs.getTitle()}"></th>
+                                        <th th:text="${mgs.getStartTime()}"></th>
+                                        <th th:text="${mgs.getEndTime()}"></th>
+                                        <th th:text="${mgs.getScore()}"></th>
+                                        <th th:text="${mgs.getFinScore()}"></th>
+                                        <th class="list-group-item-warning" th:if="${mgs.getStatus()=='10'}"
+                                            th:text="-未提交-">
+                                        <th class="list-group-item-info" th:if="${mgs.getStatus()=='11'}"
+                                            th:text="-已提交-">
+                                        <th class="list-group-item-danger" th:if="${mgs.getStatus()=='01'}"
+                                            th:text="-未提交-">
+                                        <th class="list-group-item-info" th:if="${mgs.getStatus()=='02'}"
+                                            th:text="-已提交-">
+                                        <th class="list-group-item-success" th:if="${mgs.getStatus()=='03'}"
+                                            th:text="-已批阅-">
+                                        </th>
+                                        <th>
+                                            <div class="btn-group-sm">
+                                                <div class="btn btn-warning btn-sm" data-toggle="modal"
+                                                     data-dismiss="modal" data-target="#tesk_form"
+                                                     th:onclick="click1([[${mgs}]]);">
+                                                    提交作业
+                                                </div>
+                                            </div>
+                                        </th>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+<!-- /.modal -->
+
 </div>
 <div class="page">
     <header class="header">
@@ -284,50 +330,75 @@
 </div>
 
 <div th:insert="~{/bar/js_bar::js}"></div>
-<script type="text/javascript">
-    Initfileinput = function (uploadurl) {
-        $("#update_tesk").fileinput({
-            //uploadUrl: "../fileinfo/save", // server upload action
-            uploadUrl: "http://localhost:8080/GD/UploadAction_execute.action",
-            required: true,
-            showBrowse: true,
-            browseOnZoneClick: true,
-            dropZoneEnabled: false,
-            //allowedFileExtensions: ["jpg", "xlsx"], //只能选择xls,和xlsx格式的文件提交
-            maxFileSize: 1024 * 50, //单位为kb，如果为0表示不限制文件大小
-            layoutTemplates: {
-                actionUpload: ''
-            },
-            /*上传成功之后运行*/
-            fileuploaded: $("#update_tesk").on("fileuploaded", function (event, data, previewId, index) {
-                console.log("Upload success");
-                var a = document.getElementById('update_tesk').value;
-                console.log(a);
-                $.ajax({
-                    type: "post",
-                    async: false,
-                    url: "C:\Users\Administrator\Desktop\shixun_test_system",
-                    data: {
-                        "filepath.path": a
-                    },
-                    dataType: "json",
-                    success: function () {
-                        console.log("添加成功");
-                    }
-                })
-            }),
-            /*上传出错误处理*/
-            fileerror: $('#update_tesk').on('fileerror', function (event, data, msg) {
-                console.log("Upload failed")
-            }),
-        });
-    }
-    Initfileinput(); //记得加载，初始化
-</script>
-</body>
 <script>
     $(function () {
         $("#stu_course").addClass("active");
-    })
+        $.ajax({
+            url: "/student/course/courseClass",
+            typ: "get",
+            success(date) {
+                $("#coursedropdownDropdown").children().remove();
+                $.each(date,function (index,value) {
+                    $("#coursedropdownDropdown").append("" +
+                        "                <li>\n" +
+                        "                    <a href=\"/student/course/into/"+value.code+"\">"+value.name+"</a>\n" +
+                        "                </li>");
+                })
+            }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                // 状态码
+                console.log(XMLHttpRequest.status);
+                // 状态
+                console.log(XMLHttpRequest.readyState);
+                // 错误信息
+                console.log(textStatus);
+            }
+        })
+    });
+    function click1(a) {
+        console.info("点了一下");
+        console.info(a);
+        clearingTestForm();
+        $("#tesk_table_head").append(" <th>作业标题</th>\n" +
+            "                          <td>" + a.title + "</td>");
+        if (a.status == "10" || a.status == "11") {
+            $("#tesk_table_body").append("           <tr>\n" +
+                "                                        <th scope=\"row\">作业发布时间</th>\n" +
+                "                                        <td>" + a.startTime + "</td>\n" +
+                "                                    </tr>\n" +
+                "                                    <tr>\n" +
+                "                                        <th scope=\"row\">作业截止时间</th>\n" +
+                "                                        <td>" + a.endTime + "</td>\n" +
+                "                                    </tr>\n" +
+                "                                    <tr>\n" +
+                "                                        <th scope=\"row\">提交作业</th>\n" +
+                "                                        <td>\n" +
+                "                                            <form enctype=\"multipart/form-data\" action=\"/student/course/upHomework\" method=\"post\">\n" +
+                "                                                <div class=\"form-group row\">\n" +
+                "                                                    <textarea class=\"form-control\" rows=\"3\" name=\"context\" required\n" +
+                "                                                          placeholder=\"内容在1000字以内\"></textarea>\n" +
+                "                                                    <label for=\"fileInput\"\n" +
+                "                                                           class=\"col-sm-3 form-control-label\">上传相关附件</label>\n" +
+                "                                                    <div class=\"col-sm-9\">\n" +
+                "                                                        <input id=\"fileInput\" name=\"loadFile\" type=\"file\"\n" +
+                "                                                               class=\"form-control-file\">\n" +
+                "                                                    </div>\n" +
+                "                                                    <input name=\"homeworkCode\" value=\"" + a.code + "\" hidden=\"hidden\"/>\n" +
+                "                                                </div>\n" +
+                "                                                <input type=\"submit\" value=\"提交\"/>\n" +
+                "                                            </form>\n" +
+                "                                        </td>\n" +
+                "                                    </tr>");
+        }
+    }
+
+
+    function clearingTestForm() {
+        console.info("清理表单");
+        $("#tesk_table_head").children().remove();
+        $("#tesk_table_body").children().remove();
+
+    }
 </script>
+</body>
+
 </html>

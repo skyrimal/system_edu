@@ -52,8 +52,10 @@
             <div class="breadcrumb-holder container-fluid">
                 <div class="col-lg-8">
                     <div class="card">
+                        <div class="card-title" th:if="${msg} ne ''"><br><h2 class="title " style="color: red" th:text="${msg}"></h2></div>
                         <div class="card-body">
-                            <form class="form-inline" th:action="'/questionaier/searchCourse/1/'+${Model_Page.getPageSize()}" method="post">
+                            <form class="form-inline"
+                                  th:action="'/questionaier/searchCourse/1/'+${Model_Page.getPageSize()}" method="post">
                                 <a href="/questionaier/addqqq" class="btn btn-primary">添加模板
                                 </a>
                                 <div class="form-group">
@@ -163,9 +165,12 @@
                                     <tr th:each="questionnaireOutput:${questionnaireOutputs}">
                                         <th scope="row" th:text="${questionnaireOutput.getTitle()}"></th>
                                         <td>
+                                            <a class="btn btn-warning btn-sm"
+                                               th:onclick="jump([[${questionnaireOutput.getCode()}]]);">查看模板</a>
                                             <a class="btn btn-warning btn-sm sendAnQuestionnaireModeltTo"
                                                data-toggle="modal"
-                                               data-target="#sendAnQuestionnaireModeltTo">发布</a>
+                                               data-target="#sendAnQuestionnaireModeltTo"
+                                               th:onclick="clicka([[${questionnaireOutput.getCode()}]]);">发布</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -205,15 +210,13 @@
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
-                    <form id="" class="form-horizontal" action="" method="post">
+                    <form id="" class="form-horizontal" action="/questionaier/sendQuestionnaire" method="post">
                         <div class="form-group row">
-                            <label class="col-sm-3 form-control-label">问卷名</label>
+                            <label class="col-sm-3 form-control-label" hidden="hidden">问卷名</label>
                             <div class="col-sm-9">
-                                <input type="text" name="userName" placeholder="问卷名"
-                                       class="userName edit form-control">
                             </div>
                         </div>
-                        <input type="hidden" name="userId" id="user_id_edit" value=""/>
+                        <input id="qCode" name="qCode" type="hidden" value=""/>
                         <div class="line"></div>
                         <div id="change_select" class="form-group row">
                             <label class="col-sm-3 form-control-label">所属学院</label>
@@ -285,18 +288,24 @@
         var pageNum = '[[${Model_Page.getPageNum()}]]';
         var pageSize = '[[${Model_Page.getPageSize()}]]';
         var pageMaxNum = '[[${Model_Page.getMaxPage()}]]';
-
-
-
         var data = {
-            code:'[[${searchQuestionnaireInsert.getCode()}]]',
-            keyword:'[[${searchQuestionnaireInsert.getKeyword()}]]',
-            type:'[[${searchQuestionnaireInsert.getType()}]]'
+            code: '[[${searchQuestionnaireInsert.getCode()}]]',
+            keyword: '[[${searchQuestionnaireInsert.getKeyword()}]]',
+            type: '[[${searchQuestionnaireInsert.getType()}]]'
         };
 
         pageHelperInit(pageNum, pageMaxNum);
-        clickA(pageNum, pageMaxNum, data, pageSize, '/questionaier/searchCourse/');
-    })
+        clickA(pageNum, pageMaxNum, data, pageSize, '/questionaier/stu/searchQuestionnaires');
+    });
+
+    function clicka(a) {
+        console.info(a);
+        $("#qCode").val(a);
+    }
+
+    function jump(a) {
+        window.location.replace("/questionaier/see/"+a);
+    }
 </script>
 </body>
 

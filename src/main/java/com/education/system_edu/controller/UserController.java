@@ -5,10 +5,7 @@ import com.education.system_edu.pojo.UserExample;
 import com.education.system_edu.pojo.output.OutputUserForEditUserAction;
 import com.education.system_edu.service.PageService;
 import com.education.system_edu.service.UserService;
-import com.education.system_edu.utils.MsgUtil;
-import com.education.system_edu.utils.PageUtils;
-import com.education.system_edu.utils.UserInfoUtils;
-import com.education.system_edu.utils.UserUtils;
+import com.education.system_edu.utils.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
@@ -91,9 +88,8 @@ public class UserController {
                 System.out.println("跳转的主页面" + PageUtils.findPageByUserType(user.getUserType(), "main"));
                 return PageUtils.findPageByUserType(user.getUserType(), "main");
             } else {
-                UserExample userForSearch = new UserExample();
-                userForSearch.createCriteria().andLoginCodeEqualTo(loginUsername);
-                User user = pageService.findUser(userForSearch);
+                SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
+                User user = (User) subjectUtils.getPrincipal();
                 return PageUtils.findPageByUserType(user.getUserType(), "main");
             }
 

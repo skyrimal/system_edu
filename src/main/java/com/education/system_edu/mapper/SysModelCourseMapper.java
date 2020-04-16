@@ -62,4 +62,19 @@ public interface SysModelCourseMapper {
             "WHERE \n" +
             "course.`code` = '${s}';")
     SysModelCourse selectByCourseCode(String s);
+
+    @Select("SELECT\n" +
+            "\tcourse_class.type,\n" +
+            "\tcourse_class.class_code AS `code`,\n" +
+            "\tcourse.`name`,\n" +
+            "\tcourse.course_code AS parentCode\n" +
+            "FROM\n" +
+            "\tconnect_user_student_and_class AS c\n" +
+            "LEFT JOIN sys_model_class AS course_class ON c.class_code = course_class.`code`\n" +
+            "LEFT JOIN sys_model_course AS course ON course_class.course_code_no = course.course_code\n" +
+            "WHERE\n" +
+            "\tc.student_no = '${loginCode}'\n" +
+            "AND course.`name` NOT LIKE '001'\n" +
+            "AND course_class.type = 1")
+    List<CourseOutput> selectByStudentLoginCode(String loginCode);
 }

@@ -12,25 +12,22 @@ import com.education.system_edu.pojo.User;
 import com.education.system_edu.pojo.insert.HomeworkModelInsert;
 import com.education.system_edu.pojo.insert.TeacherSearchStudentInsert;
 import com.education.system_edu.pojo.model.PageMsg;
-import com.education.system_edu.pojo.output.CourseClassTeamOutput;
-import com.education.system_edu.pojo.output.CourseClassUserStudentOutPut;
-import com.education.system_edu.pojo.output.TeacherCourseClassLineInfoOutput;
-import com.education.system_edu.service.CourseClassService;
-import com.education.system_edu.service.HomeworkService;
-import com.education.system_edu.service.MajorService;
-import com.education.system_edu.service.UserService;
+import com.education.system_edu.pojo.output.*;
+import com.education.system_edu.service.*;
 import com.education.system_edu.utils.FileUtils;
 import com.education.system_edu.utils.PageUtils;
 import com.education.system_edu.utils.SubjectUtils;
 import com.education.system_edu.utils.UU3D;
 import com.education.system_edu.utils.value.PageValue;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 import org.thymeleaf.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -51,8 +48,15 @@ public class TeacherController {
     CourseClassService courseClassService;
 
     HomeworkService homeworkService;
+
+    MSGService msgService;
     @Resource
     ClassPublishAssignmentActionMapper classPublishAssignmentActionMapper;
+
+    @Autowired
+    public void setMsgService(MSGService msgService) {
+        this.msgService = msgService;
+    }
 
     @Autowired
     public void setCourseClassService(CourseClassService courseClassService) {
@@ -72,6 +76,16 @@ public class TeacherController {
     @Autowired
     public void setHomeworkService(HomeworkService homeworkService) {
         this.homeworkService = homeworkService;
+    }
+
+    @RequiresRoles({"teacher"})
+    @RequestMapping("t_main")
+    public ModelAndView t_main() {
+        ModelAndView modelAndView = new ModelAndView("/t_main");
+        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
+        User user = (User) subjectUtils.getPrincipal();
+        modelAndView.addObject("mainMSGs",msgService.getTeacherMainMSG(user.getLoginCode()));
+        return modelAndView;
     }
 
     @GetMapping("course")
@@ -116,28 +130,16 @@ public class TeacherController {
         return null;
     }
 
-    private ModelAndView teacherSearchStudent(TeacherSearchStudentInsert teacherSearchStudentInsert, String courseClassCode) {
-        ModelAndView modelAndView = new ModelAndView();
-        List<CourseClassUserStudentOutPut> students = userService.getUserByTeacherSearchStudentInsert(teacherSearchStudentInsert, courseClassCode);
-        modelAndView.addObject("CourseClassUserStudentOutPut", students);
-        modelAndView.addObject("teacherSearchStudentInsert", teacherSearchStudentInsert);
-        PageMsg page = PageUtils.madePageMsg(teacherSearchStudentInsert.getPageNum(), teacherSearchStudentInsert.getPageSize(),
-                                             PageUtils.coutPageSize(userService.countCourseByCourseSearchInsert(teacherSearchStudentInsert, PageValue.PAGE_SIZE, courseClassCode), PageValue.PAGE_SIZE));
-        modelAndView.addObject(PageValue.PAGE_MODEL_KEY, page);
-        modelAndView.setViewName("t_course");
-        return modelAndView;
-    }
-
     @PostMapping("homework/sendHomwork")
     public String sendHomework(HomeworkModelInsert homeworkModel,
                                @RequestParam(value = "loadFile", required = false) MultipartFile[] file) {
         SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
         User user = (User) subjectUtils.getPrincipal();
-        homeworkModel.setFile(homeworkModel.getClassCode()
-                                      + ",.," + (classPublishAssignmentActionMapper.countByExample(new ClassPublishAssignmentActionExample()) + 1)
-                                      + ",.," + UU3D.uu3d());
         if (file.length != 0) {
-            FileUtils.approvalFile(file[0], homeworkModel.getFile());
+            if (!file[0].getOriginalFilename().equals("")) {
+                homeworkModel.setFile(UU3D.uu3d());
+                FileUtils.approvalFile(file[0], homeworkModel.getFile());
+            }
         }
         int flag = homeworkService.sendHomwork(homeworkModel, user.getLoginCode());
         return "redirect:/teacher/course/" + homeworkModel.getClassCode();
@@ -150,4 +152,49 @@ public class TeacherController {
         User user = (User) subjectUtils.getPrincipal();
         return homeworkService.madeSign(classCode, user.getLoginCode());
     }
+
+
+    @GetMapping("homework/getHomework")
+    @ResponseBody
+    public List<HomeworkOutput> getHomework() {
+
+        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
+        User user = (User) subjectUtils.getPrincipal();
+        List<HomeworkOutput> homeworkOutputlist = homeworkService.getHomework(user.getLoginCode());
+        return homeworkOutputlist;
+
+    }
+
+
+    @GetMapping("/correctHomeworkInfo/{assignmentCode}")
+    @ResponseBody
+    public List<StudentSubmitHomeworkMSG> correctHomework(@PathVariable String assignmentCode) {
+        List<StudentSubmitHomeworkMSG> studentSubmitHomeworkMSGS = homeworkService.getHomeworkInfo(assignmentCode);
+        return studentSubmitHomeworkMSGS;
+    }
+
+
+    @GetMapping("/homework/correctHomework")
+    @ResponseBody
+    public String correctHomework(String submitCode, String finalScore) {
+        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
+        User user = (User) subjectUtils.getPrincipal();
+        String msg = homeworkService.correctHomework(submitCode, finalScore, user.getLoginCode());
+        return msg;
+    }
+
+    private ModelAndView teacherSearchStudent(TeacherSearchStudentInsert teacherSearchStudentInsert, String courseClassCode) {
+        ModelAndView modelAndView = new ModelAndView();
+        List<CourseClassUserStudentOutPut> students = userService.getUserByTeacherSearchStudentInsert(teacherSearchStudentInsert, courseClassCode);
+        modelAndView.addObject("CourseClassUserStudentOutPut", students);
+        modelAndView.addObject("teacherSearchStudentInsert", teacherSearchStudentInsert);
+        PageMsg page = PageUtils.madePageMsg(teacherSearchStudentInsert.getPageNum(), teacherSearchStudentInsert.getPageSize(),
+                                             PageUtils.coutPageSize(userService.countCourseByCourseSearchInsert(teacherSearchStudentInsert, PageValue.PAGE_SIZE, courseClassCode), PageValue.PAGE_SIZE));
+        modelAndView.addObject("historys", null);
+        modelAndView.addObject(PageValue.PAGE_MODEL_KEY, page);
+        modelAndView.setViewName("t_course");
+        return modelAndView;
+    }
+
+
 }
