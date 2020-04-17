@@ -1,5 +1,7 @@
 package com.education.system_edu.utils;
 
+import java.util.Date;
+
 public class MsgUtil {
     public static String addMsj(int flag) {
         if (flag == 0) {
@@ -32,4 +34,5 @@ public class MsgUtil {
             return "修改成功";
         }
     }
+
 }

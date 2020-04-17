@@ -85,6 +85,7 @@
     <div class="copyrights text-center">
         <p>Design for
             <a href="#" class="external">西南财经大学天府学院毕业设计</a>
+            <a href="#" class="external">技术支持：阳柯吉</a>
         </p>
     </div>
 </div>
@@ -114,8 +115,12 @@
                     $('#error_msg p').remove();
                     $('#error_msg').append('<p>验证码错误</P>');
                 }else{
-                    window.location.href=data;
-                    console.info(data)
+                    if(data.length<100){
+                        window.location.href=data;
+                    }else{
+                        window.location.href="error";
+                    }
+                    console.info(data.length)
                 }
             },
             error: function () {

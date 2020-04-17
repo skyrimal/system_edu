@@ -2,6 +2,7 @@ package com.education.system_edu.utils;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -38,5 +39,13 @@ public class DateUtils {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//yyyy-mm-dd, 会出现时间不对, 因为小写的mm是代表: 秒
         return sdf.parse(time);
     }
-
+    /**
+     *
+     * @return 返回时间类型 yyyy-MM-dd HH:mm:ss
+     */
+    public static String dateToString(Date currentTime) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(currentTime);
+        return dateString;
+    }
 }

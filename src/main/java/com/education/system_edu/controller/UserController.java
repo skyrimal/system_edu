@@ -65,6 +65,9 @@ public class UserController {
                             HttpSession httpSession) {
         String str = (String) httpSession.getAttribute("verificationCode");
         //验证验证码，计划后期改到拦截器上
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(loginUsername, loginPassword);
+        usernamePasswordToken.setRememberMe(false);
+
 //        if (verificationCode.toLowerCase().equals(str.toLowerCase())) {
         if (true) {
             //清除httpSession保存的验证码
@@ -74,8 +77,7 @@ public class UserController {
             //2.判断subject是否被认证
             if (!shiroSubject.isAuthenticated()) {
                 //判断用户名、密码是否正确
-                UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(loginUsername, loginPassword);
-                usernamePasswordToken.setRememberMe(true);
+
                 //User user = RandomStudentMaker.madeAStudent();
                 //3.登录
                 shiroSubject.login(usernamePasswordToken);
@@ -128,12 +130,13 @@ public class UserController {
      * @param httpSession
      * @return
      */
-    @RequiresGuest
     @RequestMapping("/rewrite_password")
     public String rewrite_password(Model model, HttpSession httpSession) {
-        model.addAttribute("msg", httpSession.getAttribute("msg"));
-        httpSession.removeAttribute("msg");
-        return "/rewrite_password";
+        if (httpSession.getAttribute("msg") != null) {
+            model.addAttribute("msg", httpSession.getAttribute("msg"));
+            httpSession.removeAttribute("msg");
+        }
+        return "/stu_rewrite_password";
     }
 
     /**
@@ -156,10 +159,10 @@ public class UserController {
      *
      * @return
      */
-    @RequiresAuthentication
     @GetMapping("/user_message/{loginCode}")
     @ResponseBody
     public OutputUserForEditUserAction user(@PathVariable("loginCode") String loginCode) {
-        return userService.getOutputUserForEditUserActionBy(loginCode);
+        OutputUserForEditUserAction outputUserForEditUserAction = userService.getOutputUserForEditUserActionBy(loginCode);
+        return outputUserForEditUserAction;
     }
 }

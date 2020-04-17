@@ -16,6 +16,6 @@ public class EncryptionUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(encryption("MD5","123456","19ea118474e44860801eeed31ee6e7af20005693"));
+        System.out.println(encryption("MD5","123456","20000000"));
     }
 }

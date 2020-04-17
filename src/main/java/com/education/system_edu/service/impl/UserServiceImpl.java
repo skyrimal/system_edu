@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
         UserExample userForSearch = new UserExample();
         userForSearch.createCriteria().andLoginCodeEqualTo(loginCode);
         User user = userMapper.selectByExample(userForSearch).get(0);
-        if (null != user && flag &&
+        if (null != user && !flag &&
                 user.getPassword()
                         .equals(EncryptionUtils
                                         .encryption("MD5", oldPassword, user.getCode()).toString())) {
@@ -221,7 +221,7 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.selectByExample(userExample).get(0);
         user.setPassword(EncryptionUtils.encryption("MD5", "123456", user.getCode()).toString());
         userMapper.updateByPrimaryKey(user);
-        return null;
+        return userMapper.updateByPrimaryKey(user);
     }
 
     @Override

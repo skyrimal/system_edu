@@ -154,6 +154,7 @@
     LEFT JOIN sys_data_tree AS faculty ON department.parent_node = faculty.`code`
     WHERE
 	    `user`.login_code = #{loginCode,jdbcType=VARCHAR}
+	    AND c.type =2 LIMIT 0,1
     </select>
     <!-- 手动添加计数器 -->
     <select id="countByPageUser" parameterType="com.education.system_edu.pojo.pojo_child.parameter.PageUser"

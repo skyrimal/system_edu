@@ -2,93 +2,58 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdeef863-6002-4678-b368-3c2ba637caad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/student/StudentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/AssignmentMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/SendQuestionnaireMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/Assignment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/AssignmentExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/SendQuestionnaire.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/SendQuestionnaireExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/dbpojo/UserInSchoolMSG.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/insert/QuestionnaireInsetToSend.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/AnswerOutput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/ChartDataOutput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/HomMsgsAndTeanMsgs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/HomeworkOutput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/HomworkMsg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/MainMSGOutput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/QuestionOutput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/QuestionnaireHistoryOutput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/QuestionnaireToAnswerOutput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/SignHistory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/StudentSubmitHomeworkMSG.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/TeamMsg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/UserToSubmitQuestionnairePageOutput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/MSGService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/StudentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/MSGServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/StudentServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/AssignmentMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SendQuestionnaireMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/statics/js/student.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/see_questionnaire.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/stuSee_questionnaire.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/stu_questionnaire.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/MSGMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/TeacherMainMSGOutput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/MSGMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/statics/css/css/404_s-divider.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/statics/css/css/404_search.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/statics/css/css/bg_noise.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/statics/css/css/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/statics/css/css/main.css.bak" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/statics/css/css/texgyreschola-bold-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/statics/css/css/texgyreschola-regular-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/404.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/error.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/stu_rewrite_password.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/config/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/config/ShiroConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/AllApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/AllApiController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/questionaier/QuestionnaireController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/questionaier/QuestionnaireController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/teacher/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/teacher/TeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/GroupMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/GroupMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/controller/manage/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/StudentSignActionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/StudentSignActionMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/StudentSubmitQuestionnaireMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/StudentSubmitQuestionnaireMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/SysModelClassAssignmentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/SysModelClassAssignmentMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/SysModelCourseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/SysModelCourseMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/SysModelQuestionnaireQuestionRepositoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/SysModelQuestionnaireQuestionRepositoryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/SysModelQuestionnaireRepositoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/SysModelQuestionnaireRepositoryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/CourseClassService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/CourseClassService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/HomeworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/HomeworkService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/QuestionnaireService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/QuestionnaireService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/CourseClassServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/CourseClassServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/HomeworkServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/HomeworkServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/QuestionnaireServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/QuestionnaireServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/MainMSGOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/pojo/output/MainMSGOutput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/MSGService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/MSGService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/MSGServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/MSGServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/MajorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/MajorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/DateUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/PageUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/PageUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/RandomUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/RandomUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SysModelQuestionnaireRepositoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SysModelQuestionnaireRepositoryMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/statics/js/teacher.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/statics/js/teacher.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/statics/vendor/bootstrap/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/statics/vendor/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bar/left_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bar/left_bar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/EncryptionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/EncryptionUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/MsgUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/MsgUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/StringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/m_manage_questionnaire_qm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/m_manage_questionnaire_qm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/stu_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/stu_course.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/stu_main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/stu_main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/stu_sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/stu_sign.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/t_questionnaire.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/t_questionnaire.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/t_sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/t_sign.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/m_manage_userManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/m_manage_userManage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/t_main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/t_main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/t_tesk.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/t_tesk.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/education/system_edu/SystemEduApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/education/system_edu/SystemEduApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/config/ShiroConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/config/ShiroConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/AllApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/AllApiController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/StudentSignActionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/StudentSignActionMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/StudentSubmitQuestionnaireMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/StudentSubmitQuestionnaireMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelClassAssignmentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelClassAssignmentMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelCourseMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelQuestionnaireQuestionRepositoryMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelQuestionnaireQuestionRepositoryMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelQuestionnaireRepositoryMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/SysModelQuestionnaireRepositoryMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/MajorServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/MajorServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/service/impl/UserServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/DateUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/DateUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/SysModelQuestionnaireRepositoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/SysModelQuestionnaireRepositoryMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/statics/vendor/bootstrap/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/statics/vendor/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/bar/left_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/bar/left_bar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/EncryptionUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/EncryptionUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/MsgUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/MsgUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/PageUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/PageUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/StringUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/education/system_edu/utils/StringUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/m_manage_questionnaire_qm.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/m_manage_questionnaire_qm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/stu_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/stu_course.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/stu_main.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/stu_main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/stu_sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/stu_sign.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/t_questionnaire.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/t_questionnaire.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/t_sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/t_sign.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/t_tesk.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/t_tesk.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/t_main.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/t_main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/education/system_edu/SystemEduApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/education/system_edu/SystemEduApplicationTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,10 +80,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="JavaScript File" />
-        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="spring-beans.schema" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -181,8 +147,8 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\project\system_edu\src\main\resources\templates" />
-      <recent name="D:\project\system_edu\src\main\resources\static\statics\js" />
       <recent name="D:\project\system_edu\src\main\resources\static\statics\css" />
+      <recent name="D:\project\system_edu\src\main\resources\static\statics\js" />
       <recent name="D:\project\system_edu\src\main\resources\static\statics\vendor\jquery" />
       <recent name="D:\project\system_edu\src\main\java\com\education\system_edu\controller" />
     </key>
@@ -202,19 +168,6 @@
     </treeState>
   </component>
   <component name="RunManager" selected="Spring Boot.SystemEduApplication">
-    <configuration name="DateUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.education.system_edu.utils.DateUtils" />
-      <module name="system_edu" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.education.system_edu.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="EncryptionUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.education.system_edu.utils.EncryptionUtils" />
       <module name="system_edu" />
@@ -228,8 +181,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RandomUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.education.system_edu.utils.RandomUtils" />
+    <configuration name="MsgUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.education.system_edu.utils.MsgUtil" />
       <module name="system_edu" />
       <extension name="coverage">
         <pattern>
@@ -241,8 +194,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StringUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.education.system_edu.utils.StringUtils" />
+    <configuration name="RandomUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.education.system_edu.utils.RandomUtils" />
       <module name="system_edu" />
       <extension name="coverage">
         <pattern>
@@ -270,6 +223,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SystemEduApplicationTests.insertTestData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="system_edu" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.education.system_edu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.education.system_edu" />
+      <option name="MAIN_CLASS_NAME" value="com.education.system_edu.SystemEduApplicationTests" />
+      <option name="METHOD_NAME" value="insertTestData" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SystemEduApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="system_edu" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.education.system_edu.SystemEduApplication" />
@@ -279,11 +248,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RandomUtils" />
-        <item itemvalue="Application.DateUtils" />
         <item itemvalue="JUnit.SystemEduApplicationTests.connectTeacherCourse" />
-        <item itemvalue="Application.StringUtils" />
         <item itemvalue="Application.EncryptionUtils" />
+        <item itemvalue="JUnit.SystemEduApplicationTests.insertTestData" />
+        <item itemvalue="Application.MsgUtil" />
+        <item itemvalue="Application.RandomUtils" />
       </list>
     </recent_temporary>
   </component>
@@ -376,7 +345,9 @@
       <workItem from="1586848134487" duration="1254000" />
       <workItem from="1586912327906" duration="10822000" />
       <workItem from="1586928918650" duration="6869000" />
-      <workItem from="1586997054675" duration="3516000" />
+      <workItem from="1586997054675" duration="17269000" />
+      <workItem from="1587021484650" duration="7973000" />
+      <workItem from="1587083844971" duration="6619000" />
     </task>
     <task id="LOCAL-00001" summary="制作到管理员管理学院/系/专业&#10;即将制作用户管理">
       <created>1582852222232</created>
@@ -497,7 +468,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586415872101</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="完成作业发布回复，问卷发布回复，开始制作数据反馈">
+      <created>1587001057373</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1587001057373</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -522,7 +500,8 @@
     <MESSAGE value="先停一下管理员，做了些数据开始做老师课程管理功能" />
     <MESSAGE value="完成排课和进入老师页面查看课程班级学生" />
     <MESSAGE value="完成发布作业和开发签到" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成发布作业和开发签到" />
+    <MESSAGE value="完成作业发布回复，问卷发布回复，开始制作数据反馈" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成作业发布回复，问卷发布回复，开始制作数据反馈" />
   </component>
   <component name="WindowStateProjectService">
     <state x="359" y="75" key="#Custom_Plugin_Repositories" timestamp="1585030861904">
@@ -553,10 +532,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="483" y="266" width="594" height="294" key="#com.intellij.codeInsight.template.impl.EditVariableDialog/0.0.1536.834@0.0.1536.834" timestamp="1585031790897" />
-    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser" timestamp="1587000894177">
+    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser" timestamp="1587006125528">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1587000894177" />
+    <state x="574" y="101" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1587006125528" />
     <state x="388" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1587000859496">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -569,14 +548,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1582789438486" />
-    <state x="410" y="14" key="CommitChangelistDialog2" timestamp="1586415863272">
+    <state x="410" y="14" key="CommitChangelistDialog2" timestamp="1587001054795">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="410" y="14" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1586415863272" />
-    <state width="674" height="466" key="DebuggerActiveHint" timestamp="1586934073986">
+    <state x="410" y="14" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1587001054795" />
+    <state width="674" height="466" key="DebuggerActiveHint" timestamp="1587090002704">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="674" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1586934073986" />
+    <state width="674" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1587090002704" />
     <state x="549" y="158" key="FileChooserDialogImpl" timestamp="1585030866449">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -585,54 +564,54 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="632" y="308" width="272" height="287" key="Github.ShareDialog/0.0.1536.834@0.0.1536.834" timestamp="1582853113702" />
-    <state width="1493" height="53" key="GridCell.Tab.0.bottom" timestamp="1587000647274">
+    <state width="1300" height="237" key="GridCell.Tab.0.bottom" timestamp="1587087444467">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="53" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587000647274" />
-    <state width="1493" height="53" key="GridCell.Tab.0.center" timestamp="1587000647274">
+    <state width="1300" height="237" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587087444467" />
+    <state width="1300" height="237" key="GridCell.Tab.0.center" timestamp="1587087444466">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="53" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1587000647274" />
-    <state width="1493" height="53" key="GridCell.Tab.0.left" timestamp="1587000647274">
+    <state width="1300" height="237" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1587087444466" />
+    <state width="1300" height="237" key="GridCell.Tab.0.left" timestamp="1587087444466">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="53" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1587000647274" />
-    <state width="1493" height="53" key="GridCell.Tab.0.right" timestamp="1587000647274">
+    <state width="1300" height="237" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1587087444466" />
+    <state width="1300" height="237" key="GridCell.Tab.0.right" timestamp="1587087444467">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="53" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1587000647274" />
-    <state width="1493" height="53" key="GridCell.Tab.1.bottom" timestamp="1587000647274">
+    <state width="1300" height="237" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1587087444467" />
+    <state width="1300" height="237" key="GridCell.Tab.1.bottom" timestamp="1587087444280">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="53" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587000647274" />
-    <state width="1493" height="53" key="GridCell.Tab.1.center" timestamp="1587000647274">
+    <state width="1300" height="237" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587087444280" />
+    <state width="1300" height="237" key="GridCell.Tab.1.center" timestamp="1587087444280">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="53" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1587000647274" />
-    <state width="1493" height="53" key="GridCell.Tab.1.left" timestamp="1587000647274">
+    <state width="1300" height="237" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1587087444280" />
+    <state width="1300" height="237" key="GridCell.Tab.1.left" timestamp="1587087444280">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="53" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1587000647274" />
-    <state width="1493" height="53" key="GridCell.Tab.1.right" timestamp="1587000647274">
+    <state width="1300" height="237" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1587087444280" />
+    <state width="1300" height="237" key="GridCell.Tab.1.right" timestamp="1587087444280">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="53" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1587000647274" />
-    <state width="1493" height="53" key="GridCell.Tab.2.bottom" timestamp="1587000647275">
+    <state width="1300" height="237" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1587087444280" />
+    <state width="1300" height="237" key="GridCell.Tab.2.bottom" timestamp="1587087444281">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="53" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587000647275" />
-    <state width="1493" height="53" key="GridCell.Tab.2.center" timestamp="1587000647275">
+    <state width="1300" height="237" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587087444281" />
+    <state width="1300" height="237" key="GridCell.Tab.2.center" timestamp="1587087444281">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="53" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1587000647275" />
-    <state width="1493" height="53" key="GridCell.Tab.2.left" timestamp="1587000647275">
+    <state width="1300" height="237" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1587087444281" />
+    <state width="1300" height="237" key="GridCell.Tab.2.left" timestamp="1587087444280">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="53" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1587000647275" />
-    <state width="1493" height="53" key="GridCell.Tab.2.right" timestamp="1587000647275">
+    <state width="1300" height="237" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1587087444280" />
+    <state width="1300" height="237" key="GridCell.Tab.2.right" timestamp="1587087444281">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="53" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1587000647275" />
+    <state width="1300" height="237" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1587087444281" />
     <state x="349" y="163" key="IDE.errors.dialog" timestamp="1585794277785">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -645,14 +624,18 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="490" y="159" width="540" height="524" key="StructurePopup/0.0.1536.834@0.0.1536.834" timestamp="1585641192802" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1585815894253">
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1587001068913">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1585815894253" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1587001068913" />
     <state x="499" y="182" key="extract.method.dialog" timestamp="1582869227969">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="182" key="extract.method.dialog/0.0.1536.834@0.0.1536.834" timestamp="1582869227969" />
+    <state x="457" y="177" width="621" height="480" key="find.popup" timestamp="1587086622030">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="457" y="177" width="621" height="480" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1587086622030" />
     <state x="555" y="208" key="git4idea.merge.GitPullDialog" timestamp="1582853727572">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -665,10 +648,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1585724913203" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1586673045067">
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1587088009621">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1586673045067" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1587088009621" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -677,6 +660,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/education/system_edu/utils/QuestionnaireFactory.java</url>
           <line>243</line>
           <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/education/system_edu/service/impl/UserServiceImpl.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="102" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

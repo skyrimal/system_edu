@@ -121,9 +121,11 @@ public class UserController {
      */
     @RequiresRoles({"manager"})
     @RequestMapping("initPassword/{loginCode}")
-    @ResponseBody
     public String initPassword(@PathVariable("loginCode") String loginCode) {
         int flag = userService.initPassword(loginCode);
-        return null;
+        if(flag>0){
+            return "redirect:/manage/user/userSearch?pageSize=10&pageNum=1";
+        }
+        return "error";
     }
 }

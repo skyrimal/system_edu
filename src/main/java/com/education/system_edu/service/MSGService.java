@@ -1,6 +1,6 @@
 package com.education.system_edu.service;
 
-import com.education.system_edu.pojo.output.MainMSGOutput;
+import com.education.system_edu.pojo.output.TeacherMainMSGOutput;
 
 /**
  * @Description: TODO
@@ -8,5 +8,5 @@ import com.education.system_edu.pojo.output.MainMSGOutput;
  * @date: 2020年04月16日 9:32
  */
 public interface MSGService {
-    MainMSGOutput getTeacherMainMSG(String loginCode);
+    TeacherMainMSGOutput getTeacherMainMSG(String loginCode);
 }

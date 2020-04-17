@@ -16,7 +16,7 @@ public class MainMSGOutput {
     private String sendQuestionnaireNumMax;
     private String taskNum;
     private String taskNumMax;
-    private List<String> courseClassNames;
+
 
     public String getCourseNumForOneWeak() {
         return courseNumForOneWeak;
@@ -82,11 +82,4 @@ public class MainMSGOutput {
         this.taskNumMax = taskNumMax;
     }
 
-    public List<String> getCourseClassNames() {
-        return courseClassNames;
-    }
-
-    public void setCourseClassNames(List<String> courseClassNames) {
-        this.courseClassNames = courseClassNames;
-    }
 }

@@ -584,41 +584,69 @@ public class MajorServiceImpl implements MajorService {
         //获取所有授课老师
         List<User> teachers = new ArrayList<User>();
         int i = 0;
+        Map<String,List<SysModelClass>> newCourseClassesMap= new HashMap<>();
         for (SysModelCourse str : courses) {
             List<User> teacheres = userMapper.selectTeacherByCoueseCode(str.getCode());
             SysModelClass newCourseClass = null;
+            List<SysModelClass> mapEns = new ArrayList<>();
             for (User user : teacheres) {
                 newCourseClass = ClassesUtils.madeCourseClass(grade, loginUser_loginCode, str, i++, user);
                 newCourseClasses.add(newCourseClass);
+                mapEns.add(newCourseClass);
             }
+            newCourseClassesMap.put(str.getCourseCode(),mapEns);
             teachers.addAll(teacheres);
         }
 
         //联系学生和班级
         List<ConnectUserStudentAndClass> connectUserStudentAndClassesList = new ArrayList<>();
-        int stuNumber = 0;
-        if (users.size() % newCourseClasses.size() > 0) {
-            stuNumber = (users.size() / newCourseClasses.size()) + 1;
-        } else {
-            stuNumber = users.size() / newCourseClasses.size();
-        }
+
 
         //x*stuNumber-(x+1)*stuNumber
-        for (int x = 0; x < newCourseClasses.size(); x++) {
-            int _stuNum = 0;
-            for (int y = x * (stuNumber); y < (x + 1) * stuNumber; y++) {
-                if (y < users.size()) {
-                    ConnectUserStudentAndClass cUAC = new ConnectUserStudentAndClass();
-                    cUAC.setCode(UU3D.uu3d());
-                    cUAC.setClassCode(newCourseClasses.get(x).getCode());
-                    cUAC.setStudentCode(users.get(y).getCode());
-                    cUAC.setStudentNo(users.get(y).getLoginCode());
-                    connectUserStudentAndClassesList.add(cUAC);
-                    _stuNum++;
+        //按课程和班级进行判断，每个学生对应只上一个课程的班级
+//        for (int x = 0; x < newCourseClasses.size(); x++) {
+//            int _stuNum = 0;
+//            for (int y = x * (stuNumber); y < (x + 1) * stuNumber; y++) {
+//                if (y < users.size()) {
+//                    ConnectUserStudentAndClass cUAC = new ConnectUserStudentAndClass();
+//                    cUAC.setCode(UU3D.uu3d());
+//                    cUAC.setClassCode(newCourseClasses.get(x).getCode());
+//                    cUAC.setStudentCode(users.get(y).getCode());
+//                    cUAC.setStudentNo(users.get(y).getLoginCode());
+//                    connectUserStudentAndClassesList.add(cUAC);
+//                    _stuNum++;
+//                }
+//            }
+//            newCourseClasses.get(x).setStudentNum(_stuNum);
+//        }
+
+        //修改排课方法，一门课一门课的排课
+        for (SysModelCourse course: courses) {
+            int stuNo=0;
+            List<SysModelClass> sysModelClasses = newCourseClassesMap.get(course.getCourseCode());
+            int stuNumber = 0;
+            if (users.size() % sysModelClasses.size() > 0) {
+                stuNumber = (users.size() / sysModelClasses.size()) + 1;
+            } else {
+                stuNumber = users.size() / sysModelClasses.size();
+            }
+            for (SysModelClass sysModelClass : sysModelClasses) {
+                int _stuNumber = stuNumber;
+                while (_stuNumber != 0 && stuNo<users.size()) {
+                    if(stuNo<users.size()){
+                        ConnectUserStudentAndClass cUAC = new ConnectUserStudentAndClass();
+                        cUAC.setCode(UU3D.uu3d());
+                        cUAC.setClassCode(sysModelClass.getCode());
+                        cUAC.setStudentCode(users.get(stuNo).getCode());
+                        cUAC.setStudentNo(users.get(stuNo).getLoginCode());
+                        connectUserStudentAndClassesList.add(cUAC);
+                        stuNo++;
+                    }
+                    _stuNumber--;
                 }
             }
-            newCourseClasses.get(x).setStudentNum(_stuNum);
         }
+
         for (SysModelClass sysModelClass :
                 newCourseClasses) {
             sysModelClassMapper.insert(sysModelClass);

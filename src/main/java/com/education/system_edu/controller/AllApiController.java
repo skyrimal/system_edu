@@ -7,10 +7,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -68,6 +65,7 @@ public class AllApiController {
     public String m_main() {
         return "/m_main";
     }
+
     /**
      * *********************************************************************
      * *********************************************************************
@@ -95,7 +93,6 @@ public class AllApiController {
     }
 
 
-
     /**
      * *********************************************************************
      * *********************************************************************
@@ -117,6 +114,17 @@ public class AllApiController {
         SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
         User user = (User) subjectUtils.getPrincipal();
 
+        return modelAndView;
+    }
+
+    @RequestMapping("error/error")
+    public ModelAndView error(@RequestParam(required = false) String msg) {
+        ModelAndView modelAndView = new ModelAndView("/error");
+        if (msg != null) {
+            modelAndView.addObject("msg", msg);
+        }else{
+            modelAndView.addObject("msg", "访问出错");
+        }
         return modelAndView;
     }
 
@@ -145,7 +153,6 @@ public class AllApiController {
     }
 
 
-
     /**
      * 验证码生成
      *
@@ -169,14 +176,15 @@ public class AllApiController {
 
     /**
      * 下载文件
+     *
      * @param request
      * @param response
      */
     @GetMapping("/download/{fileName}")
     public void download(@PathVariable String fileName, HttpServletRequest request, HttpServletResponse response) {
-        String path="D:\\file";
+        String path = "D:\\file";
         //下载
-        try (InputStream inputStream = new FileInputStream(new File(path, fileName ));
+        try (InputStream inputStream = new FileInputStream(new File(path, fileName));
              OutputStream outputStream = response.getOutputStream();) {
             response.setContentType("application/x-download");
             response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "utf-8"));

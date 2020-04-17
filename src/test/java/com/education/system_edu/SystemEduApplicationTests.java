@@ -183,6 +183,7 @@ class SystemEduApplicationTests {
         List<User> student = new ArrayList<>();
         List<ConnectUserAndMajor> connectUserAndMajors = new ArrayList<>();
         List<ConnectUserStudentAndClass> connectUserStudentAndClasses = new ArrayList<>();
+        int f = 0;
         for (SysModelClass aClass : classes) {
             ClassInsert aClassInfo = new ClassInsert();
             aClassInfo.setClassClassCode(aClass.getClassCode());
@@ -190,6 +191,7 @@ class SystemEduApplicationTests {
 
             for (int i = 0; i < 50; i++) {
                 User user = madeUser(aClassInfo, i, "2", "0");
+                user.setLoginCode(StringUtils.addZeroForNum((f++) + "", 3) + user.getLoginCode());
                 ConnectUserAndMajor connect2 = new ConnectUserAndMajor();
                 connect2.setCode(UU3D.uu3d() + i);
                 connect2.setUseCode(user.getCode());
@@ -308,7 +310,7 @@ class SystemEduApplicationTests {
         //添加长度控制方法
         //user.setLoginCode();
         user.setLoginCode(UserValue.PREFIX_CLASS_NO + classMsg.getGrade()
-                                  + StringUtils.lengthControl(classMsg.getClassClassCode(), 3)
+                                  + StringUtils.lengthControl(classMsg.getClassClassCode(), 4)
                                   + StringUtils.lengthControl(studentNo + "", 3));
         user.setUserName(RandomUtils.getRandomChineseName());
         user.setPassword(EncryptionUtils.encryption("MD5", "123456", user.getCode()).toString());
@@ -338,9 +340,9 @@ class SystemEduApplicationTests {
         List<User> users = userMapper.selectByExample(userExample);
 
         List<SysModelCourse> courses = sysModelCourseMapper.selectByExample(new SysModelCourseExample());
-        List<SysModelCourse> _courses = new ArrayList<> ();
-        for(SysModelCourse course:courses){
-            if (!course.getCode().equals("001")){
+        List<SysModelCourse> _courses = new ArrayList<>();
+        for (SysModelCourse course : courses) {
+            if (!course.getCode().equals("001")) {
                 System.out.println(course.getName());
                 _courses.add(course);
             }
@@ -355,8 +357,8 @@ class SystemEduApplicationTests {
             }
         }
 
-        for (User user:
-        teachers) {
+        for (User user :
+                teachers) {
 
             System.out.println(user.getLoginCode());
         }

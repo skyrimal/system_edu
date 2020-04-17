@@ -41,7 +41,7 @@ public interface StudentSignActionMapper {
             "LEFT JOIN sys_model_class AS course_class ON sign.class_code = course_class.class_code\n" +
             "LEFT JOIN sys_model_course AS course ON course_class.course_code_no = course.course_code AND course_class.course_code = course.`code`\n" +
             "WHERE\n" +
-            "sign.student_code = '2020001001'\n" +
+            "sign.student_code = '${loginCode}'\n" +
             "limit 0,5")
     List<SignHistory> selectSignHistoryByLoginCode(String loginCode);
 }

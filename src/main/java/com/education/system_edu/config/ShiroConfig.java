@@ -38,7 +38,7 @@ public class ShiroConfig {
         // 登录成功后要跳转的链接
         shiroFilterFactoryBean.setSuccessUrl("/index");
         //未授权界面
-        shiroFilterFactoryBean.setUnauthorizedUrl("/error/403");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/error/error");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
