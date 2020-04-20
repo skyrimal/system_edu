@@ -156,6 +156,13 @@ public class CourseClassServiceImpl implements CourseClassService {
     public String studentSign(String signCode, String loginCode) {
         ClassUtils<StudentSignAction> studentSignActionClassUtils = new ClassUtils<>();
         SysModelClassAssignment signAssignment = sysModelClassAssignmentMapper.selectTheClosedSignAssignment();
+        //添加判断，用户是否已经签到
+        StudentSignActionExample studentSignActionExample = new StudentSignActionExample();
+        studentSignActionExample.createCriteria().andAssignmentCodeEqualTo(signAssignment.getCode()).andStudentCodeEqualTo(loginCode);
+        int size = studentSignActionMapper.selectByExample(studentSignActionExample).size();
+        if(size!=0){
+            return "已签到，不能重复签到";
+        }
         //1.判断时间是否在签到范围内
         if (DateUtils.belongCalendar(new Date(),
                                      signAssignment.getStarttime(),
