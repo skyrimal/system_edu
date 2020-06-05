@@ -109,10 +109,7 @@ public class FacultyServiceImpl implements FacultyService {
 
         SysDataTreeExample sysDataTreeExample = SysTreeAndNodeUtils.madeSysDataTreeExample(departmentCode);
 
-        ConnectUserAndDepartmentExample connectUserAndDepartmentExample = new ConnectUserAndDepartmentExample();
-        connectUserAndDepartmentExample.createCriteria().andSysNodeCodeEqualTo(departmentCode);
-
-        return sysNodeMapper.deleteByExample(sysForSearch) + sysDataTreeMapper.deleteByExample(sysDataTreeExample) + connectUserAndDepartmentMapper.deleteByExample(connectUserAndDepartmentExample);
+        return sysNodeMapper.deleteByExample(sysForSearch) + sysDataTreeMapper.deleteByExample(sysDataTreeExample);
 
     }
 

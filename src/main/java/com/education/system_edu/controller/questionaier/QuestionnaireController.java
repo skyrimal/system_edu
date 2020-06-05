@@ -107,6 +107,7 @@ public class QuestionnaireController {
         return modelAndView;
     }
 
+
     @PostMapping("/submitQuestionnaire")
     public ModelAndView submitQuestionnaire(@RequestParam Map<String, Object> map) {
         ModelAndView modelAndView = new ModelAndView(new RedirectView("/questionaier/m_manage_questionnaire_qm"));
@@ -136,9 +137,11 @@ public class QuestionnaireController {
 
     @GetMapping("/stuSee/{questionnaireCode}/{sendCode}")
     public ModelAndView stuSeeQuestionnaire(@PathVariable String questionnaireCode, @PathVariable String sendCode) {
+        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
+        User user = (User) subjectUtils.getPrincipal();
         ModelAndView modelAndView = new ModelAndView("/stuSee_questionnaire");
         modelAndView.addObject("questionnaireData",
-                               questionnaireService.getAQuestionnaireByQuestionnaireCode(questionnaireCode));
+                               questionnaireService.getAQuestionnaireByQuestionnaireCode(user.getLoginCode(),sendCode,questionnaireCode));
         modelAndView.addObject("sendCode",
                                sendCode);
         return modelAndView;
@@ -154,6 +157,24 @@ public class QuestionnaireController {
         }else{
             modelAndView.addObject("msg","提交问卷未发布");
         }
+        return modelAndView;
+    }
+
+    @RequiresRoles({"manager"})
+    @RequestMapping("/returnQuestionnaire")
+    public String returnQuestionnaire(Model model,@RequestParam(required = false) String msg) {
+        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
+        User user = (User) subjectUtils.getPrincipal();
+        List<QuestionnaireOutput> questionnaireOutputs = questionnaireService.getQuestionReturn();
+        model.addAttribute("questionnaireReturnOutputs", questionnaireOutputs);
+        return "/m_manage_questionnaire_return";
+    }
+
+    @GetMapping("/seeReturn/{questionnaireCode}")
+    public ModelAndView seeReturnQuestionnaire(@PathVariable String questionnaireCode) {
+        ModelAndView modelAndView = new ModelAndView("/m_manage_see_return");
+        modelAndView.addObject("AnswerReturnOutputs",
+                               questionnaireService.getAnswerReturn(questionnaireCode));
         return modelAndView;
     }
 

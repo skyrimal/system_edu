@@ -229,6 +229,7 @@
                                                      th:onclick="click1([[${mgs}]]);">
                                                     提交作业
                                                 </div>
+                                                <a class="btn-info" th:href="'/download/'+${mgs.getFile()}+'.docx'">下载附件</a>
                                             </div>
                                         </th>
                                     </tr>
@@ -266,7 +267,6 @@
                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#course_msg">班级信息</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tesk_reach">查看作业
                 </button>
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#sign_info">小组信息</button>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#announcement">资料下载
                 </button>
             </div>
@@ -274,6 +274,7 @@
                 <div class="card">
                     <div class="card-header d-flex align-items-center">
                         <h3 class="h4">知识点</h3>
+                        <h1 style="color:red;">[[${msg}]]</h1>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive list-unstyled">
@@ -304,6 +305,22 @@
                                             </ul>
                                         </li>
                                     </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr >
+                                    <th>小组NO</th>
+                                    <th>组员名</th>
+                                    <th>组员学号</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="teamMSG:${teamMSGs}" >
+                                    <th>[[${teamMSG.getTeamNo()}]]</th>
+                                    <th>[[${teamMSG.getStuName()}]]</th>
+                                    <th>[[${teamMSG.getStuLoginCode()}]]</th>
                                 </tr>
                                 </tbody>
                             </table>
@@ -399,6 +416,7 @@
 
     }
 </script>
+
 </body>
 
 </html>

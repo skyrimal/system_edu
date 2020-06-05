@@ -141,12 +141,6 @@ public class AllApiController {
     }
 
     @RequiresRoles({"teacher"})
-    @RequestMapping("t_sign")
-    public String t_sign() {
-        return "/t_sign";
-    }
-
-    @RequiresRoles({"teacher"})
     @RequestMapping("t_tesk")
     public String t_tesk() {
         return "/t_tesk";
@@ -162,16 +156,21 @@ public class AllApiController {
      */
     @RequestMapping("getVerifiCode")
     @ResponseBody
-    public void getVerifiCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void getVerifiCode(HttpServletRequest request, HttpServletResponse response)  {
         /*
              1.生成验证码
              2.把验证码上的文本存在session中
              3.把验证码图片发送给客户端
              */
-        ImgMaker ivc = new ImgMaker();     //用我们的验证码类，生成验证码类对象
-        BufferedImage image = ivc.getImage();  //获取验证码
-        request.getSession().setAttribute("verificationCode", ivc.getText()); //将验证码的文本存在session中
-        ivc.output(image, response.getOutputStream());//将验证码图片响应给客户端
+        try {
+            ImgMaker ivc = new ImgMaker();     //用我们的验证码类，生成验证码类对象
+            BufferedImage image = ivc.getImage();  //获取验证码
+            request.getSession().setAttribute("verificationCode", ivc.getText()); //将验证码的文本存在session中
+            ivc.output(image, response.getOutputStream());//将验证码图片响应给客户端
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -187,7 +186,7 @@ public class AllApiController {
         try (InputStream inputStream = new FileInputStream(new File(path, fileName));
              OutputStream outputStream = response.getOutputStream();) {
             response.setContentType("application/x-download");
-            response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "utf-8"));
+            response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("下载文档", "utf-8"));
             IOUtils.copy(inputStream, outputStream);
         } catch (Exception e) {
             e.printStackTrace();

@@ -360,11 +360,11 @@ public interface UserMapper {
             "fac.`code` AS fac\n" +
             "FROM\n" +
             "sys_model_class AS cls\n" +
-            "INNER JOIN sys_data_tree AS maj ON cls.sys_college_node_code = maj.`code` AND cls.type = '2'\n" +
+            "INNER JOIN sys_data_tree AS maj ON cls.sys_college_node_code = maj.`code` \n" +
             "INNER JOIN sys_data_tree AS dep ON maj.parent_node = dep.`code`\n" +
             "INNER JOIN sys_data_tree AS fac ON dep.parent_node = fac.`code`\n" +
             "INNER JOIN connect_user_student_and_class AS csu ON csu.class_code = cls.`code`\n" +
-            "INNER JOIN all_users ON csu.student_no = all_users.login_code AND all_users.login_code = '2020001001'\n")
+            "INNER JOIN all_users ON csu.student_no = all_users.login_code AND all_users.login_code = '${loginCode}'\n")
     List<UserInSchoolMSG> selectSchoolMSGByLoginCode(String loginCode);
 
     @Select("SELECT DISTINCT\n" +
@@ -377,4 +377,23 @@ public interface UserMapper {
             "INNER JOIN all_users ON connect_user_student_and_class.student_no = all_users.login_code\n" +
             "AND all_users.login_code = '${loginCode}'")
     List<String> selectClassByLoginCode(String loginCode);
+
+    @Select("SELECT DISTINCT\n" +
+            "stu.login_code AS userLoginCode,\n" +
+            "cls.grade,\n" +
+            "f.`name` AS fac,\n" +
+            "d.`name` AS dep,\n" +
+            "m.`name` AS maj\n" +
+            "FROM\n" +
+            "all_users AS stu\n" +
+            "INNER JOIN connect_user_student_and_class ON connect_user_student_and_class.student_no = stu.login_code\n" +
+            "INNER JOIN sys_model_class AS cls ON connect_user_student_and_class.class_code = cls.`code`\n" +
+            "INNER JOIN sys_data_tree AS m ON cls.sys_college_node_code = m.`code`\n" +
+            "INNER JOIN sys_data_tree AS d ON m.parent_node = d.`code`\n" +
+            "INNER JOIN sys_data_tree AS f ON d.parent_node = f.`code`\n" +
+            "WHERE\n" +
+            "stu.login_code = '${loginCode}'\n")
+    UserInSchoolMSG selectOneSchoolMSGByLoginCode(String loginCode);
+
+    List<PageUserOutput> countttt(PageUser pageUser);
 }

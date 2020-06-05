@@ -14,6 +14,7 @@ import com.education.system_edu.pojo.pojo_child.result.PageUserOutput;
 import com.education.system_edu.pojo.pojo_getData.SearchUserByFaculty;
 import com.education.system_edu.service.UserService;
 import com.education.system_edu.utils.*;
+import com.education.system_edu.utils.value.PageValue;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -91,7 +92,16 @@ public class UserServiceImpl implements UserService {
         }
         pageUser.setPageNum(pageNum);
         pageUser.setPageSize(pageSize);
-        return userMapper.selectSelectedByUser(pageUser);
+        List<PageUserOutput> pageUserOutputs = userMapper.selectSelectedByUser(pageUser);
+        List<PageUserOutput> _pageUserOutputs = new ArrayList<>();
+        for(PageUserOutput pageUserOutput:pageUserOutputs){
+            if(!StringUtils.isEmpty(pageUserOutput.getFaculty())){
+                if(!StringUtils.isEmpty(pageUserOutput.getDepartment())){
+                    _pageUserOutputs.add(pageUserOutput);
+                }
+            }
+        }
+        return _pageUserOutputs;
     }
 
     /**
@@ -104,24 +114,35 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Long getUserPageCount(SearchUserByFaculty searchUserByFaculty, Integer pageSize) {
+        pageSize = PageValue.PAGE_SIZE;
         PageUser pageUser = new PageUser();
-        long pageCount = 0L;
         if (searchUserByFaculty != null) {
-            pageUser.setFaculty(searchUserByFaculty.getFacultyId());
-            pageUser.setDepartment(searchUserByFaculty.getDepartmentCode());
-            if (searchUserByFaculty.getDepartmentCode().equals("") && searchUserByFaculty.getFacultyId().equals("") && searchUserByFaculty.getKeyword().equals("")) {
-                pageCount = userMapper.countByExample(new UserExample());
-            } else {
-                pageCount = userMapper.countByPageUser(pageUser);
+            if (!searchUserByFaculty.getKeyword().equals("") && searchUserByFaculty.getKeyword() != null) {
             }
-        } else {
-            pageCount = userMapper.countByExample(new UserExample());
+            if (!searchUserByFaculty.getFacultyId().equals("")
+                    && searchUserByFaculty.getFacultyId() != null) {
+                pageUser.setFaculty(searchUserByFaculty.getFacultyId());
+            }
+            if (!searchUserByFaculty.getDepartmentCode().equals("")
+                    && searchUserByFaculty.getDepartmentCode() != null) {
+                pageUser.setDepartment(searchUserByFaculty.getDepartmentCode());
+            }
+        }
+        pageUser.setPageSize(pageSize);
+        List<PageUserOutput> pageUserOutputs = userMapper.countttt(pageUser);
+        List<PageUserOutput> _pageUserOutputs = new ArrayList<>();
+        for(PageUserOutput pageUserOutput:pageUserOutputs){
+            if(!StringUtils.isEmpty(pageUserOutput.getFaculty())){
+                if(!StringUtils.isEmpty(pageUserOutput.getDepartment())){
+                    _pageUserOutputs.add(pageUserOutput);
+                }
+            }
         }
 
-        if (pageCount % pageSize == 0) {
-            return pageCount / pageSize;
+        if (_pageUserOutputs.size() % pageSize == 0) {
+            return ((long)_pageUserOutputs.size() / pageSize)/2;
         } else {
-            return pageCount / pageSize + 1;
+            return ((long)_pageUserOutputs.size() / (pageSize + 1))/2;
         }
     }
 

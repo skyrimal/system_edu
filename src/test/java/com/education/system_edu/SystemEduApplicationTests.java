@@ -225,10 +225,6 @@ class SystemEduApplicationTests {
         for (SysModelClass aClass : classes) {
             sysModelClassMapper.insert(aClass);
         }
-        //3.课程班级
-        for (SysModelClass courseClass : coursesClasses) {
-            sysModelClassMapper.insert(courseClass);
-        }
         //4.插入学生
         for (User user : student) {
             userMapper.insert(user);
@@ -352,7 +348,9 @@ class SystemEduApplicationTests {
         int flag = 0;
         for (int i = 0; i < courses.size(); i++) {
             for (int j = 1; j <= 10; j++) {
-                teachers.add(users.get(flag));
+                if(flag<100){
+                    teachers.add(users.get(flag));
+                }
                 flag++;
             }
         }

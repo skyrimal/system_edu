@@ -42,4 +42,13 @@ public interface StudentSubmitQuestionnaireMapper {
             "INNER JOIN all_users AS u ON history.student_code = u.login_code\n" +
             "AND u.login_code = '${loginCode}'")
     List<QuestionnaireHistoryOutput> selectStudentSubmitHistory(String loginCode);
+
+    @Select("SELECT\n" +
+            "COUNT(`code`)\n" +
+            "FROM\n" +
+            "student_submit_questionnaire\n" +
+            "WHERE\n" +
+            "student_submit_questionnaire.sys_data_node_code = '${sendCode}' AND\n" +
+            "student_submit_questionnaire.student_code = '${loginCode}' \n")
+    int countSubmit(String loginCode, String sendCode);
 }

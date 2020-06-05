@@ -336,19 +336,35 @@
             url: "teacher/correctHomeworkInfo/" + a,
             success(data) {
                 $("#SaaS").children().remove();
+                console.info(data);
                 $.each(data, function (index, value) {
-                    $("#SaaS").append(" <tr class=\"\">\n" +
-                        "                        <th scope=\"row\">" + value.stuName + "</th>\n" +
-                        "                        <td>" + value.loginCode + "</td>\n" +
-                        "                        <td>" + value.updateTime + "</td>\n" +
-                        "                        <td>" + value.status + "</td>\n" +
-                        "                        <td>" + value.finalScore + "</td>\n" +
-                        "                        <td>\n" +
-                        "                            <div class=\"btn-group-sm\">\n" +
-                        "                                <div class=\"btn btn-warning btn-sm\" data-toggle=\"modal\" data-target=\"#stusubmit_context\" data-dismiss=\"modal\" onclick=\"clickb('" + value.code + "','" + value.context + "','" + value.fileName + "');\">批阅</div>\n" +
-                        "                            </div>\n" +
-                        "                        </td>\n" +
-                        "                    </tr>");
+
+                    console.info(value.finalScore);
+                    if (value.finalScore == null){
+                        $("#SaaS").append(" <tr class=\"\">\n" +
+                            "                        <th scope=\"row\">" + value.stuName + "</th>\n" +
+                            "                        <td>" + value.loginCode + "</td>\n" +
+                            "                        <td>" + value.updateTime + "</td>\n" +
+                            "                        <td>" + value.status + "</td>\n" +
+                            "                        <td>" + value.finalScore + "</td>\n" +
+                            "                        <td>\n" +
+                            "                            <div class=\"btn-group-sm\">\n" +
+                            "                                <div class=\"btn btn-warning btn-sm\" data-toggle=\"modal\" data-target=\"#stusubmit_context\" data-dismiss=\"modal\" onclick=\"clickb('" + value.code + "','" + value.context + "','" + value.fileName + "');\">批阅</div>\n" +
+                            "                            </div>\n" +
+                            "                        </td>\n" +
+                            "                    </tr>");
+                    }else{
+                        $("#SaaS").append(" <tr class=\"\">\n" +
+                            "                        <th scope=\"row\">" + value.stuName + "</th>\n" +
+                            "                        <td>" + value.loginCode + "</td>\n" +
+                            "                        <td>" + value.updateTime + "</td>\n" +
+                            "                        <td>" + value.status + "</td>\n" +
+                            "                        <td>" + value.finalScore + "</td>\n" +
+                            "                        <td>\n" +
+                            "                        </td>\n" +
+                            "                    </tr>");
+                    }
+
                 })
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {

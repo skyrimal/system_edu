@@ -6,6 +6,7 @@ import com.education.system_edu.pojo.output.SignHistory;
 import com.education.system_edu.pojo.output.StudentSubmitHomeworkMSG;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description: TODO
@@ -24,4 +25,6 @@ public interface HomeworkService {
     List<StudentSubmitHomeworkMSG> getHomeworkInfo(String assignmentCode);
 
     String correctHomework(String submitCode, String finalScore, String loginCode);
+
+    String checkSignInfo(Map<String, String> map);
 }

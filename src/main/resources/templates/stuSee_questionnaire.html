@@ -58,7 +58,8 @@
                             <h1 class="h1" th:text="${questionnaireData.getTitle()}">问卷模板</h1>
                         </div>
                         <div class="card-body">
-                            <form action="/questionaier/stuSubmitQuestionnaire" method="post">
+                            <h1 th:if="${questionnaireData.getQuestionOutputs()} eq null">问卷无法回复</h1>
+                            <form action="/questionaier/stuSubmitQuestionnaire" method="post" th:if="${questionnaireData.getQuestionOutputs()} ne null">
                                 <input type="text" name="assignmentCode" th:value="${sendCode}" hidden="hidden">
                                 <div class="form-group" th:each="question:${questionnaireData.getQuestionOutputs()}">
                                     <label class="col-sm-3 form-control-label">
@@ -112,9 +113,29 @@
     </div>
 </div>
 <div th:insert="~{/bar/js_bar::js}"></div>
-<script>
+<script >
     $(function () {
-
+        $("#stu_main").addClass("active");
+        $.ajax({
+            url: "/student/course/courseClass",
+            typ: "get",
+            success(date) {
+                $("#coursedropdownDropdown").children().remove();
+                $.each(date,function (index,value) {
+                    $("#coursedropdownDropdown").append("" +
+                        "                <li>\n" +
+                        "                    <a href=\"/student/course/into/"+value.code+"\">"+value.name+"</a>\n" +
+                        "                </li>");
+                })
+            }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                // 状态码
+                console.log(XMLHttpRequest.status);
+                // 状态
+                console.log(XMLHttpRequest.readyState);
+                // 错误信息
+                console.log(textStatus);
+            }
+        })
     })
 </script>
 </body>

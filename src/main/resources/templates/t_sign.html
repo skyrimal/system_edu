@@ -79,8 +79,10 @@
                                     <h3 class="h4">学生信息</h3>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="h4">上课时间:单周三3、4节课 签到信息: 未提交
-                                        <div class="btn btn-success btn-sm">提交</div>
+                                    <form action="/teacher/checkSignInfo" method="post">
+                                    <h4 class="h4">上课时间:单周三3、4节课 签到信息: [[${pageMsg.getMsg()}]]
+                                        <input type="submit" class="btn btn-success btn-sm" value="提交"></input>
+                                        <input type="hidden" name="code" th:value="${pageMsg.getCode()}">
                                     </h4>
                                     <div class="table-responsive">
                                         <table class="table table-striped table-sm">
@@ -95,109 +97,71 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr class="sign_in">
-                                                <th scope="row">1241413</th>
-                                                <td>李二白</td>
-                                                <td>考古学</td>
-                                                <td>莫名堂</td>
+                                            <tr class="sign_in" th:each="studentSignInfo:${studentSignInfos}">
+                                                <th scope="row">[[${studentSignInfo.getLoginCode()}]]</th>
+                                                <td>[[${studentSignInfo.getName()}]]</td>
+                                                <td>[[${studentSignInfo.getM()}]]</td>
+                                                <td>[[${studentSignInfo.getF()}]]</td>
                                                 <td>
-                                                    <div align="center" class="btn-danger btn-group-sm">
+                                                    <div align="center" class="btn-danger btn-group-sm"
+                                                         th:if="${studentSignInfo.getStatus() } eq '0'">
+                                                        未签到
+                                                    </div>
+                                                    <div align="center" class="btn-info btn-group-sm"
+                                                         th:if="${studentSignInfo.getStatus() } eq '1'">
+                                                        已签到
+                                                    </div>
+                                                    <div align="center" class="btn-danger btn-group-sm"
+                                                         th:if="${studentSignInfo.getStatus() } eq '2'">
                                                         迟到
                                                     </div>
+                                                    <div align="center" class="btn-danger btn-group-sm"
+                                                         th:if="${studentSignInfo.getStatus() } eq '3'">
+                                                        旷课
+                                                    </div>
+                                                    <div align="center" class="btn-danger btn-group-sm"
+                                                         th:if="${studentSignInfo.getStatus() } eq '4'">
+                                                        早退
+                                                    </div>
+                                                    <div align="center" class="btn-warning btn-group-sm"
+                                                         th:if="${studentSignInfo.getStatus() } eq '5'">
+                                                        请假
+                                                    </div>
                                                 </td>
-                                                <td>
+                                                <td th:if="${pageMsg.getMsg()} eq '未提交'">
                                                     <div class="btn-group-sm">
-                                                        <div class="btn btn-warning btn-sm">正常</div>
-                                                        <div class="btn btn-warning btn-sm">迟到</div>
-                                                        <div class="btn btn-warning btn-sm">旷课</div>
-                                                        <div class="btn btn-warning btn-sm">早退</div>
-                                                        <div class="btn btn-warning btn-sm">请假</div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="sign_in">
-                                                <th scope="row">23412</th>
-                                                <td>李二白</td>
-                                                <td>考古学</td>
-                                                <td>莫名堂</td>
-                                                <td>
-                                                    <div align="center" class="btn-warning btn-group-sm">
-                                                        迟到
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group-sm">
-                                                        <div class="btn btn-warning btn-sm">正常</div>
-                                                        <div class="btn btn-warning btn-sm">迟到</div>
-                                                        <div class="btn btn-warning btn-sm">旷课</div>
-                                                        <div class="btn btn-warning btn-sm">早退</div>
-                                                        <div class="btn btn-warning btn-sm">请假</div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="sign_in">
-                                                <th scope="row">1231412</th>
-                                                <td>李二白</td>
-                                                <td>考古学</td>
-                                                <td>莫名堂</td>
-                                                <td>
-                                                    <div align="center" class="btn-warning btn-group-sm">
-                                                        迟到
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group-sm">
-                                                        <div class="btn btn-warning btn-sm">正常</div>
-                                                        <div class="btn btn-warning btn-sm">迟到</div>
-                                                        <div class="btn btn-warning btn-sm">旷课</div>
-                                                        <div class="btn btn-warning btn-sm">早退</div>
-                                                        <div class="btn btn-warning btn-sm">请假</div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="sign_in">
-                                                <th scope="row">416153202323</th>
-                                                <td>李二白</td>
-                                                <td>考古学</td>
-                                                <td>莫名堂</td>
-                                                <td>
-                                                    <div align="center" class="btn-warning btn-group-sm">
-                                                        迟到
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group-sm">
-                                                        <div class="btn btn-warning btn-sm">正常</div>
-                                                        <div class="btn btn-warning btn-sm">迟到</div>
-                                                        <div class="btn btn-warning btn-sm">旷课</div>
-                                                        <div class="btn btn-warning btn-sm">早退</div>
-                                                        <div class="btn btn-warning btn-sm">请假</div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="sign_in">
-                                                <th scope="row">41602323</th>
-                                                <td>李二白</td>
-                                                <td>考古学</td>
-                                                <td>莫名堂</td>
-                                                <td>
-                                                    <div align="center" class="btn-warning btn-group-sm">
-                                                        迟到
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group-sm">
-                                                        <div class="btn btn-warning btn-sm">正常</div>
-                                                        <div class="btn btn-warning btn-sm">迟到</div>
-                                                        <div class="btn btn-warning btn-sm">旷课</div>
-                                                        <div class="btn btn-warning btn-sm">早退</div>
-                                                        <div class="btn btn-warning btn-sm">请假</div>
+                                                        <div th:if="${studentSignInfo.getStatus() } eq '0'">
+                                                            <input type="radio" th:name="${studentSignInfo.getLoginCode()}"
+                                                                   value="1" class="btn-warning btn-sm"><small
+                                                                class=" btn-warning btn-sm">正常</small></input>
+                                                            <input type="radio" th:name="${studentSignInfo.getLoginCode()}"
+                                                                   value="0" checked class=" btn-warning btn-sm"><small
+                                                                class=" btn-warning btn-sm">旷课</small></input>
+                                                        </div>
+                                                        <div th:if="${studentSignInfo.getStatus() } eq '1'">
+                                                            <input type="radio" th:name="${studentSignInfo.getLoginCode()}"
+                                                                   value="1" checked class="btn-warning btn-sm"><small
+                                                                class=" btn-warning btn-sm">正常</small></input>
+                                                            <input type="radio" th:name="${studentSignInfo.getLoginCode()}"
+                                                                   value="0" class=" btn-warning btn-sm"><small
+                                                                class=" btn-warning btn-sm">旷课</small></input>
+                                                        </div>
+                                                        <input type="radio" th:name="${studentSignInfo.getLoginCode()}"
+                                                               value="2" class=" btn-warning btn-sm"><small
+                                                            class=" btn-warning btn-sm">迟到</small></input>
+                                                        <input type="radio" th:name="${studentSignInfo.getLoginCode()}"
+                                                               value="4" class=" btn-warning btn-sm"><small
+                                                            class=" btn-warning btn-sm">早退</small></input>
+                                                        <input type="radio" th:name="${studentSignInfo.getLoginCode()}"
+                                                               value="5" class=" btn-warning btn-sm"><small
+                                                            class=" btn-warning btn-sm">请假</small></input>
                                                     </div>
                                                 </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -225,21 +189,37 @@
 
 <!-- JavaScript files-->
 <div th:insert="~{/bar/js_bar::js}"></div>
-
 <script type="text/javascript">
+    $(function () {
+        $.ajax({
+            type: "get",
+            url: "/teacher/course",
+            success: function (date) {
+                console.log(date);
+                $("#_course_manage").attr("aria-expanded","false");
+                $("#course_manage").children().remove();
+                $.each(date, function (index, value) {
+                    $("#course_manage").append("<li>\n" +
+                        "                    <a href=\"/teacher/course/" + value.classCode + "\">"+value.name+"</a>\n" +
+                        "                </li>");
+                });
+
+                $("#course_manage").removeClass("show");
+            }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                // 状态码
+                console.log(XMLHttpRequest.status);
+                // 状态
+                console.log(XMLHttpRequest.readyState);
+                // 错误信息
+                console.log(textStatus);
+            }
+        })
+    });
     $(document).ready(function () {
         var studentsginin = new Object();
         var map_ = new Map();
 
-        $(".sign_in div div").click(function () {
-            $(this).addClass("active");
-            $(this).siblings().removeClass("active");
-            studentsginin.stuid = $(this).parent().parent().parent().find("th").text();
-            studentsginin.state = $(this).text();
-            map_.set(studentsginin.stuid, studentsginin.state);
-        })
     });
 </script>
 </body>
-
 </html>

@@ -32,6 +32,7 @@ import org.thymeleaf.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description: TODO
@@ -84,7 +85,7 @@ public class TeacherController {
         ModelAndView modelAndView = new ModelAndView("/t_main");
         SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
         User user = (User) subjectUtils.getPrincipal();
-        modelAndView.addObject("mainMSGs",msgService.getTeacherMainMSG(user.getLoginCode()));
+        modelAndView.addObject("mainMSGs", msgService.getTeacherMainMSG(user.getLoginCode()));
         return modelAndView;
     }
 
@@ -93,7 +94,8 @@ public class TeacherController {
     public List<TeacherCourseClassLineInfoOutput> getTeachersCourse() {
         SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
         User user = (User) subjectUtils.getPrincipal();
-        return majorService.getTeacherCourse(user.getLoginCode());
+        List<TeacherCourseClassLineInfoOutput> teacherCourseClassLineInfoOutputs = majorService.getTeacherCourse(user.getLoginCode());
+        return teacherCourseClassLineInfoOutputs;
     }
 
     @GetMapping("course/{courseClassCode}")
@@ -181,6 +183,34 @@ public class TeacherController {
         User user = (User) subjectUtils.getPrincipal();
         String msg = homeworkService.correctHomework(submitCode, finalScore, user.getLoginCode());
         return msg;
+    }
+
+    @RequiresRoles({"teacher"})
+    @RequestMapping("t_sign")
+    public ModelAndView t_sign(@RequestParam(required = false) String msg) {
+        ModelAndView modelAndView = new ModelAndView("/t_sign");
+        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
+        User user = (User) subjectUtils.getPrincipal();
+        List<StudentSignInfo> studentSignInfos = courseClassService.getStudentsSignInfo(user.getLoginCode());
+        SignPageMsg pageMsg = courseClassService.getPageMsg(user.getLoginCode());
+        if (msg == null) {
+            msg = courseClassService.getMsg(user.getLoginCode());
+        }
+        pageMsg.setMsg(msg);
+        modelAndView.addObject("studentSignInfos", studentSignInfos);
+        modelAndView.addObject("pageMsg", pageMsg);
+        return modelAndView;
+    }
+
+    @PostMapping("/checkSignInfo")
+    public ModelAndView checkSignInfo(@RequestParam Map<String, String> map) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/teacher/t_sign");
+        SubjectUtils subjectUtils = new SubjectUtils(SecurityUtils.getSubject());
+        User user = (User) subjectUtils.getPrincipal();
+        String msg = courseClassService.checkSignInfo(map, user.getLoginCode());
+        modelAndView.addObject("msg", msg);
+        return modelAndView;
     }
 
     private ModelAndView teacherSearchStudent(TeacherSearchStudentInsert teacherSearchStudentInsert, String courseClassCode) {

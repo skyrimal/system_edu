@@ -22,6 +22,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -68,8 +69,7 @@ public class UserController {
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(loginUsername, loginPassword);
         usernamePasswordToken.setRememberMe(false);
 
-//        if (verificationCode.toLowerCase().equals(str.toLowerCase())) {
-        if (true) {
+        if (verificationCode.toLowerCase().equals(str.toLowerCase())) {
             //清除httpSession保存的验证码
             httpSession.removeAttribute("verificationCode");
             //1.获取subject
@@ -151,7 +151,8 @@ public class UserController {
         UserInfoUtils userInfoUtils = new UserInfoUtils(SecurityUtils.getSubject());
         UserExample userForSearch = new UserExample();
         userForSearch.createCriteria().andLoginCodeEqualTo(userInfoUtils.getLoginCode());
-        return UserUtils.userForLeftBar(pageService.findUser(userForSearch));
+        Map<String, String> map = UserUtils.userForLeftBar(pageService.findUser(userForSearch));
+        return map;
     }
 
     /**

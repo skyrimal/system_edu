@@ -20,6 +20,9 @@
     <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
   </resultMap>
+  <resultMap id="StudentSignInfo" type="com.education.system_edu.pojo.output.StudentSignInfo">
+    <id column="code" jdbcType="VARCHAR" property="code" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

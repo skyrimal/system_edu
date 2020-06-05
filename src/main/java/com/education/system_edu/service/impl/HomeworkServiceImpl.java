@@ -3,6 +3,7 @@ package com.education.system_edu.service.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.education.system_edu.mapper.*;
 import com.education.system_edu.pojo.*;
@@ -105,7 +106,6 @@ public class HomeworkServiceImpl implements HomeworkService {
         studentLSubmitTaskAction.setSysDataNodeCode("");
         studentLSubmitTaskAction.setSysDataNodeType((short) 0);
         studentLSubmitTaskAction.setContext(context);
-
         //2.判断该名学生有没有提交过作业
         StudentLSubmitTaskActionExample submitE = new StudentLSubmitTaskActionExample();
         submitE.createCriteria().andAssignmentCodeEqualTo(homeworkCode).andStudentCodeEqualTo(loginCode);
@@ -158,6 +158,15 @@ public class HomeworkServiceImpl implements HomeworkService {
             return "批阅成功";
         }
         return "发生错误";
+    }
+
+    @Override
+    public String checkSignInfo(Map<String, String> map) {
+        for (String key : map.keySet()) {
+            System.out.println("key=" + key + ", value=" + map.get(key));
+
+        }
+        return null;
     }
 
 

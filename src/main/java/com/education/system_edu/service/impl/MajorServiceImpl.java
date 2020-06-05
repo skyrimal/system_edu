@@ -109,21 +109,27 @@ public class MajorServiceImpl implements MajorService {
 
         if (!StringUtil.isEmpty(keyword)) {
             if (!StringUtils.isInteger(keyword)) {
-                majorName = keyword;
-                facultyName = keyword;
-                departmentName = keyword;
 
-                SysDataTreeExample majorNameExample = new SysDataTreeExample();
-                majorNameExample.createCriteria().andNameLike(majorName).andTreeLevelEqualTo(3);
-                SysDataTreeExample facultyNameExample = new SysDataTreeExample();
-                facultyNameExample.createCriteria().andNameLike(facultyName).andTreeLevelEqualTo(1);
-                SysDataTreeExample departmentNameExample = new SysDataTreeExample();
-                departmentNameExample.createCriteria().andNameLike(departmentName).andTreeLevelEqualTo(2);
-                sysDataTrees.addAll(sysDataTreeMapper.selectByExample(majorNameExample));
-                sysDataTrees.addAll(sysDataTreeMapper.selectByExample(facultyNameExample));
-                sysDataTrees.addAll(sysDataTreeMapper.selectByExample(departmentNameExample));
+                sysDataTrees.addAll(sysDataTreeMapper.selectByKey(keyword));
             }
         }
+        List<SysDataTree> _sysDataTrees = new ArrayList<>();
+        for (SysDataTree sysDataTree:sysDataTrees) {
+            if (sysDataTree.getType()!=(short)7){
+                List<SysDataTree> __sysDataTrees = sysDataTreeMapper.selectByParentCode(sysDataTree.getCode());
+                for (SysDataTree sysDataTree2:__sysDataTrees){
+                    if (sysDataTree2.getType()!=(short)7){
+                        List<SysDataTree> ___sysDataTrees = sysDataTreeMapper.selectByParentCode(sysDataTree2.getCode());
+                        _sysDataTrees.addAll(___sysDataTrees);
+                    }else{
+                        _sysDataTrees.add(sysDataTree2);
+                    }
+                }
+            }else{
+                _sysDataTrees.add(sysDataTree);
+            }
+        }
+        sysDataTrees = _sysDataTrees;
         if (!StringUtil.isEmpty(faculty)) {
             SysDataTreeExample sysDataTreeFacultyExample = new SysDataTreeExample();
             sysDataTreeFacultyExample.createCriteria().andCodeEqualTo(faculty);
@@ -163,10 +169,33 @@ public class MajorServiceImpl implements MajorService {
         for (SysDataTree sysDataTree : newList) {
             SysNodeExample sysNodeExample = new SysNodeExample();
             sysDataTreeExample.createCriteria().andParentNodeEqualTo(sysDataTree.getCode());
-            majors.add(FacultyFactory.sysDateTreeToMajor(sysDataTree, sysNodeMapper.selectByExample(sysNodeExample)));
+            List<SysNode> sysNodes = sysNodeMapper.selectByExample(sysNodeExample);
+            if (sysNodes.size() > 0) {
+                majors.add(FacultyFactory.sysDateTreeToMajor(sysDataTree, sysNodes));
+            }
         }
 
-        return majors;
+        List<Major> _majors = new ArrayList<>();
+        for (Major _major : majors) {
+            Major _major2 = _major;
+            String name = "";
+            SysDataTree fac = new SysDataTree();
+            SysDataTree dep = sysDataTreeMapper.selectByPrimaryKey(_major.getDepartmentCode());
+            if (dep!=null){
+                 fac = sysDataTreeMapper.selectByPrimaryKey(dep.getParentNode());
+            }
+
+            if (fac.getName() != null) {
+                name += fac.getName();
+            }
+            if (fac.getName() != null) {
+                name += "/" + dep.getName();
+            }
+            _major2.setDepartmentCode(name);
+            _majors.add(_major2);
+        }
+
+        return _majors;
     }
 
     /**
@@ -523,7 +552,6 @@ public class MajorServiceImpl implements MajorService {
     @Override
     public List<TeacherCourseClassLineInfoOutput> getTeacherCourse(String loginCode) {
         List<TeacherCourseClassLineInfoOutput> courseOutputlist = sysModelCourseMapper.getTeacherCourse(loginCode);
-        courseOutputlist.remove(0);
         return courseOutputlist;
 
     }
@@ -584,7 +612,7 @@ public class MajorServiceImpl implements MajorService {
         //获取所有授课老师
         List<User> teachers = new ArrayList<User>();
         int i = 0;
-        Map<String,List<SysModelClass>> newCourseClassesMap= new HashMap<>();
+        Map<String, List<SysModelClass>> newCourseClassesMap = new HashMap<>();
         for (SysModelCourse str : courses) {
             List<User> teacheres = userMapper.selectTeacherByCoueseCode(str.getCode());
             SysModelClass newCourseClass = null;
@@ -594,7 +622,7 @@ public class MajorServiceImpl implements MajorService {
                 newCourseClasses.add(newCourseClass);
                 mapEns.add(newCourseClass);
             }
-            newCourseClassesMap.put(str.getCourseCode(),mapEns);
+            newCourseClassesMap.put(str.getCourseCode(), mapEns);
             teachers.addAll(teacheres);
         }
 
@@ -621,8 +649,8 @@ public class MajorServiceImpl implements MajorService {
 //        }
 
         //修改排课方法，一门课一门课的排课
-        for (SysModelCourse course: courses) {
-            int stuNo=0;
+        for (SysModelCourse course : courses) {
+            int stuNo = 0;
             List<SysModelClass> sysModelClasses = newCourseClassesMap.get(course.getCourseCode());
             int stuNumber = 0;
             if (users.size() % sysModelClasses.size() > 0) {
@@ -632,8 +660,8 @@ public class MajorServiceImpl implements MajorService {
             }
             for (SysModelClass sysModelClass : sysModelClasses) {
                 int _stuNumber = stuNumber;
-                while (_stuNumber != 0 && stuNo<users.size()) {
-                    if(stuNo<users.size()){
+                while (_stuNumber != 0 && stuNo < users.size()) {
+                    if (stuNo < users.size()) {
                         ConnectUserStudentAndClass cUAC = new ConnectUserStudentAndClass();
                         cUAC.setCode(UU3D.uu3d());
                         cUAC.setClassCode(sysModelClass.getCode());

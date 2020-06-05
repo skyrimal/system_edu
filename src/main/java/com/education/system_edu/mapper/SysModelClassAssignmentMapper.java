@@ -4,6 +4,8 @@ import com.education.system_edu.pojo.SysModelClassAssignment;
 import com.education.system_edu.pojo.SysModelClassAssignmentExample;
 import java.util.List;
 
+import com.education.system_edu.pojo.output.SignInfo;
+import com.education.system_edu.pojo.output.StudentSignInfo;
 import com.education.system_edu.pojo.output.StudentSubmitHomeworkMSG;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -70,7 +72,23 @@ public interface SysModelClassAssignmentMapper {
             "LEFT JOIN correct_assignmenrt_action AS corre ON student_submit.student_code = corre.submit_student_code\n" +
             "AND student_submit.assignment_code = corre.assignment_code\n" +
             "WHERE\n" +
-            "student_submit.assignment_code = '${assignmentCode}'\n" +
-            "LIMIT 0,1\n")
+            "student_submit.assignment_code = '${assignmentCode}'\n")
     List<StudentSubmitHomeworkMSG> getStudentSubmitHomworkMsgs(String assignmentCode);
+
+    List<StudentSignInfo> selectStudentSignInfo(String loginCode);
+
+    @Select("SELECT\n" +
+            "\tsign.`code`,\n" +
+            "\tsign.class_code,\n" +
+            "\tsign.type,\n" +
+            "\tsign.starttime,\n" +
+            "\tsign.create_by\n" +
+            "FROM\n" +
+            "\tsys_model_class_assignment AS sign\n" +
+            "WHERE\n" +
+            "sign.create_by = '${loginCode}'\n" +
+            "ORDER BY\n" +
+            "\tsign.create_date DESC\n" +
+            "LIMIT 0,1")
+    List<SignInfo> selectCloserSign(String loginCode);
 }

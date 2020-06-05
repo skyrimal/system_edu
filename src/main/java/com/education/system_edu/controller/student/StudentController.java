@@ -100,7 +100,13 @@ public class StudentController {
             }
         }
         int flag = homeworkService.studentSubmitHomwork(context, homeworkCode, fileName, user.getLoginCode());
-        modelAndView.addObject("msg", flag);
+        String msg = "";
+        if (flag>0){
+            msg = "成功";
+        }else{
+            msg = "失败";
+        }
+        modelAndView.addObject("msg", msg);
         return modelAndView;
     }
 

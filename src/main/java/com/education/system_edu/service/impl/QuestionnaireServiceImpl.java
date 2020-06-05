@@ -7,10 +7,7 @@ import com.education.system_edu.pojo.*;
 import com.education.system_edu.pojo.dbpojo.UserInSchoolMSG;
 import com.education.system_edu.pojo.insert.QuestionnaireInsetToSend;
 import com.education.system_edu.pojo.insert.SearchQuestionnaireInsert;
-import com.education.system_edu.pojo.output.QuestionnaireHistoryOutput;
-import com.education.system_edu.pojo.output.QuestionnaireOutput;
-import com.education.system_edu.pojo.output.QuestionnaireToAnswerOutput;
-import com.education.system_edu.pojo.output.UserToSubmitQuestionnairePageOutput;
+import com.education.system_edu.pojo.output.*;
 import com.education.system_edu.service.QuestionnaireService;
 import com.education.system_edu.utils.*;
 import org.springframework.stereotype.Service;
@@ -125,7 +122,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
         sendQuestionnaire.setCode(UU3D.uu3d());
         sendQuestionnaire.setQuestionnaireCode(questionnaireInsetToSend.getqCode());
         sendQuestionnaire.setStarttime(date);
-        sendQuestionnaire.setEndtime(new Date(date.getTime() + 30 * 60 * 1000));
+        sendQuestionnaire.setEndtime(new Date(date.getTime() + 24* 60 * 60 * 1000));
         sendQuestionnaire = sendQuestionnaireClassUtils.addUserCreateUseInfo(sendQuestionnaire, loginCode);
         sendQuestionnaire.setType("");
         sendQuestionnaire.setRemarks("");
@@ -182,6 +179,22 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
     }
 
     @Override
+    public QuestionnaireToAnswerOutput getAQuestionnaireByQuestionnaireCode(String loginCode, String sendCode,String questionnaireCode) {
+        //1.获取问卷
+        //2.获取问题
+        //2.2获取问题匹配答案
+        //逻辑在mapper用sql实现
+        QuestionnaireToAnswerOutput questionnaireToAnswerOutput = new QuestionnaireToAnswerOutput();
+        if(sendQuestionnaireMapper.countNotEnd(sendCode)>0){
+            if(studentSubmitQuestionnaireMapper.countSubmit(loginCode,sendCode)==0){
+                questionnaireToAnswerOutput = questionnaireRepositoryMapper.selectQuestionnaireToAnswerOutput(questionnaireCode);
+            }
+        }
+        return questionnaireToAnswerOutput;
+    }
+
+
+    @Override
     public QuestionnaireToAnswerOutput getAQuestionnaireByQuestionnaireCode(String questionnaireCode) {
         //1.获取问卷
         //2.获取问题
@@ -190,7 +203,6 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
         QuestionnaireToAnswerOutput questionnaireToAnswerOutput = questionnaireRepositoryMapper.selectQuestionnaireToAnswerOutput(questionnaireCode);
         return questionnaireToAnswerOutput;
     }
-
     @Override
     public List<UserToSubmitQuestionnairePageOutput> getUserToSubmitQuestionnaireMSG(String loginCode) {
         List<UserToSubmitQuestionnairePageOutput> userToSubmitQuestionnairePageOutputs = new ArrayList<>();
@@ -229,7 +241,16 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
             userToSubmitQuestionnairePageOutputs.addAll(questionRepositoryMapper
                                                                 .selectUserToSubmitQuestionnairePageOutputByClassCode(str));
         }
-        return userToSubmitQuestionnairePageOutputs;
+        Map<String,UserToSubmitQuestionnairePageOutput> qq = new HashMap<>();
+        for( UserToSubmitQuestionnairePageOutput userToSubmitQuestionnairePageOutput:userToSubmitQuestionnairePageOutputs){
+            qq.put(userToSubmitQuestionnairePageOutput.getCode(),userToSubmitQuestionnairePageOutput);
+        }
+        List<UserToSubmitQuestionnairePageOutput> newUserToSubmitQuestionnairePageOutputs1 = new ArrayList<>();
+        for (String key : qq.keySet()) {
+            System.out.println("key=" + key + ", value=" + qq.get(key));
+            newUserToSubmitQuestionnairePageOutputs1.add(qq.get(key));
+        }
+        return newUserToSubmitQuestionnairePageOutputs1;
     }
 
     @Override
@@ -279,6 +300,76 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
     public List<QuestionnaireHistoryOutput> getQuestionnaireHistory(String loginCode) {
 
         return studentSubmitQuestionnaireMapper.selectStudentSubmitHistory(loginCode);
+    }
+
+    @Override
+    public List<QuestionnaireOutput> getQuestionReturn() {
+        List<QuestionnaireOutput> questionnaireOutputs = new ArrayList<>();
+        List<SendQuestionnaire> sendQuestionnaires= sendQuestionnaireMapper.selectByExample(new SendQuestionnaireExample());
+        for(SendQuestionnaire sendQuestionnaire:sendQuestionnaires){
+            SysModelQuestionnaireRepository sysModelQuestionnaireRepository = questionnaireRepositoryMapper.selectByPrimaryKey(sendQuestionnaire.getQuestionnaireCode());
+            QuestionnaireOutput output = new QuestionnaireOutput();
+            output.setCode(sendQuestionnaire.getCode());
+            output.setTitle(sysModelQuestionnaireRepository.getTitle());
+            questionnaireOutputs.add(output);
+        }
+        return questionnaireOutputs;
+    }
+
+    @Override
+    public List<AnswerReturnOutput> getAnswerReturn(String questionnaireCode) {
+        List<AnswerReturnOutput> answerReturnOutputs = new ArrayList<>();
+        SysModelQuestionnaireRepository sysModelQuestionnaireRepository = questionnaireRepositoryMapper.selectByPrimaryKey(sendQuestionnaireMapper.
+                selectByPrimaryKey(questionnaireCode).getQuestionnaireCode());
+        ConnectQuestionnaireAndQuestionExample cqe = new ConnectQuestionnaireAndQuestionExample();
+        cqe.createCriteria().andQuestionnaireCodeEqualTo(sysModelQuestionnaireRepository.getCode());
+        List<ConnectQuestionnaireAndQuestion> cqs = connectQuestionnaireAndQuestionMapper.selectByExample(cqe);
+
+
+        for(ConnectQuestionnaireAndQuestion cq:cqs){
+            AnswerReturnOutput answerReturnOutput = new AnswerReturnOutput();
+            SysModelQuestionnaireQuestionRepository q = questionRepositoryMapper.selectByPrimaryKey(cq.getQuestionCode());
+            answerReturnOutput.setQuestion(q.getTitle());
+            answerReturnOutput.setCode(q.getCode());
+
+            ConnectQuestionnaireQuestionAndOptionExample cqae = new ConnectQuestionnaireQuestionAndOptionExample();
+            cqae.createCriteria().andQuestionCodeEqualTo(q.getCode());
+
+            List<ConnectQuestionnaireQuestionAndOption> cqas = connectQuestionnaireQuestionAndOptionMapper.selectByExample(cqae);
+            int i = 0;
+            for(ConnectQuestionnaireQuestionAndOption caq :cqas){
+
+
+                StudentSubmitQuestionnaireTextAnswerExample ssae = new StudentSubmitQuestionnaireTextAnswerExample();
+                ssae.createCriteria().andContextLike(caq.getOptionCode());
+                List<StudentSubmitQuestionnaireTextAnswer> ssuba = studentSubmitQuestionnaireTextAnswerMapper.selectByExample(ssae);
+                int num = ssuba.size();
+                SysModelQuestionnaireQuestionOptionRepository answer = optionRepositoryMapper.selectByPrimaryKey(caq.getOptionCode());
+                answerReturnOutput.setTitle(answer.getComment());
+                AnswerReturnOutput _answerReturnOutput = null;
+                if (num!=0){
+                     _answerReturnOutput = new AnswerReturnOutput();
+                    if (i==0){
+                        _answerReturnOutput.setQuestion(answerReturnOutput.getQuestion());
+                    }
+                    _answerReturnOutput.setCode(answerReturnOutput.getCode());
+                    _answerReturnOutput.setTitle(answerReturnOutput.getTitle().split(",.,")[0]);
+                    _answerReturnOutput.setNum(num+"");
+                    i++;
+                }else{
+                     _answerReturnOutput = new AnswerReturnOutput();
+                     if (i==0){
+                         _answerReturnOutput.setQuestion(answerReturnOutput.getQuestion());
+                     }
+                    _answerReturnOutput.setCode(answerReturnOutput.getCode());
+                    _answerReturnOutput.setTitle(answerReturnOutput.getTitle().split(",.,")[0]);
+                    _answerReturnOutput.setNum(0+"");
+                    i++;
+                }
+                answerReturnOutputs.add(_answerReturnOutput);
+            }
+        }
+        return answerReturnOutputs;
     }
 
     @Override

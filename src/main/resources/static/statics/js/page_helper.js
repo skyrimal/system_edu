@@ -24,6 +24,7 @@ function pageHelperInit(pageNum, pageMaxNum) {//页脚页码加工功能
 }
 
 function appendAFootNum(start, end, pageNum) {
+    console.info(start+",,,.,"+end)
     for (var i = start; i <= end; i++) {
         $("#pageFoot").append("<a class=\" text-black-50\" href=\"#\">" + i + " \t&ensp; </a>");
     }
@@ -48,16 +49,25 @@ function action1(pageNum, pageMaxNum) {
 
 //条件2-2，当pageNum>=8 pageNum<pageMaxNum-8时
 function action2(pageNum, pageMaxNum) {
+    console.info(pageNum);
     if (pageNum >= 8 && pageNum < pageMaxNum - 8) {
         appendAFootNum(1, 5, pageNum);
 
         appendAFootPoint(1, 3);
 
-        appendAFootNum(pageNum - 3, pageNum + 3, pageNum);
+        if(Number(pageNum) + 3>pageMaxNum-13){
 
-        appendAFootPoint(1, 3);
+            appendAFootNum(Number(pageNum) - 3, pageMaxNum, Number(pageNum));
 
-        appendAFootNum(pageMaxNum - 3, pageMaxNum, pageNum);
+        }else{
+            appendAFootNum(Number(pageNum) - 3, Number(pageNum) + 3, Number(pageNum));
+            appendAFootPoint(1, 3);
+
+            appendAFootNum(Number(pageNum) - 3, pageMaxNum, Number(pageNum));
+        }
+
+
+
     }
 }
 

@@ -154,7 +154,7 @@
     LEFT JOIN sys_data_tree AS faculty ON department.parent_node = faculty.`code`
     WHERE
 	    `user`.login_code = #{loginCode,jdbcType=VARCHAR}
-	    AND c.type =2 LIMIT 0,1
+	 LIMIT 0,1
     </select>
     <!-- 手动添加计数器 -->
     <select id="countByPageUser" parameterType="com.education.system_edu.pojo.pojo_child.parameter.PageUser"
@@ -268,21 +268,20 @@
         </if>
         0=0)asda;
     </select>
-
-    <!-- 手动添加的selectSelectedByUser -->
-    <select id="selectSelectedByUser" parameterType="com.education.system_edu.pojo.pojo_child.parameter.PageUser"
+<!--countttt-->
+    <select id="countttt" parameterType="com.education.system_edu.pojo.pojo_child.parameter.PageUser"
             resultMap="BaseResultMap2">
-        select
+        select DISTINCT
         <include refid="user_a_Column_List"/>
         ,
-        f.`name` as faculty,d.`name` as department,m.`name` as major, class.class_code
+        f.`name` as faculty,d.`name` as department,m.`name` as major, class.grade as class_code
         from all_users a
         LEFT JOIN connect_user_student_and_class c ON c.student_code = a.`code`
         LEFT JOIN sys_model_class class ON class.`code` = c.class_code
         LEFT JOIN sys_data_tree m ON m.`code` = class.sys_college_node_code
         LEFT JOIN sys_data_tree d ON d.`code` = m.parent_node
         LEFT JOIN sys_data_tree f ON f.`code` = d.parent_node
-        where
+        where 0=0 and
         <if test="faculty != null &amp;&amp; faculty!=''">
             f.code = #{faculty,jdbcType=VARCHAR} and
         </if>
@@ -380,6 +379,116 @@
             update_date = #{updateDate,jdbcType=TIMESTAMP} and
         </if>
         0=0
+        order by login_code DESC
+    </select>
+    <!-- 手动添加的selectSelectedByUser -->
+    <select id="selectSelectedByUser" parameterType="com.education.system_edu.pojo.pojo_child.parameter.PageUser"
+            resultMap="BaseResultMap2">
+        select DISTINCT
+        <include refid="user_a_Column_List"/>
+        ,
+        f.`name` as faculty,d.`name` as department,m.`name` as major, class.grade as class_code
+        from all_users a
+        LEFT JOIN connect_user_student_and_class c ON c.student_code = a.`code`
+        LEFT JOIN sys_model_class class ON class.`code` = c.class_code
+        LEFT JOIN sys_data_tree m ON m.`code` = class.sys_college_node_code
+        LEFT JOIN sys_data_tree d ON d.`code` = m.parent_node
+        LEFT JOIN sys_data_tree f ON f.`code` = d.parent_node
+        where 0=0 and
+        <if test="department != null &amp;&amp; department!=''">
+            d.code = #{department,jdbcType=VARCHAR} and
+        </if>
+        <if test="code != null">
+            code = #{code,jdbcType=VARCHAR} and
+        </if>
+        <if test="loginCode != null">
+            login_code = #{loginCode,jdbcType=VARCHAR} and
+        </if>
+        <if test="userName != null ">
+            user_name = #{userName,jdbcType=VARCHAR} and
+        </if>
+        <if test="password != null">
+            password = #{password,jdbcType=VARCHAR} and
+        </if>
+        <if test="email != null">
+            email = #{email,jdbcType=VARCHAR} and
+        </if>
+        <if test="mobile != null">
+            mobile = #{mobile,jdbcType=VARCHAR} and
+        </if>
+        <if test="phone != null">
+            phone = #{phone,jdbcType=VARCHAR} and
+        </if>
+        <if test="sex != null ">
+            sex = #{sex,jdbcType=CHAR} and
+        </if>
+        <if test="avatar != null">
+            avatar = #{avatar,jdbcType=VARCHAR} and
+        </if>
+        <if test="sign != null">
+            sign = #{sign,jdbcType=VARCHAR} and
+        </if>
+        <if test="userType != null">
+            user_type = #{userType,jdbcType=VARCHAR} and
+        </if>
+        <if test="mgrType != null">
+            mgr_type = #{mgrType,jdbcType=CHAR} and
+        </if>
+        <if test="pwdUpdateDate != null">
+            pwd_update_date = #{pwdUpdateDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="pwdUpdateRecord != null">
+            pwd_update_record = #{pwdUpdateRecord,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestion != null">
+            pwd_question = #{pwdQuestion,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestionAnswer != null">
+            pwd_question_answer = #{pwdQuestionAnswer,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestion2 != null">
+            pwd_question_2 = #{pwdQuestion2,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestionAnswer2 != null">
+            pwd_question_answer_2 =#{pwdQuestionAnswer2,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestion3 != null">
+            pwd_question_3 = #{pwdQuestion3,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestionAnswer3 != null">
+            pwd_question_answer_3 = #{pwdQuestionAnswer3,jdbcType=VARCHAR} and
+        </if>
+        <if test="pwdQuestUpdateDate != null">
+            pwd_quest_update_date = #{pwdQuestUpdateDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="lastLoginIp != null">
+            last_login_ip = #{lastLoginIp,jdbcType=VARCHAR} and
+        </if>
+        <if test="lastLoginDate != null">
+            last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="freezeDate != null ">
+            freeze_date = #{freezeDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="freezeCause != null">
+            freeze_cause = #{freezeCause,jdbcType=VARCHAR} and
+        </if>
+        <if test="status != null">
+            status = #{status,jdbcType=CHAR} and
+        </if>
+        <if test="createBy != null">
+            create_by = #{createBy,jdbcType=VARCHAR} and
+        </if>
+        <if test="createDate != null">
+            create_date = #{createDate,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="updateBy != null">
+            update_by = #{updateBy,jdbcType=VARCHAR} and
+        </if>
+        <if test="updateDate != null">
+            update_date = #{updateDate,jdbcType=TIMESTAMP} and
+        </if>
+        f.`name` != ''
         order by login_code DESC
         <bind name="page_start" value="(pageNum-1)*pageSize"></bind>
         LIMIT #{page_start} ,#{pageSize}

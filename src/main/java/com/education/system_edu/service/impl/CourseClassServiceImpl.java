@@ -3,10 +3,8 @@ package com.education.system_edu.service.impl;
 
 import com.education.system_edu.mapper.*;
 import com.education.system_edu.pojo.*;
-import com.education.system_edu.pojo.output.CourseClassTeamOutput;
-import com.education.system_edu.pojo.output.HomMsgsAndTeanMsgs;
-import com.education.system_edu.pojo.output.HomworkMsg;
-import com.education.system_edu.pojo.output.TeamMsg;
+import com.education.system_edu.pojo.dbpojo.UserInSchoolMSG;
+import com.education.system_edu.pojo.output.*;
 import com.education.system_edu.service.CourseClassService;
 import com.education.system_edu.utils.ClassUtils;
 import com.education.system_edu.utils.DateUtils;
@@ -15,9 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Description: TODO
@@ -100,8 +96,7 @@ public class CourseClassServiceImpl implements CourseClassService {
             //1.1.1 判断作业时间，是否在时间范围内
             //1.1.1-1 在作业时间范围内，判断是否提交过作业
             StudentLSubmitTaskActionExample stuSubmitExample = new StudentLSubmitTaskActionExample();
-            stuSubmitExample.createCriteria().andStudentCodeEqualTo(loginCode);
-            stuSubmitExample.createCriteria().andAssignmentCodeEqualTo(homworkMsg.getCode());
+            stuSubmitExample.createCriteria().andStudentCodeEqualTo(loginCode).andAssignmentCodeEqualTo(homworkMsg.getCode());
             //获取提交了给作业个数用来判断是否提交作业
             int isSubmit = (int) studentLSubmitTaskActionMapper.countByExample(stuSubmitExample);//等于0未提交，不等于0则已提交
             if (DateUtils.belongCalendarDateStringDate(new Date(),
@@ -160,7 +155,7 @@ public class CourseClassServiceImpl implements CourseClassService {
         StudentSignActionExample studentSignActionExample = new StudentSignActionExample();
         studentSignActionExample.createCriteria().andAssignmentCodeEqualTo(signAssignment.getCode()).andStudentCodeEqualTo(loginCode);
         int size = studentSignActionMapper.selectByExample(studentSignActionExample).size();
-        if(size!=0){
+        if (size != 0) {
             return "已签到，不能重复签到";
         }
         //1.判断时间是否在签到范围内
@@ -203,6 +198,141 @@ public class CourseClassServiceImpl implements CourseClassService {
         //1-2不在时间范围内
         //1-2.1返回-没有最近签到计划-
         return "最近没有签到计划";
+    }
+
+    @Override
+    public List<StudentSignInfo> getStudentsSignInfo(String loginCode) {
+        //1.获取最近发布的签到
+        List<SignInfo> signInfos = sysModelClassAssignmentMapper.selectCloserSign(loginCode);
+        //2.获取发布的签到所在班级的所有学生
+        List<User> students = studentSignActionMapper.selectAllStudentSignInfo(signInfos.get(0).getClassCode());
+        Map<String,User> studentMap= new HashMap<>();
+        for(User user:students){
+            studentMap.put(user.getCode(),user);
+        }
+        List<UserInSchoolMSG> userInSchoolMSGS= new  ArrayList<>();
+        //3.获取对该签到进行签到的学生的行为
+        StudentSignActionExample studentSignActionExample;
+        Map<String,StudentSignAction> studentSignActionsMap = new HashMap<>();
+        for (User stu : students) {
+            userInSchoolMSGS.add(userMapper.selectOneSchoolMSGByLoginCode(stu.getLoginCode()));
+            studentSignActionExample = new StudentSignActionExample();
+            studentSignActionExample.createCriteria().andStudentCodeEqualTo(stu.getLoginCode()).andAssignmentCodeEqualTo(signInfos.get(0).getCode());
+            List<StudentSignAction> _studentSignActions= studentSignActionMapper.selectByExample(studentSignActionExample);
+            if (_studentSignActions.size()>0){
+                studentSignActionsMap.put(stu.getCode(),_studentSignActions.get(0));
+            }else {
+                studentSignActionsMap.put(stu.getCode(),null);
+            }
+        }
+        Map<String, UserInSchoolMSG> userInSchoolMSGMap = new HashMap<>();
+        for (UserInSchoolMSG userInSchoolMSG:userInSchoolMSGS) {
+            userInSchoolMSGMap.put(userInSchoolMSG.getUserLoginCode(),userInSchoolMSG);
+        }
+        List<StudentSignInfo> studentSignInfos = new ArrayList<>();
+        int i = 0;
+        for (String key : studentSignActionsMap.keySet()) {
+            System.out.println("key=" + key + ", value=" + studentSignActionsMap.get(key));
+            StudentSignAction  _StudentSignAction = studentSignActionsMap.get(key);
+            UserInSchoolMSG _UserInSchoolMSG;
+            String stuLoginCode = studentMap.get(key).getLoginCode();
+            _UserInSchoolMSG= userInSchoolMSGMap.get(stuLoginCode);
+
+            StudentSignInfo studentSignInfo = new StudentSignInfo();
+            studentSignInfo.setF(_UserInSchoolMSG.getFac());
+            studentSignInfo.setD(_UserInSchoolMSG.getDep());
+            studentSignInfo.setM(_UserInSchoolMSG.getMaj());
+            studentSignInfo.setLoginCode(_UserInSchoolMSG.getUserLoginCode());
+            studentSignInfo.setName(studentMap.get(key).getUserName());
+            if (_StudentSignAction!=null){
+                studentSignInfo.setCode(_StudentSignAction.getCode());
+                studentSignInfo.setClassCode(_StudentSignAction.getClassCode());
+                studentSignInfo.setStatus(_StudentSignAction.getStatus()+"");
+            }else{
+                studentSignInfo.setStatus(0+"");
+            }
+            studentSignInfos.add(studentSignInfo);
+            i++;
+        }
+        //4.将2与3合并整理后返回
+        return studentSignInfos;
+    }
+
+    @Override
+    public SignPageMsg getPageMsg(String loginCode) {
+        //1.获取最近发布的签到
+        List<SignInfo> signInfos = sysModelClassAssignmentMapper.selectCloserSign(loginCode);
+        SignPageMsg signPageMsg = new SignPageMsg();
+        signPageMsg.setCode(signInfos.get(0).getCode());
+        SysModelClassAssignment sysModelClassAssignment = sysModelClassAssignmentMapper.selectByPrimaryKey(signInfos.get(0).getCode());
+        signPageMsg.setType(sysModelClassAssignment.getContext());
+        return signPageMsg;
+    }
+
+    @Override
+    public String checkSignInfo(Map<String, String> map,String loginCode) {
+
+        //1.获取最近发布的签到
+        List<SignInfo> signInfos = sysModelClassAssignmentMapper.selectCloserSign(loginCode);
+        SysModelClassAssignment sysModelClassAssignment =sysModelClassAssignmentMapper.selectByPrimaryKey(signInfos.get(0).getCode());
+
+        if(!sysModelClassAssignment.getContext().equals("1")){
+            sysModelClassAssignment.setContext("1");
+            sysModelClassAssignmentMapper.updateByPrimaryKey(sysModelClassAssignment);
+            StudentSignActionExample studentSignActionExample = new StudentSignActionExample();
+            studentSignActionExample.createCriteria().andAssignmentCodeEqualTo(map.get("code"));
+            List<StudentSignAction> studentSignActions = studentSignActionMapper.selectByExample(studentSignActionExample);
+            Map<String,StudentSignAction> studentSignActionMap = new HashMap<>();
+            for(StudentSignAction _studentSignAction:studentSignActions){
+                studentSignActionMap.put(_studentSignAction.getStudentCode(),_studentSignAction);
+            }
+            List<StudentSignAction> updateStudentSignActions = new ArrayList<>();
+            List<StudentSignAction> insertStudentSignActions = new ArrayList<>();
+            String code = map.get("code");
+            map.remove("code");
+            ClassUtils<StudentSignAction> studentSignActionClassUtils = new ClassUtils<>();
+            for (String key : map.keySet()) {
+                StudentSignAction _StudentSignAction ;
+                System.out.println("key=" + key + ", value=" + map.get(key));
+                if (studentSignActionMap.get(key)!=null){
+                    _StudentSignAction = studentSignActionMap.get(key);
+                    _StudentSignAction.setStatus(Integer.valueOf(map.get(key)));
+                    updateStudentSignActions.add(_StudentSignAction);
+                    _StudentSignAction = studentSignActionClassUtils.addUserUpdateUseInfo(_StudentSignAction,loginCode);
+                    studentSignActionMapper.updateByPrimaryKey(_StudentSignAction);
+                    updateStudentSignActions.add(_StudentSignAction);
+                }else{
+                    _StudentSignAction = new StudentSignAction();
+                    _StudentSignAction.setCode(UU3D.uu3d());
+                    _StudentSignAction.setAssignmentCode(code);
+                    _StudentSignAction.setClassCode(signInfos.get(0).getClassCode());
+                    _StudentSignAction.setType((short)1);
+                    _StudentSignAction.setStatus(Integer.valueOf(map.get(key)));
+                    _StudentSignAction.setStudentCode(key);
+                    _StudentSignAction.setSignDate(new Date());
+                    _StudentSignAction= studentSignActionClassUtils.addUserCreateUseInfo(_StudentSignAction,loginCode);
+                    studentSignActionMapper.insert(_StudentSignAction);
+                    insertStudentSignActions.add(_StudentSignAction);
+                }
+            }
+            return "提交成功";
+        }else{
+            return "签到已提交，不能重复提交";
+        }
+
+    }
+
+    @Override
+    public String getMsg(String loginCode) {
+
+        List<SignInfo> signInfos = sysModelClassAssignmentMapper.selectCloserSign(loginCode);
+        SignPageMsg signPageMsg = new SignPageMsg();
+        signPageMsg.setCode(signInfos.get(0).getCode());
+        SysModelClassAssignment sysModelClassAssignment = sysModelClassAssignmentMapper.selectByPrimaryKey(signInfos.get(0).getCode());
+        if(!sysModelClassAssignment.getContext().equals("1")){
+            return "未提交";
+        }
+        return "最近签到情况如下";
     }
 
     private Integer stuNum(int x, int y) {

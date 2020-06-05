@@ -23,6 +23,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -126,15 +128,14 @@ public class FacultyController {
      * 删除部门
      *
      * @param departmentCode
-     * @param model
      * @return
      */
     @RequiresRoles({"manager"})
     @RequestMapping("deleteDepartment")
-    public String deleteDepartment(@RequestParam("departmentCode") String departmentCode,
-                                   Model model) {
-        facultyService.deleteDepartment(departmentCode);
-        return "redirect:/manage/faculty/m_manage_faculty_faculty";
+    public ModelAndView deleteDepartment(@RequestParam("departmentCode") String departmentCode) {
+        int flag = facultyService.deleteDepartment(departmentCode);
+        ModelAndView modelAndView = new ModelAndView(new RedirectView("/manage/faculty/m_manage_faculty_faculty"));
+        return modelAndView;
     }
 
     /**
